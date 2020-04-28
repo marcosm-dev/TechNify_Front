@@ -3,19 +3,20 @@ import VueRouter from 'vue-router'
 import Auth from '../views/Auth'
 import Home from '../views/Home'
 
-
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/',
-    name: 'Auth',
-    component: Auth
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  }
+  path: '/',
+  name: 'Auth',
+  meta: { layout: 'no-navbar' },
+  component: Auth
+},
+{
+  path: '/home',
+  name: 'Home',
+  meta: { layout: 'default' },
+  component: Home
+}
 ]
 
 const router = new VueRouter({

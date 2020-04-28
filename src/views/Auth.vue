@@ -54,10 +54,11 @@ export default {
 .bgimg {
   background-image: url("../assets/tech.png");
   background-size: 100vmax;
+  height: 91vh;
 }
 .bglogin {
   background-color: rgba(186, 238, 243, 0.788) !important;
-  opacity: 0.5;
+  opacity: 1;
   border-radius: 37px;
 }
 .card {
