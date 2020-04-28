@@ -1,11 +1,11 @@
 <template>
   <v-col class="signup">
-    <h4 class="ml-8 mt-5">Username:</h4>
+    <h4 class="ml-8 mt-5">Name:</h4>
     <v-text-field
       clearable
       class="mt-2 mr-6"
-      label="Username"
-      v-model="username"
+      label="Name"
+      v-model="first_name"
       prepend-icon="mdi-account-circle"
       :rules="userRules"
     ></v-text-field>
@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import API from "../services/App";
+
 export default {
   data() {
     return {
@@ -43,10 +45,10 @@ export default {
       userPassword: "",
       passwordRule: [
         v => !!v || "Password is required",
-        v => v.length >= 10 || "Password must be more than 10 characters"
+        v => v.length >= 8 || "Password must be more than 8 characters"
       ],
-      username: "",
-      userRules: [v => !!v || "Username is required"],
+      first_name: "",
+      userRules: [v => !!v || "Name is required"],
       email: "",
       emailRules: [
         v => !!v || "E-mail is required",
@@ -57,11 +59,11 @@ export default {
   methods: {
     signup() {
       const newUser = {
-        name: this.username,
+        first_name: this.first_name,
         email: this.email,
         password: this.userPassword
       };
-      APIServices.signup(newUser)
+      API.signup(newUser)
         .then(response => {
           localStorage.setItem("token", response.token);
           localStorage.setItem("email", response.email);

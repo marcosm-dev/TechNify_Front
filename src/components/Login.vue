@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import API from "../services/App";
+
 export default {
   data() {
     return {
@@ -39,7 +41,7 @@ export default {
       userPassword: "1234567890",
       passwordRule: [
         v => !!v || "Password is required",
-        v => v.length >= 10 || "Password must be more than 10 characters"
+        v => v.length >= 8 || "Password must be more than 8 characters"
       ]
     };
   },
@@ -49,14 +51,14 @@ export default {
         email: this.email,
         password: this.userPassword
       };
-      APIServices.login(user)
+      API.login(user)
         .then(response => {
           if (!response.token) {
             this.errormsg = "Usuario Incorrecto";
           } else {
             localStorage.setItem("token", response.token);
             localStorage.setItem("email", response.email);
-            localStorage.setItem("name", response.name);
+            localStorage.setItem("first_name", response.first_name);
             this.$router.push("/home");
           }
         })

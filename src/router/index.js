@@ -1,14 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Auth from '../views/Auth'
+import Home from '../views/Home'
+
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Auth',
     component: Auth
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home
   }
 ]
 
