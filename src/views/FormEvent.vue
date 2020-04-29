@@ -1,10 +1,49 @@
 <template>
+<<<<<<< HEAD
+  <div></div>
+  <!--   <ValidationObserver ref="observer" v-slot="{ validate, reset }">
+    <form>
+      <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:10">
+        <v-text-field
+          v-model="name"
+          :counter="10"
+          :error-messages="errors"
+          label="Event's name"
+          required
+        ></v-text-field>
+      </ValidationProvider>
+      <ValidationProvider v-slot="{ errors }" name="Place" rules="required|max:10">
+        <v-text-field v-model="place" :counter="10" :error-messages="errors" label="Place" required></v-text-field>
+      </ValidationProvider>
+      <ValidationProvider v-slot="{ errors }" name="Type" rules="required|max:10">
+        <v-text-field
+          v-model="type"
+          :counter="10"
+          :error-messages="errors"
+          label="Event's type"
+          required
+        ></v-text-field>
+      </ValidationProvider>
+
+      <v-row justify="center">
+        <v-date-picker v-model="picker"></v-date-picker>
+      </v-row>
+      <v-row justify="center">
+        <v-date-picker v-model="picker"></v-date-picker>
+      </v-row>
+
+      <ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
+        <v-text-field v-model="email" :error-messages="errors" label="E-mail" required></v-text-field>
+      </ValidationProvider>
+      <ValidationProvider v-slot="{ errors }" name="select" rules="required">
+=======
   <v-row class="d-flex justify-center" cols="12">
     <v-col cols="4">
       <h2>CREATE YOUR EVENT</h2>
       <v-form ref="form" v-model="valid">
         <v-text-field v-model="name" label="Name"></v-text-field>
         <v-text-field v-model="place" label="Place"></v-text-field>
+>>>>>>> 8fb763db6d51c611fe08aa26d1dbb6f1ef672276
         <v-select
           v-model="select"
           :items="items"
@@ -73,6 +112,24 @@ export default {
     place: "",
     price: null,
     select: null,
+<<<<<<< HEAD
+    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+    checkbox: null,
+    picker: new Date().toISOString().substr(0, 10)
+  }),
+  methods: {
+    submit() {
+      this.$refs.observer.validate();
+    },
+    clear() {
+      this.name = "";
+      this.email = "";
+      this.select = null;
+      this.checkbox = null;
+      this.$refs.observer.reset();
+    }
+  }
+=======
     small: "",
     large: "",
     items: ["UX", "DEVELOPER", "HACKATON", "OTHERS"],
@@ -81,6 +138,7 @@ export default {
     valid: true
   }),
   methods: {}
+>>>>>>> 8fb763db6d51c611fe08aa26d1dbb6f1ef672276
 };
 </script>
 <style lang="scss" scoped>

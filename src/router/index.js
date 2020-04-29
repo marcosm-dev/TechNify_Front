@@ -6,25 +6,30 @@ import FormEvent from '../views/FormEvent'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Auth',
-    meta: { layout: 'no-navbar' },
-    component: Auth
+const routes = [{
+  path: '/',
+  name: 'Auth',
+  meta: {
+    layout: 'no-navbar'
   },
-  {
-    path: '/home',
-    name: 'Home',
-    meta: { layout: 'default' },
-    component: Home
+  component: Auth
+},
+{
+  path: '/home',
+  name: 'Home',
+  meta: {
+    layout: 'default'
   },
-  {
-    path: '/create',
-    name: 'Create',
-    meta: { layout: 'default' },
-    component: FormEvent
-  }
+  component: Home
+},
+{
+  path: '/create',
+  name: 'Create',
+  meta: {
+    layout: 'default'
+  },
+  component: FormEvent
+}
 ]
 
 const router = new VueRouter({
