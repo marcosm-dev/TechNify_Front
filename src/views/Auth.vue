@@ -28,7 +28,7 @@
               </span>
 
               <v-divider class="my-3"></v-divider>
-              <v-btn to="/home" class="mt-5" rounded dark color="cyan accent-4" x-large>See more</v-btn>
+              <v-btn to="/events" class="mt-5" rounded dark color="cyan accent-4" x-large>See more</v-btn>
             </v-flex>
           </v-layout>
         </v-container>

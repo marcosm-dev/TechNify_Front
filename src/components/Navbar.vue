@@ -69,10 +69,12 @@ export default {
     mosaic() {
       this.select = "select";
       this.select2 = "null";
+      this.$router.push("/events");
     },
     expand() {
       this.select2 = "select2";
       this.select = "null";
+      this.$router.push("/expanded");
     }
   }
 };

@@ -62,7 +62,7 @@ export default {
             localStorage.setItem("email", user.email);
             localStorage.setItem("first_name", user.first_name);
             localStorage.setItem("role", user.role);
-            this.$router.push("/home");
+            this.$router.push("/events");
           }
         })
         .catch(err => console.error(err));

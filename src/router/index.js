@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Auth from '../views/Auth'
 import Home from '../views/Home'
 import FormEvent from '../views/FormEvent'
+import MosaicView from '../views/MosaicView'
+import ExpandedView from '../views/ExpandedView'
 
 Vue.use(VueRouter)
 
@@ -29,6 +31,22 @@ const routes = [{
     layout: 'default'
   },
   component: FormEvent
+},
+{
+  path: '/events',
+  name: 'Events',
+  meta: {
+    layout: 'default'
+  },
+  component: MosaicView
+},
+{
+  path: '/expanded',
+  name: 'Expanded',
+  meta: {
+    layout: 'default'
+  },
+  component: ExpandedView
 }
 ]
 
