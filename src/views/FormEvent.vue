@@ -2,8 +2,34 @@
   <ValidationObserver ref="observer" v-slot="{ validate, reset }">
     <form>
       <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:10">
-        <v-text-field v-model="name" :counter="10" :error-messages="errors" label="Name" required></v-text-field>
+        <v-text-field
+          v-model="name"
+          :counter="10"
+          :error-messages="errors"
+          label="Event's name"
+          required
+        ></v-text-field>
       </ValidationProvider>
+      <ValidationProvider v-slot="{ errors }" name="Place" rules="required|max:10">
+        <v-text-field v-model="place" :counter="10" :error-messages="errors" label="Place" required></v-text-field>
+      </ValidationProvider>
+      <ValidationProvider v-slot="{ errors }" name="Type" rules="required|max:10">
+        <v-text-field
+          v-model="type"
+          :counter="10"
+          :error-messages="errors"
+          label="Event's type"
+          required
+        ></v-text-field>
+      </ValidationProvider>
+
+      <v-row justify="center">
+        <v-date-picker v-model="picker"></v-date-picker>
+      </v-row>
+      <v-row justify="center">
+        <v-date-picker v-model="picker"></v-date-picker>
+      </v-row>
+
       <ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
         <v-text-field v-model="email" :error-messages="errors" label="E-mail" required></v-text-field>
       </ValidationProvider>
@@ -70,9 +96,9 @@ export default {
     email: "",
     select: null,
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: null
+    checkbox: null,
+    picker: new Date().toISOString().substr(0, 10)
   }),
-
   methods: {
     submit() {
       this.$refs.observer.validate();
