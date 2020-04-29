@@ -11,6 +11,7 @@ Vue.component('no-navbar-layout', NoNavbar)
 
 Vue.config.productionTip = false
 
+
 new Vue({
   router,
   vuetify,

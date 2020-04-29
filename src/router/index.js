@@ -2,34 +2,34 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Auth from '../views/Auth'
 import Home from '../views/Home'
-import CreateEvent from '../views/FormEvent'
+import FormEvent from '../views/FormEvent'
 
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/',
-    name: 'Auth',
-    meta: {
-      layout: 'no-navbar'
-    },
-    component: Auth
+  path: '/',
+  name: 'Auth',
+  meta: {
+    layout: 'no-navbar'
   },
-  {
-    path: '/home',
-    name: 'Home',
-    meta: {
-      layout: 'default'
-    },
-    component: Home
+  component: Auth
+},
+{
+  path: '/home',
+  name: 'Home',
+  meta: {
+    layout: 'default'
   },
-  {
-    path: '/create',
-    name: 'CreateEvent',
-    meta: {
-      layout: 'default'
-    },
-    component: CreateEvent
-  }
+  component: Home
+},
+{
+  path: '/create',
+  name: 'Create',
+  meta: {
+    layout: 'default'
+  },
+  component: FormEvent
+}
 ]
 
 const router = new VueRouter({

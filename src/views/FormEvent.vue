@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div></div>
   <!--   <ValidationObserver ref="observer" v-slot="{ validate, reset }">
     <form>
@@ -35,67 +36,83 @@
         <v-text-field v-model="email" :error-messages="errors" label="E-mail" required></v-text-field>
       </ValidationProvider>
       <ValidationProvider v-slot="{ errors }" name="select" rules="required">
+=======
+  <v-row class="d-flex justify-center" cols="12">
+    <v-col cols="4">
+      <h2>CREATE YOUR EVENT</h2>
+      <v-form ref="form" v-model="valid">
+        <v-text-field v-model="name" label="Name"></v-text-field>
+        <v-text-field v-model="place" label="Place"></v-text-field>
+>>>>>>> 8fb763db6d51c611fe08aa26d1dbb6f1ef672276
         <v-select
           v-model="select"
           :items="items"
-          :error-messages="errors"
-          label="Select"
-          data-vv-name="select"
+          :rules="[v => !!v || 'Item is required']"
+          label="Event's Type"
           required
         ></v-select>
-      </ValidationProvider>
-      <ValidationProvider v-slot="{ errors, valid }" rules="required" name="checkbox">
-        <v-checkbox
-          v-model="checkbox"
-          :error-messages="errors"
-          value="1"
-          label="Option"
-          type="checkbox"
-          required
-        ></v-checkbox>
-      </ValidationProvider>
-
-      <v-btn class="mr-4" @click="submit">submit</v-btn>
-      <v-btn @click="clear">clear</v-btn>
-    </form>
-  </ValidationObserver>-->
+        <v-menu
+          ref="menu"
+          v-model="menu"
+          :close-on-content-click="false"
+          :return-value.sync="dates"
+          transition="scale-transition"
+          offset-y
+          min-width="290px"
+        >
+          <template v-slot:activator="{ on }">
+            <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+          </template>
+          <v-date-picker v-model="dates" multiple no-title scrollable>
+            <v-spacer></v-spacer>
+            <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+            <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
+          </v-date-picker>
+        </v-menu>
+      </v-form>
+    </v-col>
+    <v-col cols="4">
+      <div class="ml-10 image justify-center">
+        <h5>Cover Image</h5>
+        <v-file-input multiple label="Cover Image"></v-file-input>
+        <h5>Detail Image</h5>
+        <v-file-input multiple label="Detail Image"></v-file-input>
+      </div>
+      <v-text-field v-model="price" label="Price"></v-text-field>
+    </v-col>
+    <v-col cols="4" class="justify-center d-flex"></v-col>
+    <v-row cols="12">
+      <v-col cols="8">
+        <v-container fluid>
+          <v-textarea
+            clear-icon="cancel"
+            label="Text"
+            v-model="small"
+            placeholder="Small Description: "
+          ></v-textarea>
+        </v-container>
+        <v-container fluid>
+          <v-textarea clear-icon="cancel" label="Text" placeholder="Large Description."></v-textarea>
+        </v-container>
+      </v-col>
+      <v-col cols="4">
+        <v-btn color="teal darken-4" dark class="ml-10 mr-10" depressed>Create</v-btn>
+        <v-btn color="teal darken-4" dark depressed>Preview</v-btn>
+      </v-col>
+    </v-row>
+  </v-row>
 </template>
 
-<script>
-import { required, email, max } from "vee-validate/dist/rules";
-import {
-  extend,
-  ValidationObserver,
-  ValidationProvider,
-  setInteractionMode
-} from "vee-validate";
 
-setInteractionMode("eager");
 
-extend("required", {
-  ...required,
-  message: "{_field_} can not be empty"
-});
-
-extend("max", {
-  ...max,
-  message: "{_field_} may not be greater than {length} characters"
-});
-
-extend("email", {
-  ...email,
-  message: "Email must be valid"
-});
-
+  <script>
 export default {
-  components: {
-    ValidationProvider,
-    ValidationObserver
-  },
   data: () => ({
     name: "",
-    email: "",
+    place: "",
+    price: null,
     select: null,
+<<<<<<< HEAD
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     checkbox: null,
     picker: new Date().toISOString().substr(0, 10)
@@ -112,9 +129,20 @@ export default {
       this.$refs.observer.reset();
     }
   }
+=======
+    small: "",
+    large: "",
+    items: ["UX", "DEVELOPER", "HACKATON", "OTHERS"],
+    dates: [],
+    menu: true,
+    valid: true
+  }),
+  methods: {}
+>>>>>>> 8fb763db6d51c611fe08aa26d1dbb6f1ef672276
 };
 </script>
-
-<script>
-export default {};
-</script>
+<style lang="scss" scoped>
+.image {
+  width: 170px;
+}
+</style>
