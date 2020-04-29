@@ -11,7 +11,6 @@ Vue.component('no-navbar-layout', NoNavbar)
 
 Vue.config.productionTip = false
 
-
 new Vue({
   router,
   vuetify,
@@ -19,7 +18,7 @@ new Vue({
     $route: {
       immediate: true,
       handler() {
-        document.title = "Events Tech Website";
+        document.title = 'Events Tech Website'
       }
     }
   },

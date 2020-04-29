@@ -15,8 +15,8 @@
         </v-tabs-items>
       </v-col>
     </v-col>
-    <v-col cols="6" class="present justify-center mt-10" v-else="jumbotron">
-      <v-jumbotron>
+    <v-col cols="6" class="present justify-center mt-10" v-else>
+      <div>
         <v-container fill-height>
           <v-layout align-center>
             <v-flex>
@@ -32,7 +32,7 @@
             </v-flex>
           </v-layout>
         </v-container>
-      </v-jumbotron>
+      </div>
     </v-col>
   </v-row>
 </template>
@@ -49,17 +49,14 @@ export default {
       items: ["Login", "Sign Up"]
     };
   },
-  mounted() {
-    this.$root.$on("goLogin");
-    changeLogin();
-  },
+
   methods: {
     changeTab() {
       this.tab = 0;
-    },
-    changeLogin() {
-      this.jumbotron = false;
     }
+  },
+  mounted() {
+    this.jumbotron = !!!this.$route.query.auth;
   },
   components: {
     Login,

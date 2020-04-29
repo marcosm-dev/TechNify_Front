@@ -13,12 +13,12 @@
         <v-toolbar-title class="title">TechNify</v-toolbar-title>
         <v-row justify="center">
           <v-col class="text-center align">
-            <v-btn icon>
+            <button @click="mosaic" class="mr-2 px-1 py-1" v-bind:class="select">
               <v-icon x-large>mdi-apps</v-icon>
-            </v-btn>
-            <v-btn icon>
+            </button>
+            <button class="ml-2 px-1 py-1" @click="expand" v-bind:class="select2">
               <v-icon x-large>mdi-format-list-text</v-icon>
-            </v-btn>
+            </button>
             <v-spacer></v-spacer>
           </v-col>
         </v-row>
@@ -56,6 +56,8 @@ export default {
   name: "Navbar",
   data() {
     return {
+      select: "",
+      select2: "",
       items: [{ title: "Profile" }, { title: "Logout" }]
     };
   },
@@ -63,6 +65,14 @@ export default {
     logout() {
       localStorage.clear();
       this.$router.push("/");
+    },
+    mosaic() {
+      this.select = "select";
+      this.select2 = "null";
+    },
+    expand() {
+      this.select2 = "select2";
+      this.select = "null";
     }
   }
 };
@@ -98,5 +108,11 @@ export default {
 .align {
   margin-right: 25%;
   margin-top: 4%;
+}
+.select {
+  border: 2px solid white;
+}
+.select2 {
+  border: 2px solid white;
 }
 </style>
