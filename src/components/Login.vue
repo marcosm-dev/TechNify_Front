@@ -6,6 +6,7 @@
         class="mt-2 mr-6"
         clearable
         :label="errormsg"
+        color="teal darken-4"
         v-model="email"
         prepend-icon="mdi-account-circle"
       ></v-text-field>
@@ -13,6 +14,7 @@
       <v-text-field
         class="mt-2 mr-6"
         label="Password"
+        color="teal darken-4"
         v-model="userPassword"
         :type="showPassword ? 'text' : 'password'"
         prepend-icon="mdi-lock"

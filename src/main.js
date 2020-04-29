@@ -10,6 +10,7 @@ Vue.component('default-layout', Default)
 Vue.component('no-navbar-layout', NoNavbar)
 
 Vue.config.productionTip = false
+document.title = 'Events Tech Website'
 
 new Vue({
   router,

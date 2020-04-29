@@ -6,6 +6,7 @@
       class="mt-2 mr-6"
       label="Name"
       v-model="first_name"
+      color="teal darken-4"
       prepend-icon="mdi-account-circle"
       :rules="userRules"
     ></v-text-field>
@@ -14,6 +15,7 @@
       class="mt-2 mr-6"
       label="E-mail"
       v-model="email"
+      color="teal darken-4"
       clearable
       :rules="emailRules"
       prepend-icon="mdi-email"
@@ -23,6 +25,7 @@
       class="mt-2 mr-6"
       label="Password"
       v-model="userPassword"
+      color="teal darken-4"
       :type="showPassword ? 'text' : 'password'"
       prepend-icon="mdi-lock"
       :rules="passwordRule"
@@ -33,7 +36,7 @@
       <v-btn class="button mt-2" dark rounded @click="signup" x-large>Sign Up</v-btn>
       <v-spacer></v-spacer>
       <span>Quiero organizar Eventos</span>
-      <v-checkbox v-model="check" input-value="true" value></v-checkbox>
+      <v-checkbox color="teal darken-4" v-model="check" input-value="true" value></v-checkbox>
     </v-card-actions>
   </v-col>
 </template>
