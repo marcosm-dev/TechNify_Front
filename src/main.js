@@ -14,5 +14,13 @@ Vue.config.productionTip = false
 new Vue({
   router,
   vuetify,
+  watch: {
+    $route: {
+      immediate: true,
+      handler() {
+        document.title = "Events Tech Website";
+      }
+    }
+  },
   render: h => h(App)
 }).$mount('#app')
