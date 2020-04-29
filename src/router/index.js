@@ -7,29 +7,29 @@ import CreateEvent from '../views/FormEvent'
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/',
-  name: 'Auth',
-  meta: {
-    layout: 'no-navbar'
+    path: '/',
+    name: 'Auth',
+    meta: {
+      layout: 'no-navbar'
+    },
+    component: Auth
   },
-  component: Auth
-},
-{
-  path: '/home',
-  name: 'Home',
-  meta: {
-    layout: 'default'
+  {
+    path: '/home',
+    name: 'Home',
+    meta: {
+      layout: 'default'
+    },
+    component: Home
   },
-  component: Home
-},
-{
-  path: '/create',
-  name: 'CreateEvent',
-  meta: {
-    layout: 'default'
-  },
-  component: CreateEvent
-}
+  {
+    path: '/create',
+    name: 'CreateEvent',
+    meta: {
+      layout: 'default'
+    },
+    component: CreateEvent
+  }
 ]
 
 const router = new VueRouter({
