@@ -2,7 +2,7 @@
   <div>
     <v-card class="overflow-hidden">
       <v-app-bar
-        absolute
+        app
         color="indigo darken-2"
         dark
         prominent
@@ -22,16 +22,49 @@
             <v-spacer></v-spacer>
           </v-col>
         </v-row>
-        <v-app-bar-nav-icon class="my-12" x-large></v-app-bar-nav-icon>
+        <v-menu bottom left>
+          <template v-slot:activator="{ on }">
+            <v-btn dark icon v-on="on">
+              <v-icon>mdi-dots-vertical</v-icon>
+            </v-btn>
+          </template>
+
+          <v-list>
+            <v-list-item-group active-class="deep-blue--text text--accent-4">
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-list-item-title>Profile</v-list-item-title>
+                </v-list-item-icon>
+                <v-icon>mdi-account</v-icon>
+              </v-list-item>
+              <v-list-item @click="logout">
+                <v-list-item-icon>
+                  <v-list-item-title>Logout</v-list-item-title>
+                </v-list-item-icon>
+                <v-icon>mdi-logout</v-icon>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-menu>
       </v-app-bar>
-      <v-container style="height: 120px;"></v-container>
     </v-card>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  data() {
+    return {
+      items: [{ title: "Profile" }, { title: "Logout" }]
+    };
+  },
+  methods: {
+    logout() {
+      localStorage.clear();
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 

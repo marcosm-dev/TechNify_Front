@@ -1,13 +1,12 @@
 <template>
-  <v-app>
-    <div id="app">
+  <v-app id="inspire">
+    <v-content id="app">
       <component :is="layout">
         <router-view />
       </component>
-    </div>
+    </v-content>
   </v-app>
 </template>
-
 <script>
 const default_layout = "default";
 

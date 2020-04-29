@@ -11,7 +11,7 @@
             <v-icon scolor="yellow">mdi-cart</v-icon>
             <v-btn text>Buy now</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="purple" text>Add to wish</v-btn>
+            <v-btn @click="addWish()" color="purple" text>Add to wish</v-btn>
             <v-icon scolor="yellow">mdi-star-outline</v-icon>
           </v-card-actions>
           <v-divider></v-divider>
@@ -37,6 +37,14 @@ export default {
     return {
       events: []
     };
+  },
+  methods: {
+    addWish() {
+      if (!localStorage.token) {
+        this.$router.push("/");
+        this.$root.$on("login");
+      }
+    }
   },
   created() {
     API.getAllEvents().then(response => {

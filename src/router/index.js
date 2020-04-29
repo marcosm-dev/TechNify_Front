@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Auth from '../views/Auth'
 import Home from '../views/Home'
+import FormEvent from '../views/FormEvent'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,12 @@ const routes = [
     name: 'Home',
     meta: { layout: 'default' },
     component: Home
+  },
+  {
+    path: '/create',
+    name: 'Create',
+    meta: { layout: 'default' },
+    component: FormEvent
   }
 ]
 

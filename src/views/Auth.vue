@@ -1,6 +1,6 @@
 <template>
   <v-row class="bgimg">
-    <v-col v-if="jumbotron">
+    <v-col v-if="!jumbotron">
       <v-col cols="3" class="position justify-center mt-10">
         <v-tabs class="title" v-model="tab" grow>
           <v-tab class="tabs" v-for="(item, i) in items" :key="i">{{ item }}</v-tab>
@@ -28,7 +28,7 @@
               </span>
 
               <v-divider class="my-3"></v-divider>
-              <v-btn class="mt-5" rounded dark color="cyan accent-4" x-large>See more</v-btn>
+              <v-btn to="/home" class="mt-5" rounded dark color="cyan accent-4" x-large>See more</v-btn>
             </v-flex>
           </v-layout>
         </v-container>
@@ -44,14 +44,21 @@ import Signup from "../components/Signup.vue";
 export default {
   data() {
     return {
-      jumbotron: false,
+      jumbotron: true,
       tab: null,
       items: ["Login", "Sign Up"]
     };
   },
+  mounted() {
+    this.$root.$on("goLogin");
+    changeLogin();
+  },
   methods: {
     changeTab() {
       this.tab = 0;
+    },
+    changeLogin() {
+      this.jumbotron = false;
     }
   },
   components: {
