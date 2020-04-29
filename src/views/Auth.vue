@@ -9,7 +9,7 @@
           <Login class="card" />
         </v-tab-item>
         <v-tab-item>
-          <Signup class="card" />
+          <Signup class="card" v-on:change="changeTab" />
         </v-tab-item>
       </v-tabs-items>
     </v-col>
@@ -26,6 +26,11 @@ export default {
       tab: null,
       items: ["Login", "Sign Up"]
     };
+  },
+  methods: {
+    changeTab() {
+      this.tab = 0;
+    }
   },
   components: {
     Login,

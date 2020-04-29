@@ -52,13 +52,14 @@ export default {
         password: this.userPassword
       };
       API.login(user)
-        .then(response => {
-          if (!response.token) {
+        .then(user => {
+          if (!user.token) {
             this.errormsg = "Usuario Incorrecto";
           } else {
-            localStorage.setItem("token", response.token);
-            localStorage.setItem("email", response.email);
-            localStorage.setItem("first_name", response.first_name);
+            localStorage.setItem("token", user.token);
+            localStorage.setItem("email", user.email);
+            localStorage.setItem("first_name", user.first_name);
+            localStorage.setItem("role", user.role);
             this.$router.push("/home");
           }
         })

@@ -31,6 +31,9 @@
     ></v-text-field>
     <v-card-actions>
       <v-btn class="button mt-2" dark rounded @click="signup" x-large>Sign Up</v-btn>
+      <v-spacer></v-spacer>
+      <span>Quiero organizar Eventos</span>
+      <v-checkbox v-model="check" input-value="true" value></v-checkbox>
     </v-card-actions>
   </v-col>
 </template>
@@ -41,6 +44,7 @@ import API from "../services/App";
 export default {
   data() {
     return {
+      check: false,
       showPassword: false,
       userPassword: "",
       passwordRule: [
@@ -58,21 +62,27 @@ export default {
   },
   methods: {
     signup() {
-      const newUser = {
-        first_name: this.first_name,
-        email: this.email,
-        password: this.userPassword
-      };
-      API.signup(newUser)
-        .then(response => {
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("email", response.email);
-        })
-        .catch(err => console.error(err));
+      let newUser = {};
+      if (this.check) {
+        newUser = {
+          first_name: this.first_name,
+          email: this.email,
+          password: this.userPassword,
+          role: "ORGANIZER"
+        };
+      } else {
+        newUser = {
+          first_name: this.first_name,
+          email: this.email,
+          password: this.userPassword
+        };
+      }
+      API.signup(newUser).then(this.$emit("change"));
     }
   }
 };
 </script>
+
 
 <style lang="scss" scoped>
 * {
@@ -86,5 +96,9 @@ export default {
   width: 107px;
   height: 40px;
   height: 40px !important;
+}
+span {
+  font-size: 12px;
+  margin-right: 5px;
 }
 </style>

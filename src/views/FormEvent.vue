@@ -1,5 +1,6 @@
 <template>
-  <ValidationObserver ref="observer" v-slot="{ validate, reset }">
+  <div></div>
+  <!--   <ValidationObserver ref="observer" v-slot="{ validate, reset }">
     <form>
       <ValidationProvider v-slot="{ errors }" name="Name" rules="required|max:10">
         <v-text-field v-model="name" :counter="10" :error-messages="errors" label="Name" required></v-text-field>
@@ -31,7 +32,7 @@
       <v-btn class="mr-4" @click="submit">submit</v-btn>
       <v-btn @click="clear">clear</v-btn>
     </form>
-  </ValidationObserver>
+  </ValidationObserver>-->
 </template>
 
 <script>
