@@ -19,9 +19,6 @@ export default {
     }
   },
   data: () => ({})
-  // created() {
-  //   document.title = "Events Tech Website";
-  // }
 };
 </script>
 

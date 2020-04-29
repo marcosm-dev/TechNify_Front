@@ -14,10 +14,10 @@
         <v-row justify="center">
           <v-col class="text-center align">
             <v-btn icon>
-              <v-icon>mdi-apps</v-icon>
+              <v-icon x-large>mdi-apps</v-icon>
             </v-btn>
             <v-btn icon>
-              <v-icon>mdi-format-list-text</v-icon>
+              <v-icon x-large>mdi-format-list-text</v-icon>
             </v-btn>
             <v-spacer></v-spacer>
           </v-col>

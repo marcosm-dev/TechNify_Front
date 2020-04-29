@@ -10,10 +10,17 @@ Vue.component('default-layout', Default)
 Vue.component('no-navbar-layout', NoNavbar)
 
 Vue.config.productionTip = false
-document.title = 'Events Tech Website'
 
 new Vue({
   router,
   vuetify,
+  watch: {
+    $route: {
+      immediate: true,
+      handler() {
+        document.title = "Events Tech Website";
+      }
+    }
+  },
   render: h => h(App)
 }).$mount('#app')

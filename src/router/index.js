@@ -10,13 +10,13 @@ const routes = [
     path: '/',
     name: 'Auth',
     meta: { layout: 'no-navbar' },
-    component: Auth,
+    component: Auth
   },
   {
     path: '/home',
     name: 'Home',
     meta: { layout: 'default' },
-    component: Home,
+    component: Home
   }
 ]
 
