@@ -36,7 +36,8 @@ const routes = [{
   path: '/events',
   name: 'Events',
   meta: {
-    layout: 'default'
+    layout: 'default',
+    appBarVisible: true
   },
   component: MosaicView
 },
@@ -44,7 +45,8 @@ const routes = [{
   path: '/expanded',
   name: 'Expanded',
   meta: {
-    layout: 'default'
+    layout: 'default',
+    appBarVisible: true
   },
   component: ExpandedView
 }
