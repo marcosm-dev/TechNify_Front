@@ -14,11 +14,10 @@
             <v-list-item-subtitle class="headline mb-1">Price: {{event.price}} €</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-
         <v-card-actions>
-          <v-btn text color="blue" @click="editar">Edit</v-btn>
+          <v-btn text color="blue" :to="{ name: 'Edit', params: { eventId: events[idx]._id } }">Edit</v-btn>
           <v-spacer></v-spacer>
-          <v-btn text color="red" @click="eliminar">Delete</v-btn>
+          <v-btn text color="red">Delete</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -38,8 +37,9 @@ export default {
     API.getOrganizerEvents().then(response => (this.events = response));
   },
   methods: {
-    editar() {
-      this.$route.path("/create", this.event._id);
+    editEvent(eventId) {
+      this.$router.push("/create");
+      this.$route.params(eventId);
     }
   }
 };

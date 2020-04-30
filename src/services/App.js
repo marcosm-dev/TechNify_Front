@@ -22,7 +22,7 @@ export default {
     return response.data
   },
   async getAllEvents() {
-    let url = '/events?'
+    const url = '/events?'
     /*  if (date_start) {
        url += `date_start=${date}&`
      } */
@@ -38,8 +38,23 @@ export default {
       headers: {
         token: localStorage.token // eslint-disable-line
       }
-
     })
     return response.data
-  }
+  },
+  async updateEvent(eventId, event) {
+    const response = await API.put(`/me/events/${eventId}`, event, {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async getTypes() {
+    const response = await API.get('/categories')
+    return response.data
+  },
+  async getInfo(event) {
+    const response = await API.get('/events/' + event)
+    return response.data
+  },
 }

@@ -2,64 +2,72 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Auth from '../views/Auth'
 import Home from '../views/Home'
-import FormEvent from '../views/FormEvent'
+import Create from '../views/CreateEvent'
 import MosaicView from '../views/MosaicView'
 import ExpandedView from '../views/ExpandedView'
 import Organizer from '../views/Organizer'
-
+import Edit from '../views/FormEvent'
 
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/',
-    name: 'Auth',
-    meta: {
-      layout: 'no-navbar'
-    },
-    component: Auth
+  path: '/',
+  name: 'Auth',
+  meta: {
+    layout: 'no-navbar'
   },
-  {
-    path: '/home',
-    name: 'Home',
-    meta: {
-      layout: 'default'
-    },
-    component: Home
+  component: Auth
+},
+{
+  path: '/home',
+  name: 'Home',
+  meta: {
+    layout: 'default'
   },
-  {
-    path: '/create',
-    name: 'Create',
-    meta: {
-      layout: 'default'
-    },
-    component: FormEvent
+  component: Home
+},
+{
+  path: '/create',
+  name: 'Create',
+  meta: {
+    layout: 'default'
   },
-  {
-    path: '/events',
-    name: 'Events',
-    meta: {
-      layout: 'default',
-      appBarVisible: true
-    },
-    component: MosaicView
+  component: Create
+},
+{
+  path: '/events',
+  name: 'Events',
+  meta: {
+    layout: 'default',
+    appBarVisible: true
   },
-  {
-    path: '/expanded',
-    name: 'Expanded',
-    meta: {
-      layout: 'default',
-      appBarVisible: true
-    },
-    component: ExpandedView
+  component: MosaicView
+},
+{
+  path: '/expanded',
+  name: 'Expanded',
+  meta: {
+    layout: 'default',
+    appBarVisible: true
   },
-  {
-    path: '/organizer',
-    name: 'Organizer',
-    meta: {
-      layout: 'default'
-    },
-    component: Organizer
+  component: ExpandedView
+},
+{
+  path: '/organizer',
+  name: 'Organizer',
+  meta: {
+    layout: 'default'
   },
+  component: Organizer
+},
+{
+  path: '/edit',
+  name: 'Edit',
+  meta: {
+    layout: 'default'
+  },
+  component: Edit
+}
 ]
 
 const router = new VueRouter({
