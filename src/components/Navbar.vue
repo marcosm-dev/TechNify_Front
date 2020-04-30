@@ -9,7 +9,7 @@
   >
     <v-img to="/home" class="img" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
     <v-toolbar-title class="font display-4 font-weight-regular">TechNify</v-toolbar-title>
-    <v-row v-if="appBarVisible" justify="center">
+    <v-row v-if="appBarVisible" class="icon">
       <v-col class="text-center align my-12">
         <button @click="mosaic" class="mr-2 px-1 py-1" v-bind:class="select">
           <v-icon x-large>mdi-apps</v-icon>
@@ -20,9 +20,13 @@
         <v-spacer></v-spacer>
       </v-col>
     </v-row>
+    <v-row v-else class="hidden" justify="center">
+      <v-icon x-large>mdi-apps</v-icon>
+      <v-icon x-large>mdi-format-list-text</v-icon>
+    </v-row>
     <v-menu bottom left>
       <template v-slot:activator="{ on }">
-        <v-btn class="icon" dark icon v-on="on">
+        <v-btn class="mt-12 icon" dark icon v-on="on">
           <v-icon x-large>mdi-dots-vertical</v-icon>
         </v-btn>
       </template>
@@ -132,12 +136,15 @@ export default {
   border: 2px solid white;
 }
 .icon {
-  margin-top: 3%;
+  margin-right: 6%;
 }
 .font {
   margin-left: 5%;
   margin-right: -4%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+}
+.hidden {
+  opacity: 0;
 }
 </style>
