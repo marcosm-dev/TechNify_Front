@@ -55,7 +55,7 @@ export default {
     }
   },
   mounted() {
-    this.jumbotron = !!!this.$route.query.auth;
+    this.jumbotron = !this.$route.query.auth;
   },
   components: {
     Login,

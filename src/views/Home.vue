@@ -4,20 +4,5 @@
 
 
 <script>
-export default {
-  data() {
-    return {
-      view1: false,
-      events: []
-    };
-  },
-  components: {},
-  methods: {}
-};
+export default {};
 </script>
-
-<style lang="scss" scoped>
-.container {
-  height: 78vh;
-}
-</style>

@@ -35,7 +35,7 @@
             </v-list-item-icon>
             <v-icon x-large>mdi-account</v-icon>
           </v-list-item>
-          <v-list-item>
+          <v-list-item to="/organizer">
             <v-list-item-icon>
               <v-list-item-title class="headline">Profile</v-list-item-title>
             </v-list-item-icon>
@@ -133,7 +133,6 @@ export default {
 }
 .icon {
   margin-top: 3%;
-  margin-left: 80%;
 }
 .font {
   margin-left: 5%;
