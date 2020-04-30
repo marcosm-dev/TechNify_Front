@@ -9,31 +9,28 @@ const API = axios.create({
 })
 
 export default {
-  async signup(newUser) {
+  async signup (newUser) {
     const response = await API.post('/auth/signup', {
       ...newUser
     })
     return response.data
   },
-  async login(user) {
+  async login (user) {
     const response = await API.post('/auth/login', {
       ...user
     })
     return response.data
   },
-  async getAllEvents() {
+  async getAllEvents () {
     const url = '/events?'
     /*  if (date_start) {
        url += `date_start=${date}&`
      } */
 
-    // if (minWidth && maxWidth) {
-    //   url += `minWidth=${minWidth}&maxWidth=${maxWidth}&`
-    // }
     const response = await API.get(url)
     return response.data
   },
-  async getOrganizerEvents() {
+  async getOrganizerEvents () {
     const response = await API.get('/me/events/myevents', {
       headers: {
         token: localStorage.token // eslint-disable-line
@@ -41,7 +38,15 @@ export default {
     })
     return response.data
   },
-  async updateEvent(eventId, event) {
+  async createEvent (event) {
+    const response = await API.post('/me/events', event, {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async updateEvent (eventId, event) {
     const response = await API.put(`/me/events/${eventId}`, event, {
       headers: {
         token: localStorage.token // eslint-disable-line
@@ -49,12 +54,20 @@ export default {
     })
     return response.data
   },
-  async getTypes() {
+  async deleteEvent (eventId) {
+    const response = await API.delete(`/me/events/${eventId}`, {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async getTypes () {
     const response = await API.get('/categories')
     return response.data
   },
-  async getInfo(event) {
+  async getInfo (event) {
     const response = await API.get('/events/' + event)
     return response.data
-  },
+  }
 }

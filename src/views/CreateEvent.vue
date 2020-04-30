@@ -1,101 +1,127 @@
 <template>
-  <v-row class="justify-center">
+  <v-row class="justify-center mx-auto">
     <v-col cols="8">
-      <v-col v-for="(event, i) in events" :key="i" cols="12">
-        <h1 class="head display-3 my-n2" dark>{{event.name}}</h1>
-        <v-card class="mx-auto" max-height="718px" height="718px">
-          <div class="d-flex mx-auto">
-            <v-img height="326px" width="800px" :src="event.cover_img[0]"></v-img>
-            <v-card-text class="textstyles headline">{{event.large_description}}</v-card-text>
+      <v-col cols="4">
+        <h2>CREATE YOUR EVENT</h2>
+        <v-form ref="form">
+          <v-text-field v-model="name" label="Name"></v-text-field>
+          <v-text-field v-model="place" label="Place"></v-text-field>
+          <v-text-field v-model="price" label="Price"></v-text-field>
+
+          <v-select
+            v-model="select"
+            :items="getItems"
+            :rules="[v => !!v || 'Item is required']"
+            label="Event's Type"
+            required
+          ></v-select>
+          <div class="menu">
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              :return-value.sync="dates"
+              transition="scale-transition"
+              offset-y
+              min-width="290px"
+            >
+              <template v-slot:activator="{ on }">
+                <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+              </template>
+              <v-date-picker v-model="dates" multiple no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
+              </v-date-picker>
+            </v-menu>
           </div>
-          <div class="d-flex mx-auto title my-3">
-            <ul>
-              <li>
-                Type:
-                <br />
-                <span>{{event.event_type.name}}</span>
-              </li>
-              <li>
-                Date:
-                <br />
-                <span>{{event.date_start}} {{event.end}}</span>
-              </li>
-              <li>
-                Place:
-                <br />
-                <span>{{event.place}}</span>
-              </li>
-              <li>
-                Price:
-                <br />
-                <span>{{event.price}} €</span>
-              </li>
-            </ul>
-            <div class="justify-end mx-auto">
-              <v-img height="327px" width="900px" :src="event.cover_img[1]"></v-img>
+          <v-col>
+            <div class="ml-10 image justify-center">
+              <h5>Cover Image</h5>
+              <v-file-input multiple label="Cover Image"></v-file-input>
+              <h5>Detail Image</h5>
+              <v-file-input multiple label="Detail Image"></v-file-input>
             </div>
-          </div>
-          <v-card-actions class="my-n2">
-            <v-icon color="cyan darken-3" x-large>mdi-cart</v-icon>
-            <v-btn text>Buy now</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn @click="addWish()" color="purple" text>Add to wish</v-btn>
-            <v-icon color="cyan darken-3" x-large>mdi-star-outline</v-icon>
-          </v-card-actions>
-          <v-divider></v-divider>
-        </v-card>
+          </v-col>
+        </v-form>
       </v-col>
+      <v-col cols="4" class="justify-center d-flex"></v-col>
+      <v-row cols="12">
+        <v-col cols="8">
+          <h2>Small Description:</h2>
+          <v-container fluid>
+            <v-textarea clear-icon="cancel" v-model="small" placeholder="Small Description: "></v-textarea>
+          </v-container>
+          <h2>Large Description:</h2>
+
+          <v-container fluid>
+            <v-textarea v-model="large" clear-icon="cancel" placeholder="Large Description."></v-textarea>
+          </v-container>
+        </v-col>
+        <v-col cols="4">
+          <v-btn
+            @click="createEvent"
+            color="teal darken-4"
+            dark
+            class="ml-10 mr-10"
+            depressed
+          >Create Event</v-btn>
+          <v-btn color="teal darken-4" dark depressed>Preview</v-btn>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
 
-<script>
+  <script>
 import API from "../services/App";
 
 export default {
   data: () => ({
-    events: []
+    name: "",
+    place: "",
+    price: null,
+    small: "",
+    large: "",
+    select: null,
+    dates: [],
+    menu: false,
+    eventTypes: []
   }),
-  methods: {
-    addWish() {
-      if (!localStorage.token) {
-        this.$router.push("/?auth=login");
-      }
+  computed: {
+    getItems() {
+      return this.eventTypes.map(e => e.name);
     }
   },
-  created() {
-    API.getAllEvents().then(response => {
-      return (this.events = response);
+
+  methods: {
+    createEvent() {
+      let event = {
+        name: this.name,
+        place: this.place,
+        price: this.price,
+        date_start: this.dates[0],
+        date_end: this.dates[1],
+        small_description: this.small,
+        large_description: this.large,
+        event_type: this.eventTypes.filter(e => e.name === this.select)[0]._id
+      };
+      API.createEvent(event);
+    }
+  },
+  mounted() {
+    API.getTypes().then(types => {
+      this.eventTypes = types;
     });
   }
 };
 </script>
 
 <style lang="scss" scoped>
-* {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+.image {
+  width: 170px;
 }
-.textstyles {
-  text-overflow: ellipsis;
-  height: 139px;
-}
-span {
-  font-size: 16px;
-}
-ul {
-  width: 100vw;
-  margin-left: 2%;
-}
-.head {
-  opacity: 0.95;
-  border-radius: 20px 20px 0 0;
-  padding: 30px 20px 20px 20px;
-  background: rgb(21, 91, 100);
-  color: white;
-  font-weight: 500 !important;
-}
-li {
-  margin-bottom: 10px;
+.menu {
+  width: 220px;
 }
 </style>

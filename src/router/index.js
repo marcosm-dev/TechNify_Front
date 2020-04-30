@@ -6,7 +6,7 @@ import Create from '../views/CreateEvent'
 import MosaicView from '../views/MosaicView'
 import ExpandedView from '../views/ExpandedView'
 import Organizer from '../views/Organizer'
-import Edit from '../views/FormEvent'
+import Edit from '../views/EditEvent'
 
 Vue.use(VueRouter)
 

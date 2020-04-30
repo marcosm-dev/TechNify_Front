@@ -2,7 +2,7 @@
   <v-row class="justify-center mx-auto">
     <v-col cols="8">
       <v-col cols="4">
-        <h2>CREATE YOUR EVENT</h2>
+        <h2>EDIT YOUR EVENT</h2>
         <v-form ref="form">
           <v-text-field v-model="eventdb.name" label="Name"></v-text-field>
           <v-text-field v-model="eventdb.place" label="Place"></v-text-field>
