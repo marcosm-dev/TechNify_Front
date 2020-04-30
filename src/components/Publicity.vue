@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <h1>PUBLICIDAD</h1>
-    <v-img src="https://i.ibb.co/vXMqHZ6/59887620-2253884531336886-772937785060360192-o-3.jpg"></v-img>
-  </div>
+  <v-row>
+    <v-col class="bgimg" cols="6"></v-col>
+  </v-row>
 </template>
 
 <script>
@@ -10,4 +9,13 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+.img {
+  height: 100vh;
+}
+.bgimg {
+  background-image: url("../assets/Publicity.png");
+  transform: rotate(-90deg);
+  background-size: 100vmax;
+  height: 100vh;
+}
 </style>

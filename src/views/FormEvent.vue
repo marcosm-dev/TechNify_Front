@@ -1,5 +1,5 @@
 <template>
-  <v-row class="d-flex justify-center" cols="12">
+  <v-row class="d-flex justify-center mx-auto" cols="12">
     <v-col cols="4">
       <h2>CREATE YOUR EVENT</h2>
       <v-form ref="form" v-model="valid">
@@ -12,24 +12,26 @@
           label="Event's Type"
           required
         ></v-select>
-        <v-menu
-          ref="menu"
-          v-model="menu"
-          :close-on-content-click="false"
-          :return-value.sync="dates"
-          transition="scale-transition"
-          offset-y
-          min-width="290px"
-        >
-          <template v-slot:activator="{ on }">
-            <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
-          </template>
-          <v-date-picker v-model="dates" multiple no-title scrollable>
-            <v-spacer></v-spacer>
-            <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-            <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
-          </v-date-picker>
-        </v-menu>
+        <div class="menu">
+          <v-menu
+            ref="menu"
+            v-model="menu"
+            :close-on-content-click="false"
+            :return-value.sync="dates"
+            transition="scale-transition"
+            offset-y
+            min-width="290px"
+          >
+            <template v-slot:activator="{ on }">
+              <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+            </template>
+            <v-date-picker v-model="dates" multiple no-title scrollable>
+              <v-spacer></v-spacer>
+              <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+              <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
+            </v-date-picker>
+          </v-menu>
+        </div>
       </v-form>
     </v-col>
     <v-col cols="4">
@@ -75,8 +77,7 @@ export default {
     large: "",
     items: ["UX", "DEVELOPER", "HACKATON", "OTHERS"],
     dates: [],
-    menu: true,
-    valid: true
+    menu: false
   }),
   methods: {}
 };
@@ -84,5 +85,8 @@ export default {
 <style lang="scss" scoped>
 .image {
   width: 170px;
+}
+.menu {
+  width: 220px;
 }
 </style>

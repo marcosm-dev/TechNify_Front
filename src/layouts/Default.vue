@@ -2,7 +2,8 @@
   <div>
     <Navbar />
     <slot />
-    <Publicity />
+    <!-- <Publicity /> -->
+    <slot />
     <Footer />
   </div>
 </template>

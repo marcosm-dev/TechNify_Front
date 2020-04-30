@@ -10,9 +10,9 @@
         class="navbar"
       >
         <v-img to="/home" class="img" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
-        <v-toolbar-title class="title">TechNify</v-toolbar-title>
+        <v-toolbar-title class="font display-4 font-weight-regular">TechNify</v-toolbar-title>
         <v-row justify="center">
-          <v-col class="text-center align">
+          <v-col class="text-center align my-12">
             <button @click="mosaic" class="mr-2 px-1 py-1" v-bind:class="select">
               <v-icon x-large>mdi-apps</v-icon>
             </button>
@@ -24,24 +24,30 @@
         </v-row>
         <v-menu bottom left>
           <template v-slot:activator="{ on }">
-            <v-btn dark icon v-on="on">
-              <v-icon>mdi-dots-vertical</v-icon>
+            <v-btn class="icon" dark icon v-on="on">
+              <v-icon x-large>mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
 
           <v-list>
             <v-list-item-group active-class="deep-blue--text text--accent-4">
+              <v-list-item to="/create">
+                <v-list-item-icon>
+                  <v-list-item-title class="headline">Create Event</v-list-item-title>
+                </v-list-item-icon>
+                <v-icon x-large>mdi-account</v-icon>
+              </v-list-item>
               <v-list-item>
                 <v-list-item-icon>
-                  <v-list-item-title>Profile</v-list-item-title>
+                  <v-list-item-title class="headline">Profile</v-list-item-title>
                 </v-list-item-icon>
-                <v-icon>mdi-account</v-icon>
+                <v-icon x-large>mdi-account</v-icon>
               </v-list-item>
               <v-list-item @click="logout">
                 <v-list-item-icon>
-                  <v-list-item-title>Logout</v-list-item-title>
+                  <v-list-item-title class="headline">Logout</v-list-item-title>
                 </v-list-item-icon>
-                <v-icon>mdi-logout</v-icon>
+                <v-icon x-large>mdi-logout</v-icon>
               </v-list-item>
             </v-list-item-group>
           </v-list>
@@ -57,8 +63,7 @@ export default {
   data() {
     return {
       select: "",
-      select2: "",
-      items: [{ title: "Profile" }, { title: "Logout" }]
+      select2: ""
     };
   },
   methods: {
@@ -90,8 +95,9 @@ export default {
   ) !important;
 }
 .img {
-  height: 110px;
-  max-width: 120px;
+  margin-top: -5px;
+  height: 125px;
+  max-width: 130px;
   margin-left: -15px;
 }
 .title {
@@ -116,5 +122,14 @@ export default {
 }
 .select2 {
   border: 2px solid white;
+}
+.icon {
+  margin-top: 3%;
+}
+.font {
+  margin-left: 5%;
+  margin-right: -4%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
 }
 </style>
