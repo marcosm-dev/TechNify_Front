@@ -39,7 +39,7 @@
             <v-list-item-icon>
               <v-list-item-title class="headline">Profile</v-list-item-title>
             </v-list-item-icon>
-            <v-icon x-large>mdi-account</v-icon>
+            <v-icon @click="profile" x-large>mdi-account</v-icon>
           </v-list-item>
           <v-list-item @click="logout">
             <v-list-item-icon>
@@ -81,6 +81,13 @@ export default {
       this.select2 = "select2";
       this.select = "null";
       this.$router.push("/expanded");
+    },
+    profile() {
+      if (localStorage.role === "ORGANIZER") {
+        this.$router.push("/organizer");
+      } else {
+        this.$router.push("/user");
+      }
     }
   }
 };

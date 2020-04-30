@@ -5,51 +5,61 @@ import Home from '../views/Home'
 import FormEvent from '../views/FormEvent'
 import MosaicView from '../views/MosaicView'
 import ExpandedView from '../views/ExpandedView'
+import Organizer from '../views/Organizer'
+
 
 Vue.use(VueRouter)
 
 const routes = [{
-  path: '/',
-  name: 'Auth',
-  meta: {
-    layout: 'no-navbar'
+    path: '/',
+    name: 'Auth',
+    meta: {
+      layout: 'no-navbar'
+    },
+    component: Auth
   },
-  component: Auth
-},
-{
-  path: '/home',
-  name: 'Home',
-  meta: {
-    layout: 'default'
+  {
+    path: '/home',
+    name: 'Home',
+    meta: {
+      layout: 'default'
+    },
+    component: Home
   },
-  component: Home
-},
-{
-  path: '/create',
-  name: 'Create',
-  meta: {
-    layout: 'default'
+  {
+    path: '/create',
+    name: 'Create',
+    meta: {
+      layout: 'default'
+    },
+    component: FormEvent
   },
-  component: FormEvent
-},
-{
-  path: '/events',
-  name: 'Events',
-  meta: {
-    layout: 'default',
-    appBarVisible: true
+  {
+    path: '/events',
+    name: 'Events',
+    meta: {
+      layout: 'default',
+      appBarVisible: true
+    },
+    component: MosaicView
   },
-  component: MosaicView
-},
-{
-  path: '/expanded',
-  name: 'Expanded',
-  meta: {
-    layout: 'default',
-    appBarVisible: true
+  {
+    path: '/expanded',
+    name: 'Expanded',
+    meta: {
+      layout: 'default',
+      appBarVisible: true
+    },
+    component: ExpandedView
   },
-  component: ExpandedView
-}
+  {
+    path: '/organizer',
+    name: 'Organizer',
+    meta: {
+      layout: 'default'
+    },
+    component: Organizer
+  },
 ]
 
 const router = new VueRouter({

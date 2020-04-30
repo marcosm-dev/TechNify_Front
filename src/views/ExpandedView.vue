@@ -5,7 +5,8 @@
         <h1 class="head display-3 my-n2" dark>{{event.name}}</h1>
         <v-card class="mx-auto" max-height="718px" height="718px">
           <div class="d-flex mx-auto">
-            <v-img height="326px" width="800px" :src="event.cover_img[0]"></v-img>
+            <!--             <v-img height="326px" width="800px" :src="event.cover_img[0]"></v-img>
+            -->
             <v-card-text class="textstyles headline">{{event.large_description}}</v-card-text>
           </div>
           <div class="d-flex mx-auto title my-3">
@@ -32,7 +33,8 @@
               </li>
             </ul>
             <div class="justify-end mx-auto">
-              <v-img height="327px" width="900px" :src="event.cover_img[1]"></v-img>
+              <!--               <v-img height="327px" width="900px" :src="event.cover_img[1]"></v-img>
+              -->
             </div>
           </div>
           <v-card-actions class="my-n2">

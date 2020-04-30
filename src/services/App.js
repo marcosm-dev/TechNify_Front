@@ -32,5 +32,14 @@ export default {
     // }
     const response = await API.get(url)
     return response.data
+  },
+  async getOrganizerEvents() {
+    const response = await API.get('/me/events/myevents', {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+
+    })
+    return response.data
   }
 }
