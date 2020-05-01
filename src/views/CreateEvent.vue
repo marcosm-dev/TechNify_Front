@@ -88,12 +88,13 @@ export default {
     menu: false,
     eventTypes: []
   }),
+  components: {
+  },
   computed: {
     getItems () {
       return this.eventTypes.map(e => e.name)
     }
   },
-
   methods: {
     createEvent () {
       const event = {

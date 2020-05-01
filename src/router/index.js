@@ -23,7 +23,15 @@ const routes = [{
 {
   path: '/create',
   name: 'Create',
-  component: Create
+  component: Create,
+  beforeEnter (to, from, next) {
+    if (localStorage.role !== 'ORGANIZER') {
+      next({
+        name: 'Events'
+      })
+    }
+    next()
+  }
 },
 {
   path: '/events',
@@ -44,7 +52,15 @@ const routes = [{
 {
   path: '/organizer',
   name: 'Organizer',
-  component: Organizer
+  component: Organizer,
+  beforeEnter (to, from, next) {
+    if (localStorage.role !== 'ORGANIZER') {
+      next({
+        name: 'Events'
+      })
+    }
+    next()
+  }
 },
 {
   path: '/edit',
@@ -59,7 +75,15 @@ const routes = [{
 {
   path: '/organizerprofile',
   name: 'OrganizerProfile',
-  component: OrganizerProfile
+  component: OrganizerProfile,
+  beforeEnter (to, from, next) {
+    if (localStorage.role !== 'ORGANIZER') {
+      next({
+        name: 'Events'
+      })
+    }
+    next()
+  }
 },
 {
   path: '/wishes',

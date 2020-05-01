@@ -25,6 +25,7 @@ import API from '../services/App'
 export default {
   data: () => ({
     events: []
+
   }),
   methods: {
     addWish (eventId) {
