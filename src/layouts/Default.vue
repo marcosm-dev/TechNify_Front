@@ -19,30 +19,53 @@
         <v-icon x-large>mdi-format-list-text</v-icon>
       </v-row>
       <v-menu bottom left>
-        <template v-slot:activator="{ on }">
+        <template v-if="userMenu" v-slot:activator="{ on }">
           <v-btn class="mt-12 icon" dark icon v-on="on">
             <v-icon x-large>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
-
-        <v-list>
+          <template v-else v-slot:activator="{ on }">
+          <v-btn to="/?auth=login" class="my-10 navbar text-lowercase"  max-height="20px" v-on="on">
+          <span class="text-uppercase">D</span>o you haven't account ?
+          </v-btn>
+        </template>
+    <v-list>
           <v-list-item-group active-class="deep-blue--text text--accent-4">
-            <v-list-item to="/create">
+            <v-list-item v-if="userProfile" to="/profile">
+              <v-list-item-icon>
+                <v-list-item-title  class="headline">Profile
+                </v-list-item-title>
+              </v-list-item-icon>
+            <v-spacer></v-spacer>
+              <v-icon  x-large>mdi-account</v-icon>
+            </v-list-item>
+             <v-list-item v-else to="/organizerprofile">
+              <v-list-item-icon>
+                <v-list-item-title class="headline">Profile
+                </v-list-item-title>
+              </v-list-item-icon>
+            <v-spacer></v-spacer>
+              <v-icon  x-large>mdi-account</v-icon>
+            </v-list-item>
+              <v-list-item v-show="userProfile" to="/create">
               <v-list-item-icon>
                 <v-list-item-title class="headline">Create Event</v-list-item-title>
               </v-list-item-icon>
-              <v-icon x-large>mdi-account</v-icon>
+              <v-spacer></v-spacer>
+              <v-icon  x-large>mdi-table-edit</v-icon>
             </v-list-item>
-            <v-list-item to="/organizer">
+             <v-list-item to="/organizer">
               <v-list-item-icon>
-                <v-list-item-title class="headline">Profile</v-list-item-title>
+                <v-list-item-title class="headline">My Events</v-list-item-title>
               </v-list-item-icon>
-              <v-icon @click="profile" x-large>mdi-account</v-icon>
+              <v-spacer></v-spacer>
+              <v-icon x-large>mdi-calendar-outline</v-icon>
             </v-list-item>
             <v-list-item @click="logout">
               <v-list-item-icon>
                 <v-list-item-title class="headline">Logout</v-list-item-title>
               </v-list-item-icon>
+              <v-spacer></v-spacer>
               <v-icon x-large>mdi-logout</v-icon>
             </v-list-item>
           </v-list-item-group>
@@ -65,12 +88,19 @@ export default {
   data () {
     return {
       select: '',
-      select2: ''
+      select2: '',
+      userMenu: localStorage.token
     }
   },
   computed: {
     appBarVisible () {
       return this.$route.meta.appBarVisible
+    },
+    // eslint-disable-next-line vue/return-in-computed-property
+    userProfile () {
+      if (localStorage.role === 'ORGANIZER') {
+        return true
+      }
     }
   },
   methods: {

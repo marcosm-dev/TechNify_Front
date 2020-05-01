@@ -52,7 +52,7 @@ export default {
       API.login(user)
         .then(user => {
           if (!user.token) {
-            this.errormsg = 'Usuario Incorrecto'
+            this.errormsg = 'Email Incorrecto'
           } else {
             localStorage.setItem('token', user.token)
             localStorage.setItem('email', user.email)

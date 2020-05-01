@@ -6,6 +6,7 @@ import MosaicView from '../views/MosaicView'
 import ExpandedView from '../views/ExpandedView'
 import Organizer from '../views/Organizer'
 import Edit from '../views/EditEvent'
+import UserProfile from '../views/Profile'
 
 Vue.use(VueRouter)
 
@@ -47,6 +48,11 @@ const routes = [{
   path: '/edit',
   name: 'Edit',
   component: Edit
+},
+{
+  path: '/profile',
+  name: 'Profile',
+  component: UserProfile
 }
 ]
 

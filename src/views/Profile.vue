@@ -1,8 +1,8 @@
 <template>
-  <v-row class="d-flex justify-center mx-auto" cols="12">
-    <v-col cols="4">
+  <v-row class="d-flex justify-center mx-auto" cols="10">
+    <v-col cols="3">
       <h2>EDIT YOUR INFORMATION</h2>
-      <v-form ref="form" v-model="valid">
+      <v-form ref="form">
         <v-text-field v-model="first_name" label="Name"></v-text-field>
         <v-text-field v-model="last_name" label="Last Name"></v-text-field>
         <v-text-field v-model="email" label="Email"></v-text-field>
@@ -12,7 +12,7 @@
         <v-text-field v-model="social_lk" label="Linkedin"></v-text-field>
 
         <v-btn text color="blue" @click ='editProfile'>Edit your information</v-btn>
-        <v-btn text color="primary" @click='deleteProfile(users[idx]._id, users[idx])'>Delete your account</v-btn>
+        <v-btn text color="red" @click='deleteProfile()'>Delete your account</v-btn>
 
       </v-form>
     </v-col>
@@ -34,7 +34,7 @@ export default {
   }),
   methods: {
     editProfile () {
-      const updateProfile = {
+      const userUpdate = {
         first_name: this.first_name,
         last_name: this.last_name,
         email: this.email,
@@ -43,16 +43,11 @@ export default {
         social_it: this.social_it,
         social_lk: this.social_lk
       }
-      API.editProfile(updateProfile)
+      API.updateProfile(userUpdate)
     },
-    deleteProfile (user, idx) {
-      API.deleteProfile(user)
-      const userIdx = this.users.findIndex(i => i._id === idx._id)
-      if (userIdx !== -1) {
-        this.users.splice(userIdx, 1)
-      }
+    deleteProfile () {
+      API.deleteProfile()
     }
-
   }
 }
 </script>

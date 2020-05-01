@@ -70,8 +70,8 @@ export default {
     const response = await API.get('/events/' + event)
     return response.data
   },
-  async updateProfile (updateProfile) {
-    const response = await API.put('/me', updateProfile, {
+  async updateProfile (userUpdate) {
+    const response = await API.put('/me', userUpdate, {
       headers: {
         token: localStorage.token // eslint-disable-line
       }
@@ -79,6 +79,7 @@ export default {
     return response.data
   },
   async deleteProfile (userId) {
+    alert('ELIMINADO')
     const response = await API.delete('/me', {
       headers: {
         token: localStorage.token // eslint-disable-line
