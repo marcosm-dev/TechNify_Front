@@ -16,7 +16,6 @@
         <v-text-field v-model="address" label="address"></v-text-field>
         <v-text-field v-model="zip_code" label="zip_code"></v-text-field>
 
-
         <v-btn text color="blue" @click ='editProfile'>Edit your information</v-btn>
         <v-btn text color="primary" @click='deleteProfile'>Delete your account</v-btn>
 
@@ -37,12 +36,11 @@ export default {
     social_fb: '',
     social_it: '',
     social_lk: '',
-    vatin: "",
-    business_name:'',
+    vatin: '',
+    business_name: '',
     organizer_info: '',
     address: '',
     zip_code: ''
-
 
   }),
   methods: {
@@ -61,7 +59,7 @@ export default {
         address: this.address,
         zip_code: this.zip_code
       }
-      API.editProfile(userUpdate)
+      API.editProfileOrganizer(organizerUpdate)
     },
     deleteProfile (user) {
       API.deleteProfile(user)
