@@ -69,5 +69,21 @@ export default {
   async getInfo (event) {
     const response = await API.get('/events/' + event)
     return response.data
+  },
+  async updateProfile (updateProfile) {
+    const response = await API.put('/me', updateProfile, {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async deleteProfile (userId) {
+    const response = await API.delete('/me', {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
   }
 }
