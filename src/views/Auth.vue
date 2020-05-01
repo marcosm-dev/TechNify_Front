@@ -1,6 +1,6 @@
 <template>
   <v-container class="container--bg-image fill-height pt-0" fluid>
-    <v-row >
+    <v-row :justify="$vuetify.breakpoint.mdAndUp ? 'end' : 'center'" :class="{'row-margin-top': $vuetify.breakpoint.smAndUp}">
       <!-- TODO CHECK THIS JumboMarcos -->
       <v-col v-if="!jumbotron">
         <v-col cols="3" class="position justify-center mt-10">
@@ -18,12 +18,13 @@
         </v-col>
       </v-col>
 
-      <v-col v-else cols="12" id="intro" class="text-center">
+      <v-col v-else cols="12" sm="10" md="6" id="intro" class="text-center" :class="$vuetify.breakpoint.mdAndUp ? 'mr-8' : ''" >
         <h1 class="pa-2">T3CHNIFY</h1>
-        <p class="pa-2">
+        <p class="pa-2"
+          :class="{'body-1': $vuetify.breakpoint.xs, 'title': $vuetify.breakpoint.smAndUp, 'mt-4': $vuetify.breakpoint.mdAndUp}">
           Event Tech is a company builder created by two Canarian entrepreneurs. Its objective is to make available to everyone the possibility of continuing learning and discovering everything that is to come.
         </p>
-        <p class="pa-2">
+        <p class="pa-2" :class="{'body-1': $vuetify.breakpoint.xs, 'title': $vuetify.breakpoint.smAndUp}">
           To do this, we try to bring together on the same website all kinds of events related to the technology world and put them at your fingertips.
           Our hallmark is listening to what you and the company need. Active listening. Event Tech is our creation for you.
         </p>
@@ -63,13 +64,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$footer-height: 90px;
-
 .container--bg-image {
   background-image: url("../assets/tech.png");
   background-size: cover;
   min-height: calc(100vh - 90px);
   align-items: start;
+}
+
+.row-margin-top {
+  margin-top: 5vh;
 }
 
 #intro {
@@ -78,10 +81,6 @@ $footer-height: 90px;
     background-color: rgba(255,255,255,0.7);
     font-weight: 800;
     text-align: center;
-  }
-
-  p {
-
   }
 }
 
