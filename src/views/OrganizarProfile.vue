@@ -1,8 +1,8 @@
 <template>
   <v-row class="d-flex justify-center mx-auto" cols="12">
     <v-col cols="4">
-      <h2>EDIT YOUR INFORMATION</h2>
-      <v-form ref="form" v-model="valid">
+      <h2>EDIT YOUR INFORMATION AS AN ORGANIZER</h2>
+      <v-form ref="form">
         <v-text-field v-model="first_name" label="Name"></v-text-field>
         <v-text-field v-model="last_name" label="Last Name"></v-text-field>
         <v-text-field v-model="email" label="Email"></v-text-field>
@@ -10,9 +10,15 @@
         <v-text-field v-model="social_fb" label="Facebook"></v-text-field>
         <v-text-field v-model="social_it" label="Instagram"></v-text-field>
         <v-text-field v-model="social_lk" label="Linkedin"></v-text-field>
+        <v-text-field v-model="vatin" label="VATIN"></v-text-field>
+        <v-text-field v-model="business_name" label="business_name"></v-text-field>
+        <v-text-field v-model="organizer_info" label="organizer_info"></v-text-field>
+        <v-text-field v-model="address" label="address"></v-text-field>
+        <v-text-field v-model="zip_code" label="zip_code"></v-text-field>
+
 
         <v-btn text color="blue" @click ='editProfile'>Edit your information</v-btn>
-        <v-btn text color="primary" @click='deleteProfile(users[idx]._id, users[idx])'>Delete your account</v-btn>
+        <v-btn text color="primary" @click='deleteProfile'>Delete your account</v-btn>
 
       </v-form>
     </v-col>
@@ -30,27 +36,35 @@ export default {
     mobile: null,
     social_fb: '',
     social_it: '',
-    social_lk: ''
+    social_lk: '',
+    vatin: "",
+    business_name:'',
+    organizer_info: '',
+    address: '',
+    zip_code: ''
+
+
   }),
   methods: {
     editProfile () {
-      const updateProfile = {
+      const organizerUpdate = {
         first_name: this.first_name,
         last_name: this.last_name,
         email: this.email,
         mobile: this.mobile,
         social_fb: this.social_fb,
         social_it: this.social_it,
-        social_lk: this.social_lk
+        social_lk: this.social_lk,
+        VATIN: this.vatin,
+        business_name: this.business_name,
+        organizer_info: this.organizer_info,
+        address: this.address,
+        zip_code: this.zip_code
       }
-      API.editProfile(updateProfile)
+      API.editProfile(userUpdate)
     },
-    deleteProfile (user, idx) {
+    deleteProfile (user) {
       API.deleteProfile(user)
-      const userIdx = this.users.findIndex(i => i._id === idx._id)
-      if (userIdx !== -1) {
-        this.users.splice(userIdx, 1)
-      }
     }
 
   }

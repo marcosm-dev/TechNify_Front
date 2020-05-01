@@ -70,7 +70,7 @@ export default {
     const response = await API.get('/events/' + event)
     return response.data
   },
-  async updateProfile (updateProfile) {
+  async editProfile (userUpdate) {
     const response = await API.put('/me', updateProfile, {
       headers: {
         token: localStorage.token // eslint-disable-line
