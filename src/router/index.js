@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Auth from '../views/Auth'
-import Home from '../views/Home'
 import Create from '../views/CreateEvent'
 import MosaicView from '../views/MosaicView'
 import ExpandedView from '../views/ExpandedView'
@@ -19,26 +18,14 @@ const routes = [{
   component: Auth
 },
 {
-  path: '/home',
-  name: 'Home',
-  meta: {
-    layout: 'default'
-  },
-  component: Home
-},
-{
   path: '/create',
   name: 'Create',
-  meta: {
-    layout: 'default'
-  },
   component: Create
 },
 {
   path: '/events',
   name: 'Events',
   meta: {
-    layout: 'default',
     appBarVisible: true
   },
   component: MosaicView
@@ -47,7 +34,6 @@ const routes = [{
   path: '/expanded',
   name: 'Expanded',
   meta: {
-    layout: 'default',
     appBarVisible: true
   },
   component: ExpandedView
@@ -55,17 +41,11 @@ const routes = [{
 {
   path: '/organizer',
   name: 'Organizer',
-  meta: {
-    layout: 'default'
-  },
   component: Organizer
 },
 {
   path: '/edit',
   name: 'Edit',
-  meta: {
-    layout: 'default'
-  },
   component: Edit
 }
 ]
