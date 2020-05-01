@@ -1,10 +1,8 @@
 <template>
-  <v-app id="inspire">
-    <v-content id="app">
-      <component :is="layout">
-        <router-view />
-      </component>
-    </v-content>
+  <v-app app>
+    <component :is="layout">
+      <router-view></router-view>
+    </component>
   </v-app>
 </template>
 <script>
@@ -21,9 +19,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style>
 * {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 </style>
