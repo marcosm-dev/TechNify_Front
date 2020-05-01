@@ -79,8 +79,8 @@
   </v-row>
 </template>
 
-  <script>
-import API from "../services/App";
+<script>
+import API from '../services/App'
 
 export default {
   data: () => ({
@@ -91,16 +91,16 @@ export default {
     eventTypes: []
   }),
   computed: {
-    eventId() {
-      return this.$route.params.eventId;
+    eventId () {
+      return this.$route.params.eventId
     },
-    getItems() {
-      return this.eventTypes.map(e => e.name);
+    getItems () {
+      return this.eventTypes.map(e => e.name)
     }
   },
   methods: {
-    editEvent() {
-      let editedEvent = {
+    editEvent () {
+      const editedEvent = {
         name: this.eventdb.name,
         place: this.eventdb.place,
         price: this.eventdb.price,
@@ -109,17 +109,17 @@ export default {
         small_description: this.eventdb.small_description,
         large_description: this.eventdb.large_description,
         event_type: this.eventTypes.filter(e => e.name === this.select)[0]._id
-      };
-      API.updateEvent(this.eventId, editedEvent);
+      }
+      API.updateEvent(this.eventId, editedEvent)
     }
   },
-  mounted() {
+  mounted () {
     API.getTypes().then(types => {
-      this.eventTypes = types;
-    });
-    API.getInfo(this.eventId).then(info => (this.eventdb = info));
+      this.eventTypes = types
+    })
+    API.getInfo(this.eventId).then(info => (this.eventdb = info))
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

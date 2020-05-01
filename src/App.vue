@@ -8,17 +8,17 @@
   </v-app>
 </template>
 <script>
-const default_layout = "default";
+const defaultLayout = 'default'
 
 export default {
-  name: "App",
+  name: 'App',
   computed: {
-    layout() {
-      return (this.$route.meta.layout || default_layout) + "-layout";
+    layout () {
+      return (this.$route.meta.layout || defaultLayout) + '-layout'
     }
   },
   data: () => ({})
-};
+}
 </script>
 
 <style lang="scss" scoped>

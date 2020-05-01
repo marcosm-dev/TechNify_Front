@@ -11,34 +11,29 @@
         <v-text-field v-model="social_it" label="Instagram"></v-text-field>
         <v-text-field v-model="social_lk" label="Linkedin"></v-text-field>
 
-              <v-spacer></v-spacer>
-              <v-btn text color="primary">Edit your information</v-btn>
-              <v-btn text color="primary">Edit your information</v-btn>
-            </v-date-picker>
-          </v-menu>
-        </div>
+        <v-btn text color="primary">Edit your information</v-btn>
       </v-form>
     </v-col>
-    </v-row>
   </v-row>
 </template>
 
-  <script>
+<script>
 export default {
   data: () => ({
-    name: "",
-    place: "",
+    name: '',
+    place: '',
     price: null,
     select: null,
-    small: "",
-    large: "",
-    items: ["UX", "DEVELOPER", "HACKATON", "OTHERS"],
+    small: '',
+    large: '',
+    items: ['UX', 'DEVELOPER', 'HACKATON', 'OTHERS'],
     dates: [],
     menu: false
   }),
   methods: {}
-};
+}
 </script>
+
 <style lang="scss" scoped>
 .image {
   width: 170px;

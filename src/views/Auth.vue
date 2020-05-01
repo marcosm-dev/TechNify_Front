@@ -37,31 +37,31 @@
 </template>
 
 <script>
-import Login from "../components/Login.vue";
-import Signup from "../components/Signup.vue";
+import Login from '../components/Login.vue'
+import Signup from '../components/Signup.vue'
 
 export default {
-  data() {
+  data () {
     return {
       jumbotron: true,
       tab: null,
-      items: ["Login", "Sign Up"]
-    };
+      items: ['Login', 'Sign Up']
+    }
   },
 
   methods: {
-    changeTab() {
-      this.tab = 0;
+    changeTab () {
+      this.tab = 0
     }
   },
-  mounted() {
-    this.jumbotron = !this.$route.query.auth;
+  mounted () {
+    this.jumbotron = !this.$route.query.auth
   },
   components: {
     Login,
     Signup
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

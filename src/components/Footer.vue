@@ -12,11 +12,11 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
   data: () => ({
-    links: ["Home", "About Us", "Contact Us"]
+    links: ['Home', 'About Us', 'Contact Us']
   })
-};
+}
 </script>
 
 <style lang="scss" scoped>

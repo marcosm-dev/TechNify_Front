@@ -42,50 +42,49 @@
 </template>
 
 <script>
-import API from "../services/App";
+import API from '../services/App'
 
 export default {
-  data() {
+  data () {
     return {
       check: false,
       showPassword: false,
-      userPassword: "",
+      userPassword: '',
       passwordRule: [
-        v => !!v || "Password is required",
-        v => v.length >= 8 || "Password must be more than 8 characters"
+        v => !!v || 'Password is required',
+        v => v.length >= 8 || 'Password must be more than 8 characters'
       ],
-      first_name: "",
-      userRules: [v => !!v || "Name is required"],
-      email: "",
+      first_name: '',
+      userRules: [v => !!v || 'Name is required'],
+      email: '',
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ]
-    };
+    }
   },
   methods: {
-    signup() {
-      let newUser = {};
+    signup () {
+      let newUser = {}
       if (this.check) {
         newUser = {
           first_name: this.first_name,
           email: this.email,
           password: this.userPassword,
-          role: "ORGANIZER"
-        };
+          role: 'ORGANIZER'
+        }
       } else {
         newUser = {
           first_name: this.first_name,
           email: this.email,
           password: this.userPassword
-        };
+        }
       }
-      API.signup(newUser).then(this.$emit("change"));
+      API.signup(newUser).then(this.$emit('change'))
     }
   }
-};
+}
 </script>
-
 
 <style lang="scss" scoped>
 * {

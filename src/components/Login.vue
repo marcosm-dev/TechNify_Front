@@ -30,45 +30,45 @@
 </template>
 
 <script>
-import API from "../services/App";
+import API from '../services/App'
 
 export default {
-  data() {
+  data () {
     return {
-      errormsg: "Email",
+      errormsg: 'Email',
       isActive: true,
       hasError: false,
-      email: "marcos@marcos.es",
+      email: 'marcos@marcos.es',
       showPassword: false,
-      userPassword: "1234567890",
+      userPassword: '1234567890',
       passwordRule: [
-        v => !!v || "Password is required",
-        v => v.length >= 8 || "Password must be more than 8 characters"
+        v => !!v || 'Password is required',
+        v => v.length >= 8 || 'Password must be more than 8 characters'
       ]
-    };
+    }
   },
   methods: {
-    loginMethod() {
+    loginMethod () {
       const user = {
         email: this.email,
         password: this.userPassword
-      };
+      }
       API.login(user)
         .then(user => {
           if (!user.token) {
-            this.errormsg = "Usuario Incorrecto";
+            this.errormsg = 'Usuario Incorrecto'
           } else {
-            localStorage.setItem("token", user.token);
-            localStorage.setItem("email", user.email);
-            localStorage.setItem("first_name", user.first_name);
-            localStorage.setItem("role", user.role);
-            this.$router.push("/events");
+            localStorage.setItem('token', user.token)
+            localStorage.setItem('email', user.email)
+            localStorage.setItem('first_name', user.first_name)
+            localStorage.setItem('role', user.role)
+            this.$router.push('/events')
           }
         })
-        .catch(err => console.error(err));
+        .catch(err => console.error(err))
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

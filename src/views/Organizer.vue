@@ -28,31 +28,31 @@
 </template>
 
 <script>
-import API from "../services/App";
+import API from '../services/App'
 
 export default {
-  data() {
+  data () {
     return {
       events: []
-    };
+    }
   },
-  created() {
-    API.getOrganizerEvents().then(response => (this.events = response));
+  created () {
+    API.getOrganizerEvents().then(response => (this.events = response))
   },
   methods: {
-    editEvent(eventId) {
-      this.$router.push("/create");
-      this.$route.params(eventId);
+    editEvent (eventId) {
+      this.$router.push('/create')
+      this.$route.params(eventId)
     },
-    deleteById(eventId, idx) {
-      API.deleteEvent(eventId);
-      const eventIdx = this.events.findIndex(i => i._id === idx._id);
-      if (eventIdx != -1) {
-        this.events.splice(eventIdx, 1);
+    deleteById (eventId, idx) {
+      API.deleteEvent(eventId)
+      const eventIdx = this.events.findIndex(i => i._id === idx._id)
+      if (eventIdx !== -1) {
+        this.events.splice(eventIdx, 1)
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

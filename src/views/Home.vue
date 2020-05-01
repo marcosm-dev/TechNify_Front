@@ -2,7 +2,6 @@
   <v-row></v-row>
 </template>
 
-
 <script>
-export default {};
+export default {}
 </script>

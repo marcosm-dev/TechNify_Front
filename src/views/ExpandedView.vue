@@ -55,25 +55,25 @@
 </template>
 
 <script>
-import API from "../services/App";
+import API from '../services/App'
 
 export default {
   data: () => ({
     events: []
   }),
   methods: {
-    addWish() {
+    addWish () {
       if (!localStorage.token) {
-        this.$router.push("/?auth=login");
+        this.$router.push('/?auth=login')
       }
     }
   },
-  created() {
+  created () {
     API.getAllEvents().then(response => {
-      return (this.events = response);
-    });
+      return (this.events = response)
+    })
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

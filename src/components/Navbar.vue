@@ -59,42 +59,42 @@
 
 <script>
 export default {
-  name: "Navbar",
-  data() {
+  name: 'Navbar',
+  data () {
     return {
-      select: "",
-      select2: ""
-    };
+      select: '',
+      select2: ''
+    }
   },
   computed: {
-    appBarVisible() {
-      return this.$route.meta.appBarVisible;
+    appBarVisible () {
+      return this.$route.meta.appBarVisible
     }
   },
   methods: {
-    logout() {
-      localStorage.clear();
-      this.$router.push("/");
+    logout () {
+      localStorage.clear()
+      this.$router.push('/')
     },
-    mosaic() {
-      this.select = "select";
-      this.select2 = "null";
-      this.$router.push("/events");
+    mosaic () {
+      this.select = 'select'
+      this.select2 = 'null'
+      this.$router.push('/events')
     },
-    expand() {
-      this.select2 = "select2";
-      this.select = "null";
-      this.$router.push("/expanded");
+    expand () {
+      this.select2 = 'select2'
+      this.select = 'null'
+      this.$router.push('/expanded')
     },
-    profile() {
-      if (localStorage.role === "ORGANIZER") {
-        this.$router.push("/organizer");
+    profile () {
+      if (localStorage.role === 'ORGANIZER') {
+        this.$router.push('/organizer')
       } else {
-        this.$router.push("/user");
+        this.$router.push('/user')
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -73,30 +73,30 @@
   </v-row>
 </template>
 
-  <script>
-import API from "../services/App";
+<script>
+import API from '../services/App'
 
 export default {
   data: () => ({
-    name: "",
-    place: "",
+    name: '',
+    place: '',
     price: null,
-    small: "",
-    large: "",
+    small: '',
+    large: '',
     select: null,
     dates: [],
     menu: false,
     eventTypes: []
   }),
   computed: {
-    getItems() {
-      return this.eventTypes.map(e => e.name);
+    getItems () {
+      return this.eventTypes.map(e => e.name)
     }
   },
 
   methods: {
-    createEvent() {
-      let event = {
+    createEvent () {
+      const event = {
         name: this.name,
         place: this.place,
         price: this.price,
@@ -105,16 +105,16 @@ export default {
         small_description: this.small,
         large_description: this.large,
         event_type: this.eventTypes.filter(e => e.name === this.select)[0]._id
-      };
-      API.createEvent(event);
+      }
+      API.createEvent(event)
     }
   },
-  mounted() {
+  mounted () {
     API.getTypes().then(types => {
-      this.eventTypes = types;
-    });
+      this.eventTypes = types
+    })
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
