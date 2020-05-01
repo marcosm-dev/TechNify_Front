@@ -1,20 +1,19 @@
 <template>
-  <v-col class="login">
-    <div class="texto mt-5">
-      <h4 class="ml-8 mt-5">Escribe tu correo</h4>
+    <div>
+      <h4 class="ml-8 pt-5">Escribe tu correo</h4>
       <v-text-field
-        class="mt-2 mr-6"
+        class="mt-2 mr-6 ml-6"
         clearable
         :label="errormsg"
-        color="teal darken-4"
+        color="cyan darken-4"
         v-model="email"
         prepend-icon="mdi-account-circle"
       ></v-text-field>
       <h4 class="ml-8">Escribe tu contraseña</h4>
       <v-text-field
-        class="mt-2 mr-6"
+        class="mt-2 mr-6 ml-6"
         label="Password"
-        color="teal darken-4"
+        color="cyan darken-4"
         v-model="userPassword"
         :type="showPassword ? 'text' : 'password'"
         prepend-icon="mdi-lock"
@@ -22,11 +21,8 @@
         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
         @click:append="showPassword = !showPassword"
       ></v-text-field>
-    </div>
-    <v-card-actions>
-      <v-btn class="button" rounded dark x-large @click="loginMethod">Login</v-btn>
-    </v-card-actions>
-  </v-col>
+      <v-btn max-height="40px" class="ml-5 mb-5 cyan darken-4" rounded dark x-large @click="loginMethod">Login</v-btn>
+   </div>
 </template>
 
 <script>
@@ -70,21 +66,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-* {
-  font-size: 20px;
-}
-.login {
-  height: 300px;
-}
-.textstyle {
-  color: white !important;
-}
-.button {
-  background-color: #0f4243 !important;
-  width: 107px;
-  height: 40px;
-  height: 40px !important;
-}
-</style>

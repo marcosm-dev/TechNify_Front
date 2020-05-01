@@ -1,44 +1,43 @@
 <template>
-  <v-col class="signup">
-    <h4 class="ml-8 mt-5">Name:</h4>
+  <div>
+    <h4 class="  ml-8 pt-5">Name</h4>
     <v-text-field
       clearable
-      class="mt-2 mr-6"
+      class="mt-2 mr-6 ml-6"
       label="Name"
       v-model="first_name"
-      color="teal darken-4"
+      color="cyan darken-4"
       prepend-icon="mdi-account-circle"
       :rules="userRules"
     ></v-text-field>
-    <h4 class="ml-8 mt-3">Email:</h4>
+    <h4 class="ml-8 mt-3">Email</h4>
     <v-text-field
-      class="mt-2 mr-6"
+       class="mt-2 mr-6 ml-6"
       label="E-mail"
       v-model="email"
-      color="teal darken-4"
+      color="cyan darken-4"
       clearable
       :rules="emailRules"
       prepend-icon="mdi-email"
     ></v-text-field>
-    <h4 class="ml-8 mt-3">Contraseña:</h4>
+    <h4 class="ml-8 mt-3">Contraseña</h4>
     <v-text-field
-      class="mt-2 mr-6"
+      class="mt-2 mr-6 ml-6"
       label="Password"
       v-model="userPassword"
-      color="teal darken-4"
+      color="cyan darken-4"
       :type="showPassword ? 'text' : 'password'"
       prepend-icon="mdi-lock"
       :rules="passwordRule"
       :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
       @click:append="showPassword = !showPassword"
-    ></v-text-field>
-    <v-card-actions>
-      <v-btn class="button mt-2" dark rounded @click="signup" x-large>Sign Up</v-btn>
-      <v-spacer></v-spacer>
-      <span>Quiero organizar Eventos</span>
-      <v-checkbox color="teal darken-4" v-model="check" input-value="true" value></v-checkbox>
-    </v-card-actions>
-  </v-col>
+    ></v-text-field>´
+      <div class="ml-6 mt-n2 d-flex">
+      <v-btn max-height="40px" class="mb-4 cyan darken-4" dark rounded @click="signup" x-large>Sign Up</v-btn>
+      <h5 class="ml-5 mt-1">Quiero organizar Eventos </h5>
+       <v-checkbox class="ml-n5" color="cyan darken-4" v-model="check" input-value="true" value></v-checkbox>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -87,20 +86,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  font-size: 20px;
-}
 .signup {
-  height: 440px !important;
+  height: 100vh !important;
 }
-.button {
-  background-color: #0f4243 !important;
-  width: 107px;
-  height: 40px;
-  height: 40px !important;
-}
-span {
-  font-size: 12px;
-  margin-right: 5px;
-}
+
 </style>
