@@ -86,5 +86,13 @@ export default {
       }
     })
     return response.data
+  },
+  async editProfileOrganizer (organizerUpdate) {
+    const response = await API.put('/me', organizerUpdate, {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
   }
 }
