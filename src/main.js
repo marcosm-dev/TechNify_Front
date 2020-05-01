@@ -10,6 +10,11 @@ Vue.component('default-layout', Default)
 Vue.component('no-navbar-layout', NoNavbar)
 
 Vue.config.productionTip = false
+// cloudinary.config({
+//   cloud_name: 'sample',
+//   api_key: '223145733496967',
+//   api_secret: 'PsH8qegRJYaslEIbw4P64XGzDfQ'
+// })
 
 new Vue({
   router,
