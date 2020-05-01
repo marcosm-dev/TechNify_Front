@@ -38,6 +38,14 @@ export default {
     })
     return response.data
   },
+  async getWishes () {
+    const response = await API.get('/me/events/wishes', {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
   async createEvent (event) {
     const response = await API.post('/me/events', event, {
       headers: {
@@ -48,6 +56,14 @@ export default {
   },
   async updateEvent (eventId, event) {
     const response = await API.put(`/me/events/${eventId}`, event, {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async deteleWishes (eventId) {
+    const response = await API.delete(`/me/events/wishes/${eventId}`, {
       headers: {
         token: localStorage.token // eslint-disable-line
       }
@@ -79,8 +95,19 @@ export default {
     return response.data
   },
   async deleteProfile (userId) {
-    alert('ELIMINADO')
+    alert('DELETED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     const response = await API.delete('/me', {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async addtoWish (eventId) {
+    const wish = {
+      wishes_list: eventId
+    }
+    const response = await API.post('/me/events/wishes', wish, {
       headers: {
         token: localStorage.token // eslint-disable-line
       }

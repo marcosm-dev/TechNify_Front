@@ -31,17 +31,17 @@
         </template>
     <v-list>
           <v-list-item-group active-class="deep-blue--text text--accent-4">
-            <v-list-item v-if="userProfile" to="/profile">
+             <v-list-item v-if="userProfile" to="/organizerprofile">
               <v-list-item-icon>
-                <v-list-item-title  class="headline">Profile
+                <v-list-item-title class="headline">Profile
                 </v-list-item-title>
               </v-list-item-icon>
             <v-spacer></v-spacer>
               <v-icon  x-large>mdi-account</v-icon>
             </v-list-item>
-             <v-list-item v-else to="/organizerprofile">
+              <v-list-item v-else to="/profile">
               <v-list-item-icon>
-                <v-list-item-title class="headline">Profile
+                <v-list-item-title  class="headline">Profile
                 </v-list-item-title>
               </v-list-item-icon>
             <v-spacer></v-spacer>
@@ -54,7 +54,14 @@
               <v-spacer></v-spacer>
               <v-icon  x-large>mdi-table-edit</v-icon>
             </v-list-item>
-             <v-list-item to="/organizer">
+             <v-list-item v-if="userProfile" to="/organizer">
+              <v-list-item-icon>
+                <v-list-item-title class="headline">My Events</v-list-item-title>
+              </v-list-item-icon>
+              <v-spacer></v-spacer>
+              <v-icon x-large>mdi-calendar-outline</v-icon>
+            </v-list-item>
+             <v-list-item v-else to="/wishes">
               <v-list-item-icon>
                 <v-list-item-title class="headline">My Events</v-list-item-title>
               </v-list-item-icon>

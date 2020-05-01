@@ -7,6 +7,8 @@ import ExpandedView from '../views/ExpandedView'
 import Organizer from '../views/Organizer'
 import Edit from '../views/EditEvent'
 import UserProfile from '../views/Profile'
+import OrganizerProfile from '../views/OrganizerProfile'
+import Wishes from '../views/Wishes'
 
 Vue.use(VueRouter)
 
@@ -53,6 +55,16 @@ const routes = [{
   path: '/profile',
   name: 'Profile',
   component: UserProfile
+},
+{
+  path: '/organizerprofile',
+  name: 'OrganizerProfile',
+  component: OrganizerProfile
+},
+{
+  path: '/wishes',
+  name: 'Wishes',
+  component: Wishes
 }
 ]
 

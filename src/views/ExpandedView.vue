@@ -62,10 +62,11 @@ export default {
     events: []
   }),
   methods: {
-    addWish () {
+    addWish (eventId) {
       if (!localStorage.token) {
         this.$router.push('/?auth=login')
       }
+      API.addtoWish(eventId)
     }
   },
   created () {
