@@ -77,10 +77,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
 .textstyles {
   text-overflow: ellipsis;
   height: 139px;

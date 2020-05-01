@@ -141,8 +141,6 @@ export default {
 .font {
   margin-left: 5%;
   margin-right: -4%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
 }
 .hidden {
   opacity: 0;
