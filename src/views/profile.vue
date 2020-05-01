@@ -33,19 +33,19 @@ export default {
     social_lk: ''
   }),
   methods: {
-    editProfile() {
+    editProfile () {
       const updateProfile = {
         first_name: this.first_name,
         last_name: this.last_name,
         email: this.email,
         mobile: this.mobile,
-        social_fb:this.social_fb,
+        social_fb: this.social_fb,
         social_it: this.social_it,
         social_lk: this.social_lk
       }
-      Api.editProfile(updateProfile)
+      API.editProfile(updateProfile)
     },
-    deleteProfile(user,idx) {
+    deleteProfile (user, idx) {
       API.deleteProfile(user)
       const userIdx = this.users.findIndex(i => i._id === idx._id)
       if (userIdx !== -1) {
@@ -53,8 +53,8 @@ export default {
       }
     }
 
-    }
   }
+}
 </script>
 
 <style lang="scss" scoped>
