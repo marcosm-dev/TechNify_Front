@@ -11,26 +11,49 @@
         <v-text-field v-model="social_it" label="Instagram"></v-text-field>
         <v-text-field v-model="social_lk" label="Linkedin"></v-text-field>
 
-        <v-btn text color="primary">Edit your information</v-btn>
+        <v-btn text color="blue" @click ='editProfile'>Edit your information</v-btn>
+        <v-btn text color="primary" @click='deleteProfile(users[idx]._id, users[idx])'>Delete your account</v-btn>
+
       </v-form>
     </v-col>
   </v-row>
 </template>
 
 <script>
+import API from '../services/App'
+
 export default {
   data: () => ({
-    name: '',
-    place: '',
-    price: null,
-    select: null,
-    small: '',
-    large: '',
-    items: ['UX', 'DEVELOPER', 'HACKATON', 'OTHERS'],
-    dates: [],
-    menu: false
+    first_name: '',
+    last_name: '',
+    email: '',
+    mobile: null,
+    social_fb: '',
+    social_it: '',
+    social_lk: ''
   }),
-  methods: {}
+  methods: {
+    editProfile () {
+      const updateProfile = {
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        mobile: this.mobile,
+        social_fb: this.social_fb,
+        social_it: this.social_it,
+        social_lk: this.social_lk
+      }
+      API.editProfile(updateProfile)
+    },
+    deleteProfile (user, idx) {
+      API.deleteProfile(user)
+      const userIdx = this.users.findIndex(i => i._id === idx._id)
+      if (userIdx !== -1) {
+        this.users.splice(userIdx, 1)
+      }
+    }
+
+  }
 }
 </script>
 
