@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="footer" padless>
+  <v-footer class="footer" padless app>
     <v-row justify="center" no-gutters>
       <v-btn v-for="link in links" :key="link" color="white" text rounded class="my-2">{{ link }}</v-btn>
       <v-col class="mb-1 text-center white--text" cols="12">
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'Footer',
   data: () => ({
     links: ['Home', 'About Us', 'Contact Us']
   })

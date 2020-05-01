@@ -1,10 +1,8 @@
 <template>
-  <v-app id="inspire">
-    <v-content id="app">
-      <component :is="layout">
-        <router-view />
-      </component>
-    </v-content>
+  <v-app app>
+    <component :is="layout">
+      <router-view></router-view>
+    </component>
   </v-app>
 </template>
 <script>
