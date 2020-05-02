@@ -1,5 +1,7 @@
 <template>
+<v-container>
   <v-row>
+    <v-col cols="12">
     <v-col v-for="(event, i) in events" :key="i" cols="6">
       <v-card hover class="mx-auto" height="405px">
         <v-img :src="event.detail_img" height="150px"></v-img>
@@ -16,7 +18,9 @@
         <v-divider></v-divider>
       </v-card>
     </v-col>
+    </v-col>
   </v-row>
+</v-container>
 </template>
 
 <script>
