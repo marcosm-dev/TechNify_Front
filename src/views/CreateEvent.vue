@@ -38,10 +38,13 @@
           <v-col>
             <div class="ml-10 image justify-center">
               <h5>Cover Image</h5>
-              <v-file-input multiple label="Cover Image"></v-file-input>
-              <h5>Detail Image</h5>
-              <v-file-input multiple label="Detail Image"></v-file-input>
+              <input type="file"  multiple @change="onFileSelected">
+              <v-btn @click="onUpload">Upload</v-btn>
+              <progress :value="UploadValue" max="100" id="uploader"></progress>
+              <!-- <h5>Detail Image</h5>
+              <v-file-input multiple label="Detail Image"></v-file-input> -->
             </div>
+             <v-img :src="this.picture"></v-img>
           </v-col>
         </v-form>
       </v-col>
@@ -75,9 +78,13 @@
 
 <script>
 import API from '../services/App'
+import firebase from 'firebase'
 
 export default {
   data: () => ({
+    selectedFile: null,
+    UploadValue: 0,
+    picture: null,
     name: '',
     place: '',
     price: null,
@@ -96,6 +103,24 @@ export default {
     }
   },
   methods: {
+    onFileSelected (event) {
+      this.selectedFile = event.target.files[0]
+    },
+    async onUpload () {
+      const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
+      const task = storageRef.put(this.selectedFile)
+      task.on('state_changed', snapshot => {
+        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        this.UploadValue = percentage
+      }, error => { console.log(error.messsage) },
+      () => {
+        this.UploadValue = 100
+        task.snapshot.ref.getDownloadURL().then((url) => {
+          this.picture = url
+          console.log(this.picture)
+        })
+      })
+    },
     createEvent () {
       const event = {
         name: this.name,
