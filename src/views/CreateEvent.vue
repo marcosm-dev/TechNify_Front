@@ -1,6 +1,7 @@
 <template>
-<v-container>
+<v-container class="bg fill-height pt-0" fluid>
   <v-row>
+    <v-col cols="12">
     <v-col cols="6">
       <h2>CREATE YOUR EVENT</h2>
       <v-form ref="form">
@@ -73,10 +74,12 @@
     </div>
   </v-col>
 </v-row>
-</v-row>
-<h1 v-show="newEvent" class="my-10"> EVENT PREVIEW
+<div v-show="newEvent">
+<h1  class="my-10"> EVENT PREVIEW </h1>
  <Preview :event="newEvent" />
- </h1>
+</div>
+</v-col>
+</v-row>
 </v-container>
 </template>
 
