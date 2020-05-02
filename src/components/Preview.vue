@@ -1,12 +1,10 @@
 <template>
-      <v-col cols="12">
-        <h1 class="head display-3 my-n2" dark>{{event.name}}</h1>
-        <v-card class="mx-auto" max-height="718px" height="718px">
-          <div class="d-flex mx-auto">
+      <v-row>
+       <v-col>
+        <v-card cols="12">
+          <v-card-title class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
             <v-img v-if="event.cover_img[0]" height="326px" width="800px" :src="event.cover_img[0]"></v-img>
-            <v-card-text class="textstyles headline">{{event.large_description}}</v-card-text>
-          </div>
-          <div class="d-flex mx-auto title my-3">
+            <v-card-text>{{event.large_description}}</v-card-text>
             <ul>
               <li v-if="event.event_type">
                 Type:
@@ -37,9 +35,9 @@
                 :src="event.cover_img[1]"
               ></v-img>
             </div>
-          </div>
         </v-card>
-      </v-col>
+       </v-col>
+      </v-row>
 </template>
 
 <script>
@@ -50,3 +48,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.head {
+  opacity: 0.95;
+  border-radius: 20px 20px 0 0;
+  padding: 30px 20px 20px 20px;
+  background: rgb(21, 91, 100);
+  color: white;
+  font-weight: 500 !important;
+}
+</style>
