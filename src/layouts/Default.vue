@@ -1,34 +1,30 @@
 <template>
-  <div>
-    <v-app-bar app color="indigo darken-2" dark prominent scroll-target="#scrolling-techniques" class="navbar">
+  <v-container>
+    <v-app-bar  app color="indigo darken-2" dark scroll-target="#scrolling-techniques" :prominent="$vuetify.breakpoint.lgAndUp" :class="$vuetify.breakpoint.smAndDown ? 'navbar-xs' : 'navbar'">
       <a app light href="/events" >
-      <v-img class="logo" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
+      <v-img class="hidden-md-and-down logo" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
       </a>
-      <v-toolbar-title class="font display-4 font-weight-regular">TechNify</v-toolbar-title>
+      <v-toolbar-title class="d-lg-none headline">TechNify</v-toolbar-title>
+      <v-toolbar-title class="hidden-md-and-down font display-4 font-weight-regular ml-10">TechNify</v-toolbar-title>
       <v-row v-if="appBarVisible" class="icon">
-        <v-col class="text-center align my-12">
-          <button @click="mosaic" class="mr-2 px-1 py-1" v-bind:class="select">
-            <v-icon x-large>mdi-apps</v-icon>
-          </button>
-          <button class="ml-2 px-1 py-1" @click="expand" v-bind:class="select2">
-            <v-icon x-large>mdi-format-list-text</v-icon>
-          </button>
-          <v-spacer></v-spacer>
-        </v-col>
-      </v-row>
-      <v-row v-else class="hidden" justify="center">
-        <v-icon x-large>mdi-apps</v-icon>
-        <v-icon x-large>mdi-format-list-text</v-icon>
+      <v-col :class="$vuetify.breakpoint.lgAndUp ? 'views' : 'text-center'">
+        <button @click="mosaic" v-bind:class="select">
+          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '80px' : '40px'">mdi-apps</v-icon>
+        </button>
+        <button class="ml-2 px-1 py-1" @click="expand" v-bind:class="select2">
+          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '80px' : '40px'">mdi-format-list-text</v-icon>
+        </button>
+      </v-col>
       </v-row>
       <v-menu bottom left>
         <template v-if="userMenu" v-slot:activator="{ on }">
-          <v-btn class="mt-12 icon" dark icon v-on="on">
+          <v-btn dark icon v-on="on">
             <v-icon x-large>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
-          <template v-else v-slot:activator="{ on }">
+        <template v-else v-slot:activator="{ on }">
           <v-btn to="/?auth=login" class="my-10 navbar text-lowercase"  max-height="20px" v-on="on">
-          <span class="text-uppercase">D</span>o you haven't account ?
+           <span class="text-uppercase">D</span>o you haven't account ?
           </v-btn>
         </template>
     <v-list>
@@ -81,13 +77,11 @@
         </v-list>
       </v-menu>
     </v-app-bar>
-
     <v-content>
       <router-view></router-view>
-    </v-content>
-
-    <Footer />
-  </div>
+      </v-content>
+    <Footer class="hidden-xs-only" />
+  </v-container>
 </template>
 
 <script>
@@ -149,6 +143,15 @@ export default {
     #062e41 39.58%,
     #000f15 100%
   ) !important;
+    height: 128px;
+}
+.navbar-xs {
+  background: linear-gradient(
+    180deg,
+    rgba(1, 20, 29, 0.88) 9.9%,
+    #062e41 39.58%,
+    #000f15 100%
+  ) !important;
 }
 .logo {
   margin-top: -5px;
@@ -156,6 +159,10 @@ export default {
   max-width: 130px;
   margin-left: -15px;
   opacity: 0.9;
+}
+.views{
+  text-align: center;
+  margin: 1vh 0 0 -15vh;
 }
 .title {
   margin-bottom: 20px;
@@ -168,24 +175,10 @@ export default {
   color: #ffffff;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18);
 }
-.align {
-  margin-right: 25%;
-  margin-top: 4%;
-}
 .select {
   border: 2px solid white;
 }
 .select2 {
   border: 2px solid white;
-}
-.icon {
-  margin-right: 6%;
-}
-.font {
-  margin-left: 5%;
-  margin-right: -4%;
-}
-.hidden {
-  opacity: 0;
 }
 </style>
