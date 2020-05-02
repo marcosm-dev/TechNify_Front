@@ -7,7 +7,6 @@
           <v-text-field v-model="name" label="Name"></v-text-field>
           <v-text-field v-model="place" label="Place"></v-text-field>
           <v-text-field v-model="price" label="Price"></v-text-field>
-
           <v-select
             v-model="select"
             :items="getItems"
@@ -37,14 +36,16 @@
           </div>
           <v-col>
             <div class="ml-10 image justify-center">
-              <h5>Cover Image</h5>
+               <h5>Detail Image</h5>
+              <input type="file"  multiple @change="twoFileSelected">
+              <progress :value="UploadValue2" max="100" id="uploader"></progress>
+            </div>
+             <v-img v-if="pictureTwo" :src="pictureTwo"></v-img>
+              <h5>Detail Image</h5>
               <input type="file"  multiple @change="onFileSelected">
               <v-btn @click="onUpload">Upload</v-btn>
               <progress :value="UploadValue" max="100" id="uploader"></progress>
-              <!-- <h5>Detail Image</h5>
-              <v-file-input multiple label="Detail Image"></v-file-input> -->
-            </div>
-             <v-img :src="this.picture"></v-img>
+             <v-img v-if="picture" :src="picture"></v-img>
           </v-col>
         </v-form>
       </v-col>
@@ -83,8 +84,11 @@ import firebase from 'firebase'
 export default {
   data: () => ({
     selectedFile: null,
+    selectedFileTwo: null,
     UploadValue: 0,
+    UploadValue2: 0,
     picture: null,
+    pictureTwo: null,
     name: '',
     place: '',
     price: null,
@@ -106,7 +110,10 @@ export default {
     onFileSelected (event) {
       this.selectedFile = event.target.files[0]
     },
-    async onUpload () {
+    twoFileSelected (event) {
+      this.selectedFileTwo = event.target.files[0]
+    },
+    onUpload () {
       const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
       const task = storageRef.put(this.selectedFile)
       task.on('state_changed', snapshot => {
@@ -119,15 +126,34 @@ export default {
           this.picture = url
           console.log(this.picture)
         })
+        this.coverUpload()
+      })
+    },
+    coverUpload () {
+      const storageRef = firebase.storage().ref(`imagenes/${this.selectedFileTwo.name}`)
+      const task = storageRef.put(this.selectedFileTwo)
+      task.on('state_changed', snapshot => {
+        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        this.UploadValue2 = percentage
+      }, error => { console.log(error.messsage) },
+      () => {
+        this.UploadValue2 = 100
+        task.snapshot.ref.getDownloadURL().then((url) => {
+          this.pictureTwo = url
+          console.log(this.pictureTwo)
+        })
       })
     },
     createEvent () {
+      console.log(this.selectedFileTwo)
       const event = {
         name: this.name,
         place: this.place,
         price: this.price,
         date_start: this.dates[0],
         date_end: this.dates[1],
+        detail_img: this.picture,
+        cover_img: [this.picture, this.pictureTwo],
         small_description: this.small,
         large_description: this.large,
         event_type: this.eventTypes.filter(e => e.name === this.select)[0]._id
