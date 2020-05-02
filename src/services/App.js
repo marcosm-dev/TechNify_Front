@@ -95,7 +95,6 @@ export default {
     return response.data
   },
   async deleteProfile (userId) {
-    alert('DELETED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     const response = await API.delete('/me', {
       headers: {
         token: localStorage.token // eslint-disable-line

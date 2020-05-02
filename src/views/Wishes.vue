@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     deleteById (eventId, idx) {
-      API.deleteEvent(eventId)
+      API.deteleWishes(eventId)
       const eventIdx = this.events.findIndex(i => i._id === idx._id)
       if (eventIdx !== -1) {
         this.events.splice(eventIdx, 1)
