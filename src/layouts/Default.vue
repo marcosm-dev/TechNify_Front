@@ -1,7 +1,9 @@
 <template>
   <div>
     <v-app-bar app color="indigo darken-2" dark prominent scroll-target="#scrolling-techniques" class="navbar">
-      <v-img to="/home" class="img" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
+      <a app light href="/events" >
+      <v-img class="logo" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
+      </a>
       <v-toolbar-title class="font display-4 font-weight-regular">TechNify</v-toolbar-title>
       <v-row v-if="appBarVisible" class="icon">
         <v-col class="text-center align my-12">
@@ -143,16 +145,17 @@ export default {
 .navbar {
   background: linear-gradient(
     180deg,
-    rgba(3, 53, 76, 0.88) 9.9%,
-    #03354c 39.58%,
+    rgba(1, 20, 29, 0.88) 9.9%,
+    #062e41 39.58%,
     #000f15 100%
   ) !important;
 }
-.img {
+.logo {
   margin-top: -5px;
   height: 125px;
   max-width: 130px;
   margin-left: -15px;
+  opacity: 0.9;
 }
 .title {
   margin-bottom: 20px;
@@ -162,9 +165,7 @@ export default {
   font-weight: normal;
   font-size: 55px !important;
   line-height: 68px;
-
   color: #ffffff;
-
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.18);
 }
 .align {
