@@ -28,18 +28,23 @@
               </template>
               <v-date-picker v-model="dates" multiple no-title scrollable>
                 <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
+                <v-btn text color="cyan darken-4" @click="menu = false">Cancel</v-btn>
+                <v-btn text color="cyan darken-4" @click="$refs.menu.save(dates)">OK</v-btn>
               </v-date-picker>
             </v-menu>
           </div>
           <v-col>
             <div class="ml-10 image justify-center">
-              <h5>Cover Image</h5>
-              <v-file-input multiple label="Cover Image"></v-file-input>
-              <h5>Detail Image</h5>
-              <v-file-input multiple label="Detail Image"></v-file-input>
+               <h5>Detail Image</h5>
+              <input type="file"  multiple @change="twoFileSelected">
+              <progress :value="UploadValue2" max="100" id="uploader"></progress>
             </div>
+             <v-img v-if="pictureTwo" :src="pictureTwo"></v-img>
+              <h5>Detail Image</h5>
+              <input type="file"  multiple @change="onFileSelected">
+              <v-btn @click="onUpload">Upload</v-btn>
+              <progress :value="UploadValue" max="100" id="uploader"></progress>
+             <v-img v-if="picture" :src="picture"></v-img>
           </v-col>
         </v-form>
       </v-col>
@@ -67,12 +72,12 @@
         <v-col cols="4">
           <v-btn
             @click="editEvent"
-            color="teal darken-4"
+            color="cyan darken-4"
             dark
             class="ml-10 mr-10"
             depressed
           >Update Event</v-btn>
-          <v-btn color="teal darken-4" dark depressed>Preview</v-btn>
+          <v-btn color="cyan darken-4" dark depressed>Preview</v-btn>
         </v-col>
       </v-row>
     </v-col>
@@ -81,6 +86,7 @@
 
 <script>
 import API from '../services/App'
+import firebase from 'firebase'
 
 export default {
   data: () => ({
@@ -88,7 +94,13 @@ export default {
     select: null,
     dates: [],
     menu: false,
-    eventTypes: []
+    eventTypes: [],
+    selectedFile: null,
+    selectedFileTwo: null,
+    UploadValue: 0,
+    UploadValue2: 0,
+    picture: null,
+    pictureTwo: null
   }),
   computed: {
     eventId () {
@@ -111,7 +123,45 @@ export default {
         event_type: this.eventTypes.filter(e => e.name === this.select)[0]._id
       }
       API.updateEvent(this.eventId, editedEvent)
+    },
+    onFileSelected (event) {
+      this.selectedFile = event.target.files[0]
+    },
+    twoFileSelected (event) {
+      this.selectedFileTwo = event.target.files[0]
+    },
+    onUpload () {
+      const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
+      const task = storageRef.put(this.selectedFile)
+      task.on('state_changed', snapshot => {
+        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        this.UploadValue = percentage
+      }, error => { console.log(error.messsage) },
+      () => {
+        this.UploadValue = 100
+        task.snapshot.ref.getDownloadURL().then((url) => {
+          this.picture = url
+          console.log(this.picture)
+        })
+        this.coverUpload()
+      })
+    },
+    coverUpload () {
+      const storageRef = firebase.storage().ref(`imagenes/${this.selectedFileTwo.name}`)
+      const task = storageRef.put(this.selectedFileTwo)
+      task.on('state_changed', snapshot => {
+        const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        this.UploadValue2 = percentage
+      }, error => { console.log(error.messsage) },
+      () => {
+        this.UploadValue2 = 100
+        task.snapshot.ref.getDownloadURL().then((url) => {
+          this.pictureTwo = url
+          console.log(this.pictureTwo)
+        })
+      })
     }
+
   },
   mounted () {
     API.getTypes().then(types => {

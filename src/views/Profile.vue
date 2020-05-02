@@ -1,6 +1,6 @@
 <template>
-  <v-row class="d-flex justify-center mx-auto" cols="10">
-    <v-col cols="3">
+  <v-row class="d-flex justify-center mx-auto" cols="12">
+    <v-col cols="4">
       <h2>EDIT YOUR INFORMATION</h2>
       <v-form ref="form">
         <v-text-field v-model="first_name" label="Name"></v-text-field>
@@ -10,10 +10,8 @@
         <v-text-field v-model="social_fb" label="Facebook"></v-text-field>
         <v-text-field v-model="social_it" label="Instagram"></v-text-field>
         <v-text-field v-model="social_lk" label="Linkedin"></v-text-field>
-
-        <v-btn text color="blue" @click ='editProfile'>Edit your information</v-btn>
-        <v-btn text color="red" @click='deleteProfile()'>Delete your account</v-btn>
-
+        <v-btn text color="blue" outlined class="mx-5" @click ='editProfile'>Edit your information</v-btn>
+        <v-btn text color="red" outlined @click='deleteProfile()'>Delete your account</v-btn>
       </v-form>
     </v-col>
   </v-row>

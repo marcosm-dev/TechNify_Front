@@ -15,10 +15,8 @@
         <v-text-field v-model="organizer_info" label="organizer_info"></v-text-field>
         <v-text-field v-model="address" label="address"></v-text-field>
         <v-text-field v-model="zip_code" label="zip_code"></v-text-field>
-
-        <v-btn text color="blue" @click ='editProfile'>Edit your information</v-btn>
-        <v-btn text color="primary" @click='deleteProfile'>Delete your account</v-btn>
-
+        <v-btn text color="blue" outlined class="mx-5" @click ='editProfile'>Edit your information</v-btn>
+        <v-btn text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
       </v-form>
     </v-col>
   </v-row>

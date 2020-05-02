@@ -46,8 +46,8 @@ export default {
     })
     return response.data
   },
-  async createEvent (event) {
-    const response = await API.post('/me/events', event, {
+  async createEvent (newEvent) {
+    const response = await API.post('/me/events', newEvent, {
       headers: {
         token: localStorage.token // eslint-disable-line
       }

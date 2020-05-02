@@ -18,6 +18,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-card-actions>
+          <v-btn text color="primary" @click="buyEvent(events[idx]._id, events[idx])">Buy now</v-btn>
           <v-spacer></v-spacer>
           <v-btn text color="red" @click="deleteById(events[idx]._id, events[idx])">Delete</v-btn>
         </v-card-actions>
@@ -45,6 +46,9 @@ export default {
       if (eventIdx !== -1) {
         this.events.splice(eventIdx, 1)
       }
+    },
+    buyEvent () {
+      alert('GO PAY PAGE')
     }
   }
 }

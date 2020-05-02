@@ -1,88 +1,94 @@
 <template>
-  <v-row class="justify-center mx-auto">
-    <v-col cols="8">
-      <v-col cols="4">
-        <h2>CREATE YOUR EVENT</h2>
-        <v-form ref="form">
-          <v-text-field v-model="name" label="Name"></v-text-field>
-          <v-text-field v-model="place" label="Place"></v-text-field>
-          <v-text-field v-model="price" label="Price"></v-text-field>
-          <v-select
-            v-model="select"
-            :items="getItems"
-            :rules="[v => !!v || 'Item is required']"
-            label="Event's Type"
-            required
-          ></v-select>
-          <div class="menu">
-            <v-menu
-              ref="menu"
-              v-model="menu"
-              :close-on-content-click="false"
-              :return-value.sync="dates"
-              transition="scale-transition"
-              offset-y
-              min-width="290px"
-            >
-              <template v-slot:activator="{ on }">
-                <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
-              </template>
-              <v-date-picker v-model="dates" multiple no-title scrollable>
-                <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
-              </v-date-picker>
-            </v-menu>
-          </div>
-          <v-col>
-            <div class="ml-10 image justify-center">
-               <h5>Detail Image</h5>
-              <input type="file"  multiple @change="twoFileSelected">
-              <progress :value="UploadValue2" max="100" id="uploader"></progress>
-            </div>
-             <v-img v-if="pictureTwo" :src="pictureTwo"></v-img>
-              <h5>Detail Image</h5>
-              <input type="file"  multiple @change="onFileSelected">
-              <v-btn @click="onUpload">Upload</v-btn>
-              <progress :value="UploadValue" max="100" id="uploader"></progress>
-             <v-img v-if="picture" :src="picture"></v-img>
-          </v-col>
-        </v-form>
-      </v-col>
-      <v-col cols="4" class="justify-center d-flex"></v-col>
-      <v-row cols="12">
-        <v-col cols="8">
-          <h2>Small Description:</h2>
-          <v-container fluid>
-            <v-textarea clear-icon="cancel" v-model="small" placeholder="Small Description: "></v-textarea>
-          </v-container>
-          <h2>Large Description:</h2>
-
-          <v-container fluid>
-            <v-textarea v-model="large" clear-icon="cancel" placeholder="Large Description."></v-textarea>
-          </v-container>
-        </v-col>
-        <v-col cols="4">
-          <v-btn
-            @click="createEvent"
-            color="teal darken-4"
-            dark
-            class="ml-10 mr-10"
-            depressed
-          >Create Event</v-btn>
-          <v-btn color="teal darken-4" dark depressed>Preview</v-btn>
-        </v-col>
-      </v-row>
+<v-container>
+  <v-row>
+    <v-col cols="6">
+      <h2>CREATE YOUR EVENT</h2>
+      <v-form ref="form">
+        <v-text-field v-model="name" label="Name"></v-text-field>
+        <v-text-field v-model="place" label="Place"></v-text-field>
+        <v-text-field v-model="price" label="Price"></v-text-field>
+        <v-select
+          v-model="select"
+          :items="getItems"
+          :rules="[v => !!v || 'Item is required']"
+          label="Event's Type"
+          required
+        ></v-select>
+      </v-form>
     </v-col>
-  </v-row>
+    <v-col cols="6">
+    <v-col cols=6 class="menu">
+      <v-menu
+        ref="menu"
+        v-model="menu"
+        :close-on-content-click="false"
+        :return-value.sync="dates"
+        transition="scale-transition"
+        offset-y
+        min-width="290px"
+    >
+        <template v-slot:activator="{ on }">
+          <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+        </template>
+        <v-date-picker v-model="dates" multiple no-title scrollable>
+          <v-spacer></v-spacer>
+          <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+          <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
+        </v-date-picker>
+      </v-menu>
+    </v-col>
+    <v-col class="mt-n4" cols="12">
+          <h5>Detail Image</h5>
+          <input class="input my-5" type="file"  multiple @change="twoFileSelected">
+          <v-progress-linear :color="progressbar ? 'blue' : 'white'" height="10px" rounded :value="UploadValue" max="100" id="uploader"></v-progress-linear>
+          <h5 class="mt-2">Detail Image</h5>
+          <input class="my-5" type="file"  multiple @change="onFileSelected">
+          <v-progress-linear :color="progressbar ? 'blue' : 'white'"  height="10px" rounded :value="UploadValue2" max="100" id="uploader"></v-progress-linear>
+          <v-btn class="my-5" color="cyan darken-4" dark depressed @click="onUpload">Upload</v-btn>
+    </v-col>
+  </v-col>
+<v-row>
+  <v-col cols="8">
+    <h2>Small Description:</h2>
+    <v-container fluid>
+      <v-textarea clear-icon="cancel" v-model="small" placeholder="Small Description: "></v-textarea>
+    </v-container>
+    <h2>Large Description:</h2>
+    <v-container fluid>
+      <v-textarea v-model="large" clear-icon="cancel" placeholder="Large Description."></v-textarea>
+    </v-container>
+  </v-col>
+  <v-col cols="4">
+    <v-btn
+      @click="createEvent"
+      color="cyan darken-4"
+      dark
+      class="mb-10 mx-6"
+      depressed
+    >Create Event</v-btn>
+    <v-btn @click="preview" class="mb-10" color="cyan darken-4" dark depressed>Preview</v-btn>
+    <div v-show="showPreview">
+    <v-img class="my-10" v-if="pictureTwo" :src="pictureTwo"></v-img>
+  <v-img v-if="picture" :src="picture"></v-img>
+    </div>
+  </v-col>
+</v-row>
+</v-row>
+<h1 v-show="newEvent" class="my-10"> EVENT PREVIEW
+ <Preview :event="newEvent" />
+ </h1>
+</v-container>
 </template>
 
 <script>
 import API from '../services/App'
 import firebase from 'firebase'
+import Preview from '../components/Preview'
 
 export default {
   data: () => ({
+    showPreview: true,
+    progressbar: false,
     selectedFile: null,
     selectedFileTwo: null,
     UploadValue: 0,
@@ -97,9 +103,11 @@ export default {
     select: null,
     dates: [],
     menu: false,
-    eventTypes: []
+    eventTypes: [],
+    newEvent: null
   }),
   components: {
+    Preview
   },
   computed: {
     getItems () {
@@ -114,6 +122,7 @@ export default {
       this.selectedFileTwo = event.target.files[0]
     },
     onUpload () {
+      this.progressbar = true
       const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
       const task = storageRef.put(this.selectedFile)
       task.on('state_changed', snapshot => {
@@ -144,9 +153,9 @@ export default {
         })
       })
     },
-    createEvent () {
-      console.log(this.selectedFileTwo)
-      const event = {
+    preview () {
+      this.showPreview = false
+      this.newEvent = {
         name: this.name,
         place: this.place,
         price: this.price,
@@ -158,7 +167,10 @@ export default {
         large_description: this.large,
         event_type: this.eventTypes.filter(e => e.name === this.select)[0]._id
       }
-      API.createEvent(event)
+    },
+    createEvent () {
+      const newEvent = this.newEvent
+      API.createEvent(newEvent)
     }
   },
   mounted () {
@@ -168,12 +180,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.image {
-  width: 170px;
-}
-.menu {
-  width: 220px;
-}
-</style>
