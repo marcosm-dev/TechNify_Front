@@ -1,5 +1,5 @@
 <template>
-  <v-footer :class="$vuetify.breakpoint.smOnly ? 'footer-md' : ' footer'" padless app>
+  <v-footer :class="$vuetify.breakpoint.smAndDown ? 'footer-md' : ' footer'" padless app>
     <v-row justify="center" no-gutters>
       <v-btn to="/events" color="white" text rounded class="my-2">Home</v-btn>
       <v-btn to="/" color="white" text rounded class="my-2">About Us</v-btn>
@@ -35,6 +35,6 @@ export default {
     #062e41 39.58%,
     #000f15 100%
   ) !important;
-  height: 45px;
+    height: 45px;
 }
 </style>

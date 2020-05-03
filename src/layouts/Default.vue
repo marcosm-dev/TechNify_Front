@@ -164,7 +164,7 @@ export default {
 }
 .views{
   text-align: center;
-  margin: 2vh;
+  margin: 1vh;
   margin-left: 45%;
 }
 .views-ipad{

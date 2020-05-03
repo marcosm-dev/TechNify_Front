@@ -1,7 +1,7 @@
 <template>
   <v-container class="container--bg-image fill-height pt-0" fluid>
     <v-row :justify="$vuetify.breakpoint.mdAndUp ? 'end' : 'center'" :class="{'my-auto row-margin-top': $vuetify.breakpoint.smAndUp}">
-      <v-col  cols="12" lg="3" md="6" :class="$vuetify.breakpoint.mdAndUp ? ' login-position' : ' pa-0'" v-if="!jumbotron">
+      <v-col cols="12" lg="2" sm="6" md="6" :class="$vuetify.breakpoint.mdAndUp ? ' login-position' : ' pa-0'" v-if="!jumbotron">
           <v-tabs class="signup--login" v-model="tab" grow>
             <v-tab class="title" v-for="(item, i) in items" :key="i">{{ item }}</v-tab>
           </v-tabs>
@@ -15,7 +15,7 @@
           </v-tabs-items>
       </v-col>
 
-      <v-col v-else cols="12" sm="10" md="6" :class="$vuetify.breakpoint.mdAndUp ? 'intro' : ' xs-intro'" >
+      <v-col v-else cols="12" lg="4" sm="10" :class="$vuetify.breakpoint.smAndUp ? 'intro' : ' xs-intro'" >
         <h1 class="pa-2">T3CHNIFY</h1>
         <p class="pa-2"
           :class="{'body-1': $vuetify.breakpoint.xs, 'title': $vuetify.breakpoint.smAndUp, 'mt-4': $vuetify.breakpoint.mdAndUp}">
@@ -63,7 +63,7 @@ export default {
 .container--bg-image {
   background-image: url("../assets/tech.png");
   background-size: cover;
-  min-height: calc(100vh - 90px);
+  min-height: calc(100vh - -7px);
   align-items: start;
 }
 

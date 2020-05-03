@@ -2,19 +2,20 @@
       <v-row>
        <v-col>
         <v-card cols="12">
-          <v-card-title class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
+          <v-card-title v-if="event.name" class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
             <v-img v-if="event.cover_img[0]" height="326px" width="800px" :src="event.cover_img[0]"></v-img>
+            <v-img v-if="detailImg" height="326px" width="800px" :src="detailImg[1]"></v-img>
             <v-card-text>{{event.large_description}}</v-card-text>
             <ul>
-              <li v-if="event.event_type">
+              <li>
                 Type:
                 <br />
-                <span>{{event.event_type.name}}</span>
+                <span>{{typeEvent}}</span>
               </li>
               <li>
                 Date:
                 <br />
-                <span>{{event.date_start}} {{event.end}}</span>
+                <span>{{event.date_start}} // {{event.date_end}}</span>
               </li>
               <li>
                 Place:
@@ -29,10 +30,9 @@
             </ul>
             <div class="justify-end mx-auto">
               <v-img
-                v-if="event.cover_img[1]"
                 height="327px"
                 width="900px"
-                :src="event.cover_img[1]"
+                :src="detailImg[0]"
               ></v-img>
             </div>
         </v-card>
@@ -44,7 +44,9 @@
 export default {
   name: 'Preview',
   props: {
-    event: Object
+    event: Object,
+    typeEvent: String,
+    detailImg: Array
   }
 }
 </script>
