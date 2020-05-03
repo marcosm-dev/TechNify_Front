@@ -3,7 +3,7 @@
   <v-row>
     <v-col cols="12">
     <v-col cols="6">
-      <h2>CREATE YOUR EVENT</h2>
+      <h1>CREATE YOUR EVENT</h1>
       <v-form ref="form">
         <v-text-field v-model="name" label="Name"></v-text-field>
         <v-text-field v-model="place" label="Place"></v-text-field>
@@ -37,15 +37,16 @@
           <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
         </v-date-picker>
       </v-menu>
+       <v-btn  height="20px"  color="cyan darken-4" class="mb-5" dark depressed  @click="clearDate">Clear</v-btn>
     </v-col>
     <v-col class="mt-n4" cols="12">
           <h5>Detail Image</h5>
-          <input class="input my-5" type="file"  multiple @change="twoFileSelected">
+          <input class="input my-2" type="file"  multiple @change="twoFileSelected">
           <v-progress-linear :color="progressbar ? 'blue' : 'white'" height="10px" rounded :value="UploadValue" max="100" id="uploader"></v-progress-linear>
           <h5 class="mt-2">Cover Image</h5>
-          <input class="my-5" type="file"  multiple @change="onFileSelected">
+          <input class="my-2" type="file"  multiple @change="onFileSelected">
           <v-progress-linear :color="progressbar ? 'blue' : 'white'"  height="10px" rounded :value="UploadValue2" max="100" id="uploader"></v-progress-linear>
-          <v-btn class="my-5" color="cyan darken-4" dark depressed @click="onUpload">Upload</v-btn>
+          <v-btn class="my-2" color="cyan darken-4" dark depressed @click="onUpload">Upload</v-btn>
     </v-col>
   </v-col>
 <v-row>
@@ -76,7 +77,7 @@
 </v-row>
 <div v-show="newEvent">
 <h1  class="my-10"> EVENT PREVIEW </h1>
- <Preview :typeEvent="select" :event="newEvent" />
+ <Preview v-if="newEvent" :typeEvent="select" :event="newEvent" />
  <pre> {{newEvent}} </pre>
 </div>
 </v-col>
@@ -108,7 +109,7 @@ export default {
     dates: [],
     menu: false,
     eventTypes: [],
-    newEvent: null
+    newEvent: false
   }),
   components: {
     Preview
@@ -175,6 +176,9 @@ export default {
     createEvent () {
       const newEvent = this.newEvent
       API.createEvent(newEvent)
+    },
+    clearDate () {
+      this.dates = []
     }
   },
   mounted () {

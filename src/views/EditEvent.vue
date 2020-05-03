@@ -3,7 +3,7 @@
   <v-row class="justify-center mx-auto">
     <v-col cols="12">
       <v-col cols="6">
-        <h2>EDIT YOUR EVENT</h2>
+        <h1>EDIT YOUR EVENT</h1>
         <v-form ref="form">
           <v-text-field v-model="eventdb.name" label="Name"></v-text-field>
           <v-text-field v-model="eventdb.place" label="Place"></v-text-field>
@@ -36,6 +36,7 @@
         <v-btn text color="cyan darken-4" @click="$refs.menu.save(dates)">OK</v-btn>
           </v-date-picker>
         </v-menu>
+          <v-btn  height="20px"  color="cyan darken-4" dark depressed  @click="clearDate">Clear</v-btn>
         </v-col>
          <v-col class="mt-n4" cols="12">
           <h5>Detail Image</h5>
@@ -44,7 +45,7 @@
           <h5 class="mt-2">Cover Image</h5>
           <input class="my-5" type="file"  multiple @change="onFileSelected">
           <v-progress-linear :color="progressbar ? 'blue' : 'white'"  height="10px" rounded :value="UploadValue2" max="100" id="uploader"></v-progress-linear>
-          <v-btn class="my-5" color="cyan darken-4" dark depressed @click="onUpload">Upload</v-btn>
+          <v-btn class="my-5" color="cyan darken-4" dark depressed @click="uploadImg">Upload</v-btn>
       </v-col>
       </v-col>
       <v-col cols="4" class="justify-center d-flex"></v-col>
@@ -75,7 +76,7 @@
             class="ml-10 mr-10"
             depressed
           >Update Event</v-btn>
-          <v-btn @click="preview" class="mb-10" color="cyan darken-4" dark depressed>Preview</v-btn>
+          <v-btn @click="preview" color="cyan darken-4" dark depressed>Preview</v-btn>
     <div v-show="showPreview">
     <v-img class="my-10" v-if="pictureTwo" :src="pictureTwo[0]"></v-img>
   <v-img v-if="picture" :src="picture"></v-img>
@@ -84,7 +85,7 @@
 </v-row>
 <div v-show="editedEvent">
 <h1  class="my-10"> EVENT PREVIEW </h1>
- <Preview :typeEvent="select" :detailImg="pictureTwo" :event="editedEvent" />
+ <Preview v-if="editedEvent" :typeEvent="select" :detailImg="pictureTwo" :event="editedEvent" />
 
 </div>
 </v-col>
@@ -112,7 +113,7 @@ export default {
     pictureUpdatedTwo: null,
     UploadValue: 0,
     UploadValue2: 0,
-    editedEvent: null
+    editedEvent: false
   }),
   components: {
     Preview
@@ -157,8 +158,19 @@ export default {
     twoFileSelected (event) {
       this.selectedFileTwo = event.target.files[0]
     },
-    onUpload () {
+    uploadImg () {
       this.progressbar = true
+      if (this.selectedFile) {
+        this.onUpload()
+      }
+      if (this.selectedFileTwo) {
+        this.coverUpload()
+      }
+    },
+    clearDate () {
+      this.dates = []
+    },
+    onUpload () {
       const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
       const task = storageRef.put(this.selectedFile)
       task.on('state_changed', snapshot => {
@@ -171,7 +183,6 @@ export default {
           this.pictureUpdated = url
           console.log(this.pictureUpdated)
         })
-        this.coverUpload()
       })
     },
     coverUpload () {
@@ -196,7 +207,11 @@ export default {
     API.getTypes().then(types => {
       this.eventTypes = types
     })
-    API.getInfo(this.eventId).then(info => (this.eventdb = info))
+    API.getInfo(this.eventId).then(info => {
+      this.eventdb = info
+      this.select = info.event_type.name
+      this.dates.push(info.date_start, info.date_end)
+    })
   }
 }
 </script>
