@@ -1,13 +1,15 @@
 <template>
-<v-container>
+<v-container class="pa-0">
   <v-row>
-    <v-col cols="12">
-    <v-col v-for="(event, i) in events" :key="i" cols="6">
-      <v-card hover class="mx-auto" height="405px">
-        <v-img :src="event.detail_img" height="150px"></v-img>
-        <v-card-title class="display-1 font-weight-bold">{{event.name}}</v-card-title>
-        <v-card-subtitle class="mb-10 title">{{event.place}}</v-card-subtitle>
-        <v-card-text class="my-n10 textstyles body-1">{{event.small_description}}</v-card-text>
+    <v-col  v-for="(event, i) in events" :key="i" :cols="$vuetify.breakpoint.smAndDown ? '12' : '6'">
+      <v-card :height="$vuetify.breakpoint.smAndUp ? '700px' : '200px'" :max-height="$vuetify.breakpoint.mdAndUp ? '700px' : ''" hover >
+        <v-img :class="$vuetify.breakpoint.mdAndUp ? 'cover-img' : ''" :src="event.detail_img"></v-img>
+        <v-card-title :class="$vuetify.breakpoint.mdAndUp ? ' display-2' : 'title'">{{event.name}}</v-card-title>
+        <div :class="$vuetify.breakpoint.mdAndUp ? 'container-card' : '200px'">
+        <v-card-subtitle :class="$vuetify.breakpoint.mdAndUp ? 'mt-2 title' : 'title'">{{event.place}}</v-card-subtitle>
+        <v-card-text :class="$vuetify.breakpoint.mdAndUp ? 'headline textstyles' : ''">{{event.small_description}}</v-card-text>
+        <v-card-text class="hidden-xs-only" :class="$vuetify.breakpoint.mdAndUp ? 'headline' : ''">{{event.large_description}}</v-card-text>
+        </div>
         <v-card-actions>
           <v-icon color="cyan darken-3">mdi-cart</v-icon>
           <v-btn text>Buy now</v-btn>
@@ -17,7 +19,6 @@
         </v-card-actions>
         <v-divider></v-divider>
       </v-card>
-    </v-col>
     </v-col>
   </v-row>
 </v-container>
@@ -50,6 +51,11 @@ export default {
 <style lang="scss" scoped>
 .textstyles {
   text-overflow: ellipsis;
-  height: 139px;
+}
+.cover-img{
+  max-height: 250px;
+}
+.container-card{
+  max-height: 470px;
 }
 </style>

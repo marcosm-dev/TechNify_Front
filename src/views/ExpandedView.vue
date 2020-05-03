@@ -1,11 +1,11 @@
 <template>
-  <v-row class="justify-center">
-    <v-col cols="8">
+<v-container>
+    <v-row>
       <v-col v-for="(event, i) in events" :key="i" cols="12">
         <h1 class="head display-3 my-n2" dark>{{event.name}}</h1>
-        <v-card class="mx-auto" max-height="718px" height="718px">
+        <v-card class="mx-auto">
           <div class="d-flex mx-auto">
-            <v-img v-if="event.cover_img[0]" height="326px" width="800px" :src="event.cover_img[0]"></v-img>
+            <v-img v-if="event.cover_img[0]" :src="event.cover_img[0]"></v-img>
             <v-card-text class="textstyles headline">{{event.large_description}}</v-card-text>
           </div>
           <div class="d-flex mx-auto title my-3">
@@ -50,8 +50,8 @@
           <v-divider></v-divider>
         </v-card>
       </v-col>
-    </v-col>
   </v-row>
+</v-container>
 </template>
 
 <script>
