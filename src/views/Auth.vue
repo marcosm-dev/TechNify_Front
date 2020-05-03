@@ -15,7 +15,7 @@
           </v-tabs-items>
       </v-col>
 
-      <v-col v-else cols="12" lg="4" sm="10" :class="$vuetify.breakpoint.smAndUp ? 'intro' : ' xs-intro'" >
+      <v-col v-else cols="12" lg="4" sm="10" :class="$vuetify.breakpoint.lgAndUp ? 'intro' : 'xs-intro mx-auto'" >
         <h1 class="pa-2">T3CHNIFY</h1>
         <p class="pa-2"
           :class="{'body-1': $vuetify.breakpoint.xs, 'title': $vuetify.breakpoint.smAndUp, 'mt-4': $vuetify.breakpoint.mdAndUp}">
@@ -67,15 +67,16 @@ export default {
   align-items: start;
 }
 
-.intro {
-  background-color: rgba(255,255,255,0.9);
-  border-radius: 20px;
-  margin-right: 10vw;
-  text-align: center;
-}
 .xs-intro {
   background-color: rgba(255,255,255,0.9);
   text-align: center;
+  border-radius: 20px;
+}
+.intro {
+  background-color: rgba(255,255,255,0.9);
+  text-align: center;
+  border-radius: 20px;
+  margin-right: 15vw;
 }
 h1 {
     background-color: rgba(255,255,255,0.7);

@@ -1,7 +1,8 @@
 <template>
-  <v-row class="d-flex justify-center mx-auto" cols="12">
-    <v-col cols="4">
-      <h2>EDIT YOUR INFORMATION AS AN ORGANIZER</h2>
+<v-container :class="$vuetify.breakpoint.lgOnly ? 'container-lg fill-height pt-0' : 'fill-height pt-0'" fluid>
+  <v-row class="d-flex justify-center mx-auto">
+    <v-col cols="12" md="8" lg="4">
+      <h2>ORGANIZER PROFILE</h2>
       <v-form ref="form">
         <v-text-field v-model="first_name" label="Name"></v-text-field>
         <v-text-field v-model="last_name" label="Last Name"></v-text-field>
@@ -15,11 +16,16 @@
         <v-text-field v-model="organizer_info" label="organizer_info"></v-text-field>
         <v-text-field v-model="address" label="address"></v-text-field>
         <v-text-field v-model="zip_code" label="zip_code"></v-text-field>
+        <v-row>
+          <v-col class="text-center">
         <v-btn text color="blue" outlined class="mx-5" @click ='editProfile'>Edit your information</v-btn>
-        <v-btn text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
+        <v-btn :class="$vuetify.breakpoint.xsOnly ? 'mt-10' : ''" text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
+          </v-col>
+        </v-row>
       </v-form>
     </v-col>
   </v-row>
+</v-container>
 </template>
 
 <script>
@@ -68,10 +74,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.image {
-  width: 170px;
-}
-.menu {
-  width: 220px;
+.container-lg {
+   height: 100vh;
+   margin-bottom: 5vh;
 }
 </style>

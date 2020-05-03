@@ -7,26 +7,53 @@
       <v-toolbar-title class="d-lg-none headline">TechNify</v-toolbar-title>
       <v-toolbar-title class="hidden-md-and-down font display-4 font-weight-regular ml-10">TechNify</v-toolbar-title>
       <v-row v-if="appBarVisible">
-      <v-col :class="$vuetify.breakpoint.lgAndUp ? 'views' : 'views-ipad'">
+      <v-col v-show="search" :class="$vuetify.breakpoint.lgAndUp ? 'views' : 'views-ipad'">
         <button @click="mosaic" v-bind:class="select">
-          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '80px' : '40px'">mdi-apps</v-icon>
+          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '30px'">mdi-apps</v-icon>
         </button>
         <button class="ml-2 px-1 py-1" @click="expand" v-bind:class="select2">
-          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '80px' : '40px'">mdi-format-list-text</v-icon>
+          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '30px'">mdi-format-list-text</v-icon>
         </button>
       </v-col>
       </v-row>
+      <v-col class="align-self-end d-flex" cols=3>
+      <v-text-field
+        inverted
+        hide-details
+        prepend-icon="mdi-magnify"
+      />
+      <div class="hidden-xs-only">
+       <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              :return-value.sync="dates"
+              transition="scale-transition"
+              offset-y
+              min-width="290px"
+            >
+              <template v-slot:activator="{ on }">
+                <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+              </template>
+              <v-date-picker v-model="dates" multiple no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
+              </v-date-picker>
+            </v-menu>
+      </div>
+      </v-col>
       <v-row justify="end">
       <v-menu bottom left>
         <template v-if="userMenu" v-slot:activator="{ on }">
-            <v-btn :class="$vuetify.breakpoint.lgAndUp ? 'my-10' : 'icons'" dark icon v-on="on">
+            <v-btn :class="$vuetify.breakpoint.lgAndUp ? '' : 'icons'" dark icon v-on="on">
             <v-icon size="50px">mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
-        <template v-else v-slot:activator="{ on }">
-          <v-btn to="/?auth=login" class="my-10 navbar" max-height="50px" v-on="on">
-          <span class="text-uppercase" >Sign In</span>
-          </v-btn>
+        <template v-else v-slot:activator>
+          <button @click="login">
+          <v-icon x-large >mdi-login</v-icon>
+          </button>
         </template>
            <v-list>
           <v-list-item-group active-class="deep-blue--text text--accent-4">
@@ -92,6 +119,9 @@ import Footer from '@/components/Footer.vue'
 export default {
   data () {
     return {
+      menu: false,
+      dates: [],
+      search: true,
       select: '',
       select2: '',
       userMenu: localStorage.token
@@ -109,6 +139,9 @@ export default {
     }
   },
   methods: {
+    login () {
+      this.$router.push('/?auth=login')
+    },
     logout () {
       localStorage.clear()
       this.$router.push('/')
@@ -129,6 +162,9 @@ export default {
       } else {
         this.$router.push('/user')
       }
+    },
+    searchFunction () {
+      this.search = false
     }
   },
   components: {
