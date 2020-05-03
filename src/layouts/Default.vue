@@ -165,10 +165,10 @@ export default {
 .views{
   text-align: center;
   margin: 1vh;
-  margin-left: 45%;
+  margin-left: 10%;
 }
 .views-ipad{
-  text-align: end;
+  text-align: center;
   margin-left: -2vw;
 }
 .title {

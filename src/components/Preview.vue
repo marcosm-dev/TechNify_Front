@@ -2,8 +2,8 @@
       <v-row>
        <v-col>
         <v-card cols="12">
-          <v-card-title v-if="event.name" class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
-            <v-img v-if="event.cover_img[0]" height="326px" width="800px" :src="event.cover_img[0]"></v-img>
+          <v-card-title class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
+            <v-img height="326px" width="800px" :src="event.cover_img[0]"></v-img>
             <v-img v-if="detailImg" height="326px" width="800px" :src="detailImg[1]"></v-img>
             <v-card-text>{{event.large_description}}</v-card-text>
             <ul>
@@ -30,10 +30,12 @@
             </ul>
             <div class="justify-end mx-auto">
               <v-img
+                v-if="detailImg"
                 height="327px"
                 width="900px"
                 :src="detailImg[0]"
               ></v-img>
+              <v-img v-else height="326px" width="800px" :src="event.cover_img[1]"></v-img>
             </div>
         </v-card>
        </v-col>
