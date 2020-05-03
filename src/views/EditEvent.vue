@@ -1,7 +1,8 @@
 <template>
+<v-container>
   <v-row class="justify-center mx-auto">
-    <v-col cols="8">
-      <v-col cols="4">
+    <v-col cols="12">
+      <v-col cols="6">
         <h2>EDIT YOUR EVENT</h2>
         <v-form ref="form">
           <v-text-field v-model="eventdb.name" label="Name"></v-text-field>
@@ -13,43 +14,41 @@
             label="Event's Type"
             required
           ></v-select>
-          <div class="menu">
-            <v-menu
-              ref="menu"
-              v-model="menu"
-              :close-on-content-click="false"
-              :return-value.sync="dates"
-              transition="scale-transition"
-              offset-y
-              min-width="290px"
-            >
-              <template v-slot:activator="{ on }">
-                <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
-              </template>
-              <v-date-picker v-model="dates" multiple no-title scrollable>
-                <v-spacer></v-spacer>
-                <v-btn text color="cyan darken-4" @click="menu = false">Cancel</v-btn>
-                <v-btn text color="cyan darken-4" @click="$refs.menu.save(dates)">OK</v-btn>
-              </v-date-picker>
-            </v-menu>
-          </div>
-          <v-col>
-            <div class="ml-10 image justify-center">
-               <h5>Detail Image</h5>
-              <input type="file"  multiple @change="twoFileSelected">
-              <progress :value="UploadValue2" max="100" id="uploader"></progress>
-            </div>
-             <v-img v-if="pictureTwo" :src="pictureTwo"></v-img>
-              <h5>Detail Image</h5>
-              <input type="file"  multiple @change="onFileSelected">
-              <v-btn @click="onUpload">Upload</v-btn>
-              <progress :value="UploadValue" max="100" id="uploader"></progress>
-             <v-img v-if="picture" :src="picture"></v-img>
-          </v-col>
-        </v-form>
+           </v-form>
+           </v-col>
+          <v-col cols="6">
+    <v-col cols=6 class="menu">
+      <v-menu
+        ref="menu"
+        v-model="menu"
+        :close-on-content-click="false"
+        :return-value.sync="dates"
+        transition="scale-transition"
+        offset-y
+        min-width="290px"
+    >
+        <template v-slot:activator="{ on }">
+          <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+        </template>
+          <v-date-picker v-model="dates" multiple no-title scrollable>
+          <v-spacer></v-spacer>
+        <v-btn text color="cyan darken-4" @click="menu = false">Cancel</v-btn>
+        <v-btn text color="cyan darken-4" @click="$refs.menu.save(dates)">OK</v-btn>
+          </v-date-picker>
+        </v-menu>
+        </v-col>
+         <v-col class="mt-n4" cols="12">
+          <h5>Detail Image</h5>
+          <input class="input my-5" type="file"  multiple @change="twoFileSelected">
+          <v-progress-linear :color="progressbar ? 'blue' : 'white'" height="10px" rounded :value="UploadValue" max="100" id="uploader"></v-progress-linear>
+          <h5 class="mt-2">Cover Image</h5>
+          <input class="my-5" type="file"  multiple @change="onFileSelected">
+          <v-progress-linear :color="progressbar ? 'blue' : 'white'"  height="10px" rounded :value="UploadValue2" max="100" id="uploader"></v-progress-linear>
+          <v-btn class="my-5" color="cyan darken-4" dark depressed @click="onUpload">Upload</v-btn>
+      </v-col>
       </v-col>
       <v-col cols="4" class="justify-center d-flex"></v-col>
-      <v-row cols="12">
+      <v-row>
         <v-col cols="8">
           <h2>Small Description:</h2>
           <v-container fluid>
@@ -60,7 +59,6 @@
             ></v-textarea>
           </v-container>
           <h2>Large Description:</h2>
-
           <v-container fluid>
             <v-textarea
               v-model="eventdb.large_description"
@@ -77,51 +75,80 @@
             class="ml-10 mr-10"
             depressed
           >Update Event</v-btn>
-          <v-btn color="cyan darken-4" dark depressed>Preview</v-btn>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+          <v-btn @click="preview" class="mb-10" color="cyan darken-4" dark depressed>Preview</v-btn>
+    <div v-show="showPreview">
+    <v-img class="my-10" v-if="pictureTwo" :src="pictureTwo[0]"></v-img>
+  <v-img v-if="picture" :src="picture"></v-img>
+    </div>
+  </v-col>
+</v-row>
+<div v-show="editedEvent">
+<h1  class="my-10"> EVENT PREVIEW </h1>
+ <Preview :typeEvent="select" :detailImg="pictureTwo" :event="editedEvent" />
+
+</div>
+</v-col>
+</v-row>
+</v-container>
 </template>
 
 <script>
 import API from '../services/App'
 import firebase from 'firebase'
+import Preview from '../components/Preview'
 
 export default {
   data: () => ({
-    eventdb: false,
+    eventdb: {},
+    showPreview: true,
+    progressbar: false,
     select: null,
     dates: [],
     menu: false,
     eventTypes: [],
     selectedFile: null,
     selectedFileTwo: null,
+    pictureUpdated: null,
+    pictureUpdatedTwo: null,
     UploadValue: 0,
     UploadValue2: 0,
-    picture: null,
-    pictureTwo: null
+    editedEvent: null
   }),
+  components: {
+    Preview
+  },
   computed: {
     eventId () {
       return this.$route.params.eventId
     },
     getItems () {
       return this.eventTypes.map(e => e.name)
+    },
+    picture () {
+      if (this.pictureUpdated) { return this.pictureUpdated } else { return this.eventdb.detail_img }
+    },
+    pictureTwo () {
+      if (this.pictureUpdatedTwo) { return this.pictureUpdatedTwo } else { return this.eventdb.cover_img }
     }
   },
   methods: {
-    editEvent () {
-      const editedEvent = {
+    preview () {
+      this.showPreview = false
+      this.editedEvent = {
         name: this.eventdb.name,
         place: this.eventdb.place,
         price: this.eventdb.price,
         date_start: this.dates[0],
         date_end: this.dates[1],
+        detail_img: this.picture,
+        cover_img: this.pictureTwo,
         small_description: this.eventdb.small_description,
         large_description: this.eventdb.large_description,
         event_type: this.eventTypes.filter(e => e.name === this.select)[0]._id
       }
+    },
+    editEvent () {
+      const editedEvent = this.editedEvent
       API.updateEvent(this.eventId, editedEvent)
     },
     onFileSelected (event) {
@@ -131,6 +158,7 @@ export default {
       this.selectedFileTwo = event.target.files[0]
     },
     onUpload () {
+      this.progressbar = true
       const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
       const task = storageRef.put(this.selectedFile)
       task.on('state_changed', snapshot => {
@@ -140,8 +168,8 @@ export default {
       () => {
         this.UploadValue = 100
         task.snapshot.ref.getDownloadURL().then((url) => {
-          this.picture = url
-          console.log(this.picture)
+          this.pictureUpdated = url
+          console.log(this.pictureUpdated)
         })
         this.coverUpload()
       })
@@ -156,8 +184,9 @@ export default {
       () => {
         this.UploadValue2 = 100
         task.snapshot.ref.getDownloadURL().then((url) => {
-          this.pictureTwo = url
-          console.log(this.pictureTwo)
+          this.pictureUpdatedTwo = []
+          this.pictureUpdatedTwo.push(url, this.picture)
+          console.log(this.pictureUpdatedTwo)
         })
       })
     }

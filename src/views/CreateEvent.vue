@@ -42,7 +42,7 @@
           <h5>Detail Image</h5>
           <input class="input my-5" type="file"  multiple @change="twoFileSelected">
           <v-progress-linear :color="progressbar ? 'blue' : 'white'" height="10px" rounded :value="UploadValue" max="100" id="uploader"></v-progress-linear>
-          <h5 class="mt-2">Detail Image</h5>
+          <h5 class="mt-2">Cover Image</h5>
           <input class="my-5" type="file"  multiple @change="onFileSelected">
           <v-progress-linear :color="progressbar ? 'blue' : 'white'"  height="10px" rounded :value="UploadValue2" max="100" id="uploader"></v-progress-linear>
           <v-btn class="my-5" color="cyan darken-4" dark depressed @click="onUpload">Upload</v-btn>
@@ -76,7 +76,8 @@
 </v-row>
 <div v-show="newEvent">
 <h1  class="my-10"> EVENT PREVIEW </h1>
- <Preview :event="newEvent" />
+ <Preview :typeEvent="select" :event="newEvent" />
+ <pre> {{newEvent}} </pre>
 </div>
 </v-col>
 </v-row>
