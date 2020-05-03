@@ -52,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 .head {
   opacity: 0.95;
-  border-radius: 20px 20px 0 0;
+  border-radius: 20px 20px 0 0 !important;
   padding: 30px 20px 20px 20px;
   background: rgb(21, 91, 100);
   color: white;

@@ -6,8 +6,8 @@
       </a>
       <v-toolbar-title class="d-lg-none headline">TechNify</v-toolbar-title>
       <v-toolbar-title class="hidden-md-and-down font display-4 font-weight-regular ml-10">TechNify</v-toolbar-title>
-      <v-row v-if="appBarVisible" class="icon">
-      <v-col :class="$vuetify.breakpoint.lgAndUp ? 'views' : 'text-center'">
+      <v-row v-if="appBarVisible">
+      <v-col :class="$vuetify.breakpoint.lgAndUp ? 'views' : 'views-ipad'">
         <button @click="mosaic" v-bind:class="select">
           <v-icon :size="$vuetify.breakpoint.lgAndUp ? '80px' : '40px'">mdi-apps</v-icon>
         </button>
@@ -16,18 +16,19 @@
         </button>
       </v-col>
       </v-row>
+      <v-row justify="end">
       <v-menu bottom left>
         <template v-if="userMenu" v-slot:activator="{ on }">
-          <v-btn dark icon v-on="on">
-            <v-icon x-large>mdi-dots-vertical</v-icon>
+            <v-btn :class="$vuetify.breakpoint.lgAndUp ? 'my-10' : 'icons'" dark icon v-on="on">
+            <v-icon size="50px">mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
         <template v-else v-slot:activator="{ on }">
-          <v-btn to="/?auth=login" class="my-10 navbar text-lowercase"  max-height="20px" v-on="on">
-           <span class="text-uppercase">D</span>o you haven't account ?
+          <v-btn to="/?auth=login" class="my-10 navbar" max-height="50px" v-on="on">
+          <span class="text-uppercase" >Sign In</span>
           </v-btn>
         </template>
-    <v-list>
+           <v-list>
           <v-list-item-group active-class="deep-blue--text text--accent-4">
              <v-list-item v-if="userProfile" to="/organizerprofile">
               <v-list-item-icon>
@@ -76,6 +77,7 @@
           </v-list-item-group>
         </v-list>
       </v-menu>
+      </v-row>
     </v-app-bar>
     <v-content>
       <router-view></router-view>
@@ -162,7 +164,12 @@ export default {
 }
 .views{
   text-align: center;
-  margin: 1vh 0 0 -15vh;
+  margin: 2vh;
+  margin-left: 45%;
+}
+.views-ipad{
+  text-align: end;
+  margin-left: -2vw;
 }
 .title {
   margin-bottom: 20px;
