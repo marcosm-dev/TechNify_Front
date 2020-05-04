@@ -51,7 +51,6 @@
         <v-btn :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
         </v-col>
         </v-row>
-
 </v-container>
 </template>
 
@@ -78,9 +77,6 @@ export default {
   }),
   methods: {
     editProfile () {
-      if (this.confirmPassOK) {
-        this.updatePsw()
-      }
       const userUpdate = {
         first_name: this.first_name,
         last_name: this.last_name,
@@ -91,21 +87,28 @@ export default {
         social_lk: this.social_lk
       }
       API.updateProfile(userUpdate)
+        if (this.newPassword) {
+       this.updatePsw()
+      }
     },
     deleteProfile () {
       API.deleteProfile()
     },
     updatePsw () {
+          if (this.newPassword === this.confirmPassword) {
       const newPassword = {
         actualPassword: this.password,
-        newPassword: this.confirmPassOK
+        newPassword: this.confirmPassword
       }
       API.changePassword(newPassword)
-    },
-    confirmPassOK () {
-      if (this.newPassword === this.confirmPassword) { return this.confirmPassword }
+    }
     }
   }
+/*   computed: {
+     confirmPassOK () {
+      if (this.newPassword === this.confirmPassword) { return true }
+    }
+  }, */
 }
 </script>
 
