@@ -119,15 +119,15 @@ export default {
     }
   },
   computed: {
-     checkFormPsw(){
-       if(this.password.length ===0
-        || this.newPassword.length === 0
-        || this.confirmPassword.length === 0
-        || this.newPassword !== this.confirmPassword) {
-          return true
-        }
+    checkFormPsw () {
+      if (this.password.length === 0 ||
+        this.newPassword.length === 0 ||
+        this.confirmPassword.length === 0 ||
+        this.newPassword !== this.confirmPassword) {
+        return true
+      }
       return false
-     }
+    }
   }
 }
 

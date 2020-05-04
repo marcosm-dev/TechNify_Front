@@ -59,7 +59,7 @@ import API from '../services/App'
 
 export default {
   data: () => ({
-    userdb:{},
+    userdb: {},
     first_name: '',
     last_name: '',
     email: '',
@@ -97,23 +97,23 @@ export default {
       API.deleteProfile()
     },
     updatePsw () {
-        const newPassword = {
-          actualPassword: this.password,
-          newPassword: this.confirmPassword
-        }
-        API.changePassword(newPassword)
+      const newPassword = {
+        actualPassword: this.password,
+        newPassword: this.confirmPassword
+      }
+      API.changePassword(newPassword)
     }
   },
   computed: {
-     checkFormPsw(){
-       if(this.password.length ===0
-        || this.newPassword.length === 0
-        || this.confirmPassword.length === 0
-        || this.newPassword !== this.confirmPassword) {
-          return true
-        }
+    checkFormPsw () {
+      if (this.password.length === 0 ||
+        this.newPassword.length === 0 ||
+        this.confirmPassword.length === 0 ||
+        this.newPassword !== this.confirmPassword) {
+        return true
+      }
       return false
-     }
+    }
   }
 }
 </script>
