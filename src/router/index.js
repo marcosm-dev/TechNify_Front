@@ -12,9 +12,6 @@ import Wishes from '../views/Wishes'
 import Mail from '../views/Mail'
 import BuyTicket from '../views/BuyTicket'
 
-
-
-
 Vue.use(VueRouter)
 
 const routes = [{

@@ -54,28 +54,27 @@ import API from '../services/App'
 
 export default {
   name: 'BuyTicket',
-  data(){
+  data () {
     return {
-      event: {}
+      event: null
     }
   },
-  created() {
+  created () {
     API.getInfo(this.$route.params.eventId)
-    .then(response => this.event = response)
+      .then(response => { return (this.event = response) })
   },
   methods: {
-    buy(){
-      alert("vamos a comprar!")
+    buy () {
+      alert('vamos a comprar!')
     },
-     addWish (eventId) {
+    addWish (eventId) {
       if (!localStorage.token) {
         this.$router.push('/?auth=login')
       }
       API.addtoWish(eventId)
-    },
+    }
   }
-  }
-
+}
 
 </script>
 

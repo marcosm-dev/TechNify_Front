@@ -125,8 +125,8 @@ export default {
     })
     return response.data
   },
-  async changePassword(newPassword){
-    console.log(newPassword);
+  async changePassword (newPassword) {
+    console.log(newPassword)
     const response = await API.put('/me/password', newPassword, {
       headers: {
         token: localStorage.token // eslint-disable-line
