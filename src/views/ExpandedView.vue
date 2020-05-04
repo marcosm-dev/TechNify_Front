@@ -3,7 +3,7 @@
     <v-row>
       <v-col v-for="(event, i) in events" :key="i" cols="12">
         <h1 class="head display-3 my-n2" dark>{{event.name}}</h1>
-        <v-card class="mx-auto">
+        <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="mx-auto">
           <div class="d-flex mx-auto">
             <v-img v-if="event.cover_img[0]" :src="event.cover_img[0]"></v-img>
             <v-card-text class="textstyles headline">{{event.large_description}}</v-card-text>
@@ -44,7 +44,7 @@
             <v-icon color="cyan darken-3" x-large>mdi-cart</v-icon>
             <v-btn text>Buy now</v-btn>
             <v-spacer></v-spacer>
-            <v-btn @click="addWish()" color="purple" text>Add to wish</v-btn>
+            <v-btn @click="addWish(events[i]._id)" color="purple" text>Add to wish</v-btn>
             <v-icon color="cyan darken-3" x-large>mdi-star-outline</v-icon>
           </v-card-actions>
           <v-divider></v-divider>
@@ -59,7 +59,9 @@ import API from '../services/App'
 
 export default {
   data: () => ({
-    events: []
+    events: [],
+    eventType: '',
+    dates: null
   }),
   methods: {
     addWish (eventId) {
@@ -67,11 +69,22 @@ export default {
         this.$router.push('/?auth=login')
       }
       API.addtoWish(eventId)
+    },
+    filterTypes () {
+      API.getAllEvents(this.eventType, this.dates).then(
+        response => (this.events = response))
     }
   },
   created () {
     API.getAllEvents().then(response => {
       return (this.events = response)
+    })
+  },
+  mounted () {
+    this.$root.$on('searchFunction', (selected, dates) => {
+      this.eventType = selected
+      this.dates = dates
+      this.filterTypes()
     })
   }
 }
