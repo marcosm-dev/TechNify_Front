@@ -2,7 +2,9 @@
 <v-container class="pa-0">
   <v-row>
     <v-col v-for="(event, i) in events" :key="i" :cols="$vuetify.breakpoint.smAndDown ? '12' : '6'">
-      <v-card :height="$vuetify.breakpoint.smAndUp ? '700px' : '200px'" :max-height="$vuetify.breakpoint.mdAndUp ? '700px' : ''" hover >
+      <v-card  class="mt-4"
+              :to="{ name: 'BuyTicket', params: { eventId: event._id } }"
+              :height="$vuetify.breakpoint.smAndUp ? '700px' : '200px'" :max-height="$vuetify.breakpoint.mdAndUp ? '700px' : ''" hover >
         <v-img :class="$vuetify.breakpoint.mdAndUp ? 'cover-img' : ''" :src="event.detail_img"></v-img>
         <v-card-title :class="$vuetify.breakpoint.mdAndUp ? ' display-2' : 'title'">{{event.name}}</v-card-title>
         <div :class="$vuetify.breakpoint.mdAndUp ? 'container-card' : '200px'">

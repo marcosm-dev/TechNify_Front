@@ -9,6 +9,11 @@ import Edit from '../views/EditEvent'
 import UserProfile from '../views/Profile'
 import OrganizerProfile from '../views/OrganizerProfile'
 import Wishes from '../views/Wishes'
+import Mail from '../views/Mail'
+import BuyTicket from '../views/BuyTicket'
+
+
+
 
 Vue.use(VueRouter)
 
@@ -42,12 +47,28 @@ const routes = [{
   component: MosaicView
 },
 {
+  path: '/mail',
+  name: 'Mail',
+  meta: {
+    appBarVisible: true
+  },
+  component: Mail
+},
+{
   path: '/expanded',
   name: 'Expanded',
   meta: {
     appBarVisible: true
   },
   component: ExpandedView
+},
+{
+  path: '/event/:eventId',
+  name: 'BuyTicket',
+  meta: {
+    appBarVisible: true
+  },
+  component: BuyTicket
 },
 {
   path: '/organizer',

@@ -90,7 +90,7 @@ export default {
     const response = await API.get('/events/' + event)
     return response.data
   },
-  async updatesProfile (userUpdates) {
+  async updateProfile (userUpdates) {
     const response = await API.put('/me', userUpdates, {
       headers: {
         token: localStorage.token // eslint-disable-line
@@ -119,6 +119,15 @@ export default {
   },
   async editProfileOrganizer (organizerUpdates) {
     const response = await API.put('/me', organizerUpdates, {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async changePassword(newPassword){
+    console.log(newPassword);
+    const response = await API.put('/me/password', newPassword, {
       headers: {
         token: localStorage.token // eslint-disable-line
       }

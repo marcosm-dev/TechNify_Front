@@ -1,7 +1,7 @@
 <template>
 <v-container>
   <v-row class="d-flex justify-center mx-auto">
-    <v-col cols="12" sm="8" lg="4">
+    <v-col cols="8" sm="8" lg="4" class="mx-auto">
       <h2>EDIT YOUR INFORMATION</h2>
       <v-form ref="form">
         <v-text-field v-model="first_name" label="Name"></v-text-field>
@@ -11,15 +11,47 @@
         <v-text-field v-model="social_fb" label="Facebook"></v-text-field>
         <v-text-field v-model="social_it" label="Instagram"></v-text-field>
         <v-text-field v-model="social_lk" label="Linkedin"></v-text-field>
+      </v-form>
+      </v-col>
+<v-col cols="4">
+  <h2>Change Password</h2>
+ <v-text-field
+            v-model="password"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="[rules.required, rules.min]"
+            :type="show1 ? 'text' : 'password'"
+            label="Actual password"
+            hint="At least 8 characters"
+            @click:append="show1 = !show1"
+          ></v-text-field>
+           <v-text-field
+            v-model="newPassword"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="[rules.required, rules.min]"
+            :type="show1 ? 'text' : 'password'"
+            label="New password"
+            hint="At least 8 characters"
+            @click:append="show1 = !show1"
+          ></v-text-field>
+           <v-text-field
+            v-model="confirmPassword"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="[rules.required, rules.min]"
+            :type="show1 ? 'text' : 'password'"
+            label="Repeat new password"
+            hint="At least 8 characters"
+            @click:append="show1 = !show1"
+          ></v-text-field>
+        <v-btn :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="blue" outlined @click='updatePsw'>Update password</v-btn>
+</v-col>
+  </v-row>
          <v-row>
         <v-col class="text-center">
         <v-btn text color="blue" outlined class="mx-5" @click ='editProfile'>Edit your information</v-btn>
         <v-btn :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
         </v-col>
         </v-row>
-      </v-form>
     </v-col>
-  </v-row>
 </v-container>
 </template>
 
@@ -34,10 +66,21 @@ export default {
     mobile: null,
     social_fb: '',
     social_it: '',
-    social_lk: ''
+    social_lk: '',
+    show1: false,
+    password: '',
+    newPassword: '',
+    confirmPassword: '',
+    rules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 8 || 'Min 8 characters',
+        }
   }),
   methods: {
     editProfile () {
+      if(this.confirmPassOK) {
+        this.updatePsw()
+      }
       const userUpdate = {
         first_name: this.first_name,
         last_name: this.last_name,
@@ -51,6 +94,19 @@ export default {
     },
     deleteProfile () {
       API.deleteProfile()
+    },
+    updatePsw(){
+      const newPassword ={
+        actualPassword: this.password,
+        newPassword: this.confirmPassOK
+      }
+      API.changePassword(newPassword)
+    }
+  },
+  computed: {
+     confirmPassOK() {
+      if(this.newPassword === this.confirmPassword) return this.confirmPassword
+
     }
   }
 }
