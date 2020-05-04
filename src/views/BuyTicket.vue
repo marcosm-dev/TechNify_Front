@@ -1,14 +1,14 @@
 <template>
       <v-row>
-       <v-col>
+       <v-col v-if="event">
         <v-card cols="12">
-          <v-card-title class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
-            <v-img height="326px" width="800px" :src="event.cover_img[0]"></v-img>
-            <ul>
+          <v-card-title v-if="event.name" class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
+            <v-img height="326px" width="800px" :src="event.detail_img"></v-img>
+            <ul class="my-5">
               <li>
                 Type:
                 <br />
-                <span>{{typeEvent}}</span>
+                <span>{{event.event_type.name}}</span>
               </li>
               <li>
                 Date:
@@ -56,11 +56,11 @@ export default {
   name: 'BuyTicket',
   data () {
     return {
-      event: null
+      event: false
     }
   },
-  created () {
-    API.getInfo(this.$route.params.eventId)
+  async created () {
+    await API.getInfo(this.$route.params.eventId)
       .then(response => { return (this.event = response) })
   },
   methods: {
