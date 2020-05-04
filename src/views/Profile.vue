@@ -87,21 +87,21 @@ export default {
         social_lk: this.social_lk
       }
       API.updateProfile(userUpdate)
-        if (this.newPassword) {
-       this.updatePsw()
+      if (this.newPassword) {
+        this.updatePsw()
       }
     },
     deleteProfile () {
       API.deleteProfile()
     },
     updatePsw () {
-          if (this.newPassword === this.confirmPassword) {
-      const newPassword = {
-        actualPassword: this.password,
-        newPassword: this.confirmPassword
+      if (this.newPassword === this.confirmPassword) {
+        const newPassword = {
+          actualPassword: this.password,
+          newPassword: this.confirmPassword
+        }
+        API.changePassword(newPassword)
       }
-      API.changePassword(newPassword)
-    }
     }
   }
 /*   computed: {
