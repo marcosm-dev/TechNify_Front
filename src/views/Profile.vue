@@ -4,13 +4,13 @@
     <v-col cols="8" sm="8" lg="4" class="mx-auto">
       <h2>EDIT YOUR INFORMATION</h2>
       <v-form ref="form">
-        <v-text-field v-model="first_name" label="Name"></v-text-field>
-        <v-text-field v-model="last_name" label="Last Name"></v-text-field>
-        <v-text-field v-model="email" label="Email"></v-text-field>
-        <v-text-field v-model="mobile" label="Mobile"></v-text-field>
-        <v-text-field v-model="social_fb" label="Facebook"></v-text-field>
-        <v-text-field v-model="social_it" label="Instagram"></v-text-field>
-        <v-text-field v-model="social_lk" label="Linkedin"></v-text-field>
+        <v-text-field disabled v-model="userdb.first_name" label="Name"></v-text-field>
+        <v-text-field disabled v-model="userdb.last_name" label="Last Name"></v-text-field>
+        <v-text-field disabled v-model="userdb.email" label="Email"></v-text-field>
+        <v-text-field disabled v-model="userdb.mobile" label="Mobile"></v-text-field>
+        <v-text-field disabled v-model="userdb.social_fb" label="Facebook"></v-text-field>
+        <v-text-field disabled v-model="userdb.social_it" label="Instagram"></v-text-field>
+        <v-text-field disabled v-model="userdb.social_lk" label="Linkedin"></v-text-field>
       </v-form>
       </v-col>
 <v-col cols="4">
@@ -42,7 +42,7 @@
             hint="At least 8 characters"
             @click:append="show1 = !show1"
           ></v-text-field>
-        <v-btn :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="blue" outlined @click='updatePsw'>Update password</v-btn>
+        <v-btn :disabled="checkFormPsw" :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="blue" outlined @click='updatePsw'>Update password</v-btn>
 </v-col>
   </v-row>
          <v-row>
@@ -59,6 +59,7 @@ import API from '../services/App'
 
 export default {
   data: () => ({
+    userdb:{},
     first_name: '',
     last_name: '',
     email: '',
@@ -74,6 +75,7 @@ export default {
       required: value => !!value || 'Required.',
       min: v => v.length >= 8 || 'Min 8 characters'
     }
+
   }),
   methods: {
     editProfile () {
@@ -95,20 +97,24 @@ export default {
       API.deleteProfile()
     },
     updatePsw () {
-      if (this.newPassword === this.confirmPassword) {
         const newPassword = {
           actualPassword: this.password,
           newPassword: this.confirmPassword
         }
         API.changePassword(newPassword)
-      }
     }
+  },
+  computed: {
+     checkFormPsw(){
+       if(this.password.length ===0
+        || this.newPassword.length === 0
+        || this.confirmPassword.length === 0
+        || this.newPassword !== this.confirmPassword) {
+          return true
+        }
+      return false
+     }
   }
-/*   computed: {
-     confirmPassOK () {
-      if (this.newPassword === this.confirmPassword) { return true }
-    }
-  }, */
 }
 </script>
 

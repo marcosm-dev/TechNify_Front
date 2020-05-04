@@ -4,18 +4,18 @@
     <v-col cols="8" md="8" lg="4">
       <h2>ORGANIZER PROFILE</h2>
       <v-form ref="form">
-        <v-text-field v-model="first_name" label="Name"></v-text-field>
-        <v-text-field v-model="last_name" label="Last Name"></v-text-field>
-        <v-text-field v-model="email" label="Email"></v-text-field>
-        <v-text-field v-model="mobile" label="Mobile"></v-text-field>
-        <v-text-field v-model="social_fb" label="Facebook"></v-text-field>
-        <v-text-field v-model="social_it" label="Instagram"></v-text-field>
-        <v-text-field v-model="social_lk" label="Linkedin"></v-text-field>
-        <v-text-field v-model="vatin" label="VATIN"></v-text-field>
-        <v-text-field v-model="business_name" label="business_name"></v-text-field>
-        <v-text-field v-model="organizer_info" label="organizer_info"></v-text-field>
-        <v-text-field v-model="address" label="address"></v-text-field>
-        <v-text-field v-model="zip_code" label="zip_code"></v-text-field>
+        <v-text-field disabled v-model="first_name" label="Name"></v-text-field>
+        <v-text-field disabled v-model="last_name" label="Last Name"></v-text-field>
+        <v-text-field disabled v-model="email" label="Email"></v-text-field>
+        <v-text-field disabled v-model="mobile" label="Mobile"></v-text-field>
+        <v-text-field disabled v-model="social_fb" label="Facebook"></v-text-field>
+        <v-text-field disabled v-model="social_it" label="Instagram"></v-text-field>
+        <v-text-field disabled v-model="social_lk" label="Linkedin"></v-text-field>
+        <v-text-field disabled v-model="vatin" label="VATIN"></v-text-field>
+        <v-text-field disabled v-model="business_name" label="business_name"></v-text-field>
+        <v-text-field disabled v-model="organizer_info" label="organizer_info"></v-text-field>
+        <v-text-field disabled v-model="address" label="address"></v-text-field>
+        <v-text-field disabled v-model="zip_code" label="zip_code"></v-text-field>
       </v-form>
       </v-col>
 <v-col cols="4">
@@ -47,7 +47,7 @@
             hint="At least 8 characters"
             @click:append="show1 = !show1"
           ></v-text-field>
-        <v-btn :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="blue" outlined @click='updatePsw'>Update password</v-btn>
+        <v-btn :disabled="checkFormPsw" :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="blue" outlined @click='updatePsw'>Update password</v-btn>
 </v-col>
         </v-row>
  <v-row>
@@ -116,10 +116,18 @@ export default {
         newPassword: this.confirmPassOK
       }
       API.changePassword(newPassword)
-    },
-    confirmPassOK () {
-      if (this.newPassword === this.confirmPassword) { return this.confirmPassword }
     }
+  },
+  computed: {
+     checkFormPsw(){
+       if(this.password.length ===0
+        || this.newPassword.length === 0
+        || this.confirmPassword.length === 0
+        || this.newPassword !== this.confirmPassword) {
+          return true
+        }
+      return false
+     }
   }
 }
 
