@@ -1,16 +1,19 @@
 <template>
 <v-container>
   <v-row class="d-flex justify-center mx-auto">
-    <v-col cols="8" sm="8" lg="4" class="mx-auto">
+    <v-col cols="8" sm="8" lg="4" class="mx-auto text-end">
+      <v-col align="start">
       <h2>EDIT YOUR INFORMATION</h2>
+      </v-col>
+      <v-btn text @click="activeEdit">Edit</v-btn>
       <v-form ref="form">
-        <v-text-field disabled v-model="userdb.first_name" label="Name"></v-text-field>
-        <v-text-field disabled v-model="userdb.last_name" label="Last Name"></v-text-field>
-        <v-text-field disabled v-model="userdb.email" label="Email"></v-text-field>
-        <v-text-field disabled v-model="userdb.mobile" label="Mobile"></v-text-field>
-        <v-text-field disabled v-model="userdb.social_fb" label="Facebook"></v-text-field>
-        <v-text-field disabled v-model="userdb.social_it" label="Instagram"></v-text-field>
-        <v-text-field disabled v-model="userdb.social_lk" label="Linkedin"></v-text-field>
+        <v-text-field :disabled="edit" v-model="userdb.first_name" label="Name"></v-text-field>
+        <v-text-field :disabled="edit" v-model="userdb.last_name" label="Last Name"></v-text-field>
+        <v-text-field :disabled="edit" v-model="userdb.email" label="Email"></v-text-field>
+        <v-text-field :disabled="edit" v-model="userdb.mobile" label="Mobile"></v-text-field>
+        <v-text-field :disabled="edit" v-model="userdb.social_fb" label="Facebook"></v-text-field>
+        <v-text-field :disabled="edit" v-model="userdb.social_it" label="Instagram"></v-text-field>
+        <v-text-field :disabled="edit" v-model="userdb.social_lk" label="Linkedin"></v-text-field>
       </v-form>
       </v-col>
 <v-col cols="4">
@@ -59,36 +62,35 @@ import API from '../services/App'
 
 export default {
   data: () => ({
-    userdb:{},
-    first_name: '',
-    last_name: '',
-    email: '',
-    mobile: null,
-    social_fb: '',
-    social_it: '',
-    social_lk: '',
+    userdb: {},
     show1: false,
     password: '',
     newPassword: '',
     confirmPassword: '',
+    edit: true,
     rules: {
       required: value => !!value || 'Required.',
       min: v => v.length >= 8 || 'Min 8 characters'
     }
-
   }),
+  created () {
+    API.getUserInfo().then(response => {
+      console.log(response)
+      return (this.userdb = response)
+    })
+  },
   methods: {
-    editProfile () {
+    async editProfile () {
       const userUpdate = {
-        first_name: this.first_name,
-        last_name: this.last_name,
-        email: this.email,
-        mobile: this.mobile,
-        social_fb: this.social_fb,
-        social_it: this.social_it,
-        social_lk: this.social_lk
+        first_name: this.userdb.first_name,
+        last_name: this.userdb.last_name,
+        email: this.userdb.email,
+        mobile: this.userdb.mobile,
+        social_fb: this.userdb.social_fb,
+        social_it: this.userdb.social_it,
+        social_lk: this.userdb.social_lk
       }
-      API.updateProfile(userUpdate)
+      await API.updateProfile(userUpdate)
       if (this.newPassword) {
         this.updatePsw()
       }
@@ -97,32 +99,26 @@ export default {
       API.deleteProfile()
     },
     updatePsw () {
-        const newPassword = {
-          actualPassword: this.password,
-          newPassword: this.confirmPassword
-        }
-        API.changePassword(newPassword)
+      const newPassword = {
+        actualPassword: this.password,
+        newPassword: this.confirmPassword
+      }
+      API.changePassword(newPassword)
+    },
+    activeEdit () {
+      this.edit = false
     }
   },
   computed: {
-     checkFormPsw(){
-       if(this.password.length ===0
-        || this.newPassword.length === 0
-        || this.confirmPassword.length === 0
-        || this.newPassword !== this.confirmPassword) {
-          return true
-        }
+    checkFormPsw () {
+      if (this.password.length === 0 ||
+        this.newPassword.length === 0 ||
+        this.confirmPassword.length === 0 ||
+        this.newPassword !== this.confirmPassword) {
+        return true
+      }
       return false
-     }
+    }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.image {
-  width: 170px;
-}
-.menu {
-  width: 220px;
-}
-</style>

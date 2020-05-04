@@ -21,7 +21,15 @@ export default {
     })
     return response.data
   },
-
+  async getUserInfo () {
+    console.log('dentro')
+    const response = await API.get('/me', {
+      headers: {
+        token: localStorage.token // eslint-disable-line
+      }
+    })
+    return response.data
+  },
   async getAllEvents (eventType, dates) {
     let url = '/events?'
     if (eventType && dates) {
@@ -111,14 +119,6 @@ export default {
       wishes_list: eventId
     }
     const response = await API.post('/me/events/wishes', wish, {
-      headers: {
-        token: localStorage.token // eslint-disable-line
-      }
-    })
-    return response.data
-  },
-  async editProfileOrganizer (organizerUpdates) {
-    const response = await API.put('/me', organizerUpdates, {
       headers: {
         token: localStorage.token // eslint-disable-line
       }
