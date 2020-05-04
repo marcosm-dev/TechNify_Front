@@ -17,13 +17,14 @@
       </v-col>
       </v-row>
       <v-col class="align-self-end d-flex" cols=3>
-      <v-text-field
-        inverted
-        hide-details
-        prepend-icon="mdi-magnify"
-      />
+    <v-select
+      v-model="selected"
+      :items="filterTypes"
+      label="Event's Type"
+      required
+    ></v-select>
       <div class="hidden-xs-only">
-       <v-menu
+        <v-menu
               ref="menu"
               v-model="menu"
               :close-on-content-click="false"
@@ -41,8 +42,11 @@
                 <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
               </v-date-picker>
             </v-menu>
-      </div>
+       </div>
       </v-col>
+        <v-icon @click="searchFunction" x-large>
+          mdi-magnify
+        </v-icon>
       <v-row justify="end">
       <v-menu bottom left>
         <template v-if="userMenu" v-slot:activator="{ on }">
@@ -120,6 +124,8 @@ export default {
   data () {
     return {
       menu: false,
+      filterTypes: ['JAVASCRIPT', 'UX', 'OTHERS', 'WEB DEVELOPER', 'HACKATONS'],
+      selected: '',
       dates: [],
       search: true,
       select: '',
@@ -164,7 +170,7 @@ export default {
       }
     },
     searchFunction () {
-      this.search = false
+      this.$root.$emit('searchFunction', this.selected, this.dates[0])
     }
   },
   components: {

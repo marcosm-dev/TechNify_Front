@@ -10,7 +10,6 @@
           <v-select
             v-model="select"
             :items="getItems"
-            :rules="[v => !!v || 'Item is required']"
             label="Event's Type"
             required
           ></v-select>

@@ -21,12 +21,16 @@ export default {
     })
     return response.data
   },
-  async getAllEvents () {
-    const url = '/events?'
-    /*  if (date_start) {
-       url += `date_start=${date}&`
-     } */
 
+  async getAllEvents (eventType, dates) {
+    let url = '/events?'
+    if (eventType && dates) {
+      url += `event_type=${eventType}&date_start=${dates}`
+    } else if (dates) {
+      url += `date_start=${dates}&`
+    } else if (eventType) {
+      url += `event_type=${eventType}&`
+    }
     const response = await API.get(url)
     return response.data
   },
@@ -54,7 +58,7 @@ export default {
     })
     return response.data
   },
-  async updateEvent (eventId, event) {
+  async updatesEvent (eventId, event) {
     const response = await API.put(`/me/events/${eventId}`, event, {
       headers: {
         token: localStorage.token // eslint-disable-line
@@ -86,8 +90,8 @@ export default {
     const response = await API.get('/events/' + event)
     return response.data
   },
-  async updateProfile (userUpdate) {
-    const response = await API.put('/me', userUpdate, {
+  async updatesProfile (userUpdates) {
+    const response = await API.put('/me', userUpdates, {
       headers: {
         token: localStorage.token // eslint-disable-line
       }
@@ -113,8 +117,8 @@ export default {
     })
     return response.data
   },
-  async editProfileOrganizer (organizerUpdate) {
-    const response = await API.put('/me', organizerUpdate, {
+  async editProfileOrganizer (organizerUpdates) {
+    const response = await API.put('/me', organizerUpdates, {
       headers: {
         token: localStorage.token // eslint-disable-line
       }
