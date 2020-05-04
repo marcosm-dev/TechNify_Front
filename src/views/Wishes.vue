@@ -8,9 +8,8 @@
           <v-row>
             <v-col cols="6">
           <v-list-item-content>
+            <v-list-item-subtitle class="title mt-n4">{{event.event_type.name}}</v-list-item-subtitle>
             <v-list-item-subtitle
-              v-if="event.event_type"
-              class="body-1 mb-1"
             >{{event.small_description}}</v-list-item-subtitle>
           </v-list-item-content>
             </v-col>
