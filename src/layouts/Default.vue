@@ -1,12 +1,14 @@
 <template>
   <v-container>
-    <v-app-bar  app color="indigo darken-2" dark scroll-target="#scrolling-techniques" :prominent="$vuetify.breakpoint.lgAndUp" :class="$vuetify.breakpoint.smAndDown ? 'navbar-xs' : 'navbar'">
+    <v-app-bar app color="indigo darken-2" dark scroll-target="#scrolling-techniques" :prominent="$vuetify.breakpoint.lgAndUp" :class="$vuetify.breakpoint.smAndDown ? 'navbar-xs' : 'navbar'">
+      <v-row>
       <a app light href="/events" >
       <v-img class="hidden-md-and-down logo" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
       </a>
       <v-toolbar-title class="d-lg-none headline">TechNify</v-toolbar-title>
       <v-toolbar-title class="hidden-md-and-down font display-4 font-weight-regular ml-10">TechNify</v-toolbar-title>
-      <v-row v-if="appBarVisible">
+      </v-row>
+      <v-col v-if="appBarVisible">
       <v-col v-show="search" :class="$vuetify.breakpoint.lgAndUp ? 'views' : 'views-ipad'">
         <button @click="mosaic" v-bind:class="select">
           <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '30px'">mdi-apps</v-icon>
@@ -15,8 +17,10 @@
           <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '30px'">mdi-format-list-text</v-icon>
         </button>
       </v-col>
-      </v-row>
-      <v-col class="align-self-end d-flex" cols=3>
+      </v-col>
+      <v-row>
+      <v-row justify="end">
+      <v-col cols="5">
     <v-select
       v-model="selected"
       :items="filterTypes"
@@ -47,14 +51,13 @@
         <v-icon @click="searchFunction" x-large>
           mdi-magnify
         </v-icon>
-      <v-row justify="end">
-      <v-menu bottom left>
-        <template v-if="userMenu" v-slot:activator="{ on }">
+      <v-menu  bottom left>
+        <template  v-if="userMenu" v-slot:activator="{ on }">
             <v-btn :class="$vuetify.breakpoint.lgAndUp ? '' : 'icons'" dark icon v-on="on">
             <v-icon size="50px">mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
-        <template v-else v-slot:activator>
+        <template v-else>
           <button @click="login">
           <v-icon x-large >mdi-login</v-icon>
           </button>
@@ -107,7 +110,8 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-      </v-menu>
+        </v-menu>
+      </v-row>
       </v-row>
     </v-app-bar>
     <v-content>
