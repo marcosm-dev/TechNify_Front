@@ -24,6 +24,7 @@
             <v-list-item-subtitle class="font-weight-bold display-1 color-price">{{event.price}} €</v-list-item-subtitle>
           <v-btn text color="red" class="title font-weight-bold" @click="deleteById(events[idx]._id, events[idx])"><v-icon x-large>mdi-delete-circle</v-icon>Delete</v-btn>
         </v-card-actions>
+
     </v-col>
   </v-row>
 </template>
