@@ -116,7 +116,6 @@
   </v-container>
 </template>
 
-
 <script>
 import Footer from '@/components/Footer.vue'
 export default {
