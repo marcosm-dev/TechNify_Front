@@ -35,14 +35,11 @@
               ></v-img>
             </div>
       <v-card-actions>
-      <v-icon color="cyan darken-3" x-large>mdi-arrow-left-circle</v-icon>
-      <v-btn text to="/events">Back!</v-btn>
+      <v-btn text to="/events"><v-icon color="cyan darken-3" x-large>mdi-arrow-left-circle</v-icon>Back!</v-btn>
       <v-spacer></v-spacer>
-      <v-icon color="cyan darken-3" x-large>mdi-star-outline</v-icon>
-      <v-btn text @click="addWish(event._id)">Add my wish</v-btn>
+      <v-btn text @click="addWish(event._id)"><v-icon color="cyan darken-3" x-large>mdi-star-outline</v-icon>Add my wish</v-btn>
       <v-spacer></v-spacer>
-      <v-icon color="cyan darken-3" x-large>mdi-cart</v-icon>
-      <v-btn text @click="buy">Buy my ticket</v-btn>
+      <v-btn text @click="buy"><v-icon color="cyan darken-3" x-large>mdi-cart</v-icon>Buy my ticket</v-btn>
        </v-card-actions>
         </v-card>
        </v-col>
