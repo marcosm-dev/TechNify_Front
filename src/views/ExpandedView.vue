@@ -3,10 +3,10 @@
     <v-row>
       <v-col v-for="(event, i) in events" :key="i" cols="12" class="pa-0 mt-2">
         <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="mx-auto">
-          <v-card-title :class="{'justify-center body-2 head-xs pa-1': $vuetify.breakpoint.sm}" dark> {{event.name}}</v-card-title>
+          <v-card-title :class="{'justify-center body-2 head-xs pa-1': $vuetify.breakpoint.xs}" dark> {{event.name}}</v-card-title>
            <v-row>
             <v-col cols="12" md="6" sm="7" lg="6" class="pt-0 pb-0">
-              <v-img v-if="event.cover_img[0]" width="" :max-height="{'120px': $vuetify.breakpoint.xs, '400px': $vuetify.breakpoint.sm, '400px' : $vuetify.breakpoint.mdAndUp}" :src="event.cover_img[0]"></v-img>
+              <v-img v-if="event.cover_img[0]" width="" :max-height="$vuetify.breakpoint.xsOnly ? '120px' : '400px'" :src="event.cover_img[0]"></v-img>
               </v-col>
               <v-col class="hidden-xs-only">
                 <v-card-text :class="{'body-1 text-lg-description': $vuetify.breakpoint.sm, '' : $vuetify.breakpoint.mdAndUp}">{{event.large_description}}</v-card-text>
