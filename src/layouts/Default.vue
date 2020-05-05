@@ -1,12 +1,14 @@
 <template>
   <v-container>
-    <v-app-bar  app color="indigo darken-2" dark scroll-target="#scrolling-techniques" :prominent="$vuetify.breakpoint.lgAndUp" :class="$vuetify.breakpoint.smAndDown ? 'navbar-xs' : 'navbar'">
+    <v-app-bar app color="indigo darken-2" dark scroll-target="#scrolling-techniques" :prominent="$vuetify.breakpoint.lgAndUp" :class="$vuetify.breakpoint.smAndDown ? 'navbar-xs' : 'navbar'">
+      <v-row>
       <a app light href="/events" >
       <v-img class="hidden-md-and-down logo" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
       </a>
       <v-toolbar-title class="d-lg-none headline">TechNify</v-toolbar-title>
       <v-toolbar-title class="hidden-md-and-down font display-4 font-weight-regular ml-10">TechNify</v-toolbar-title>
-      <v-row v-if="appBarVisible">
+      </v-row>
+      <v-col v-if="appBarVisible">
       <v-col v-show="search" :class="$vuetify.breakpoint.lgAndUp ? 'views' : 'views-ipad'">
         <button @click="mosaic" v-bind:class="select">
           <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '30px'">mdi-apps</v-icon>
@@ -15,12 +17,14 @@
           <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '30px'">mdi-format-list-text</v-icon>
         </button>
       </v-col>
-      </v-row>
-      <v-col class="align-self-end d-flex" cols=3>
+      </v-col>
+      <v-row>
+      <v-row justify="end">
+      <v-col v-if="appBarVisible" cols="5">
     <v-select
       v-model="selected"
       :items="filterTypes"
-      label="Event's Type"
+      label="Select type"
       required
     ></v-select>
       <div class="hidden-xs-only">
@@ -34,7 +38,7 @@
               min-width="290px"
             >
               <template v-slot:activator="{ on }">
-                <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+                <v-combobox placeholder="Select date" v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
               </template>
               <v-date-picker v-model="dates" multiple no-title scrollable>
                 <v-spacer></v-spacer>
@@ -44,20 +48,14 @@
             </v-menu>
        </div>
       </v-col>
-        <v-icon @click="searchFunction" x-large>
+        <v-icon v-if="appBarVisible" @click="searchFunction">
           mdi-magnify
         </v-icon>
-      <v-row justify="end">
-      <v-menu bottom left>
+      <v-menu  bottom left>
         <template v-if="userMenu" v-slot:activator="{ on }">
             <v-btn :class="$vuetify.breakpoint.lgAndUp ? '' : 'icons'" dark icon v-on="on">
             <v-icon size="50px">mdi-dots-vertical</v-icon>
           </v-btn>
-        </template>
-        <template v-else v-slot:activator>
-          <button @click="login">
-          <v-icon x-large >mdi-login</v-icon>
-          </button>
         </template>
            <v-list>
           <v-list-item-group active-class="deep-blue--text text--accent-4">
@@ -107,7 +105,8 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-      </v-menu>
+        </v-menu>
+      </v-row>
       </v-row>
     </v-app-bar>
     <v-content>
@@ -117,9 +116,9 @@
   </v-container>
 </template>
 
+
 <script>
 import Footer from '@/components/Footer.vue'
-
 export default {
   data () {
     return {
@@ -145,9 +144,6 @@ export default {
     }
   },
   methods: {
-    login () {
-      this.$router.push('/?auth=login')
-    },
     logout () {
       localStorage.clear()
       this.$router.push('/')
@@ -171,6 +167,8 @@ export default {
     },
     searchFunction () {
       this.$root.$emit('searchFunction', this.selected, this.dates[0])
+      this.dates = []
+      this.selected = ''
     }
   },
   components: {
@@ -207,7 +205,7 @@ export default {
 .views{
   text-align: center;
   margin: 1vh;
-  margin-left: 10%;
+  margin-left: -20%;
 }
 .views-ipad{
   text-align: center;

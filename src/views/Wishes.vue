@@ -1,8 +1,14 @@
 <template>
-  <v-row cols="10">
-    <v-col v-for="(event, idx) in events" :key="idx" cols="4">
-      <v-card class="mx-auto" outlined>
+<v-container>
+  <h1 class="display-1 mb-5 font-weight-medium">YOUR WISHES</h1>
+  <v-divider class="mb-5"></v-divider>
+  <v-row>
+    <v-col v-for="(event, idx) in events" :key="idx" cols="12">
+      <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="mx-auto" outlined>
+       <v-list-item-title class="text-center headline card-title font-weight-regular pa-1">{{event.name}}</v-list-item-title>
         <v-list-item three-line>
+          <v-row>
+            <v-col cols="6">
           <v-list-item-content>
             <v-list-item-subtitle class="font-weight-black title mt-n4">{{event.event_type.name}}</v-list-item-subtitle>
             <v-list-item-subtitle class="headline"
@@ -15,23 +21,21 @@
               {{event.date_start}}
               <span v-if="event.date_end">{{event.date_end}}</span>
             </v-list-item-subtitle>
-            <v-list-item-subtitle class="headline mb-1">Price: {{event.price}} €
-
-            </v-list-item-subtitle>
+            </v-col>
+          </v-row>
+        </v-list-item>
         <v-card-actions class="text-center">
-
           <v-btn text color="primary" class="headline font-weight-bold" @click="buyEvent(events[idx]._id, events[idx])"><v-icon x-large color="cyan darken-4">mdi-cart</v-icon>Buy now</v-btn>
             <v-list-item-subtitle class="font-weight-bold display-1 color-price">{{event.price}} €</v-list-item-subtitle>
           <v-btn text color="red" class="title font-weight-bold" @click="deleteById(events[idx]._id, events[idx])"><v-icon x-large>mdi-delete-circle</v-icon>Delete</v-btn>
         </v-card-actions>
-
+      </v-card>
     </v-col>
   </v-row>
+</v-container>
 </template>
-
 <script>
 import API from '../services/App'
-
 export default {
   data () {
     return {
@@ -55,7 +59,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .card-title{
   background: rgb(21, 91, 100);
