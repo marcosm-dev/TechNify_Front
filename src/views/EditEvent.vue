@@ -118,9 +118,6 @@ export default {
     Preview
   },
   computed: {
-    eventId () {
-      return this.$route.params.eventId
-    },
     getItems () {
       return this.eventTypes.map(e => e.name)
     },
@@ -147,9 +144,8 @@ export default {
         event_type: this.eventTypes.filter(e => e.name === this.select)[0]._id
       }
     },
-    editEvent () {
-      const editedEvent = this.editedEvent
-      API.updateEvent(this.eventId, editedEvent)
+    async editEvent () {
+      await API.updateEvent(this.$route.params.eventId, this.editedEvent)
     },
     onFileSelected (event) {
       this.selectedFile = event.target.files[0]
@@ -206,7 +202,7 @@ export default {
     API.getTypes().then(types => {
       this.eventTypes = types
     })
-    API.getInfo(this.eventId).then(info => {
+    API.getInfo(this.$route.params.eventId).then(info => {
       this.eventdb = info
       this.select = info.event_type.name
       this.dates.push(info.date_start, info.date_end)
