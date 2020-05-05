@@ -10,12 +10,13 @@
           <v-row>
             <v-col cols="6">
           <v-list-item-content>
-            <v-list-item-subtitle class="title mt-n4">{{event.event_type.name}}</v-list-item-subtitle>
-            <v-list-item-subtitle
+            <v-list-item-subtitle class="font-weight-black title mt-n4">{{event.event_type.name}}</v-list-item-subtitle>
+            <v-list-item-subtitle class="headline"
             >{{event.small_description}}</v-list-item-subtitle>
           </v-list-item-content>
             </v-col>
             <v-col cols="6" class="text-end">
+              <v-img max-height="100px" width="cover" :src="event.cover_img[0]"></v-img>
             <v-list-item-subtitle class="title font-weight-bold">
               {{event.date_start}}
               <span v-if="event.date_end">{{event.date_end}}</span>
@@ -25,9 +26,9 @@
         </v-list-item>
         <v-card-actions class="text-center">
 
-          <v-btn text color="primary" @click="buyEvent(events[idx]._id, events[idx])"><v-icon x-large color="cyan darken-4">mdi-cart</v-icon>Buy now</v-btn>
-            <v-list-item-subtitle class="headline">{{event.price}} €</v-list-item-subtitle>
-          <v-btn text color="red" @click="deleteById(events[idx]._id, events[idx])"><v-icon x-large>mdi-delete-circle</v-icon>Delete</v-btn>
+          <v-btn text color="primary" class="headline font-weight-bold" @click="buyEvent(events[idx]._id, events[idx])"><v-icon x-large color="cyan darken-4">mdi-cart</v-icon>Buy now</v-btn>
+            <v-list-item-subtitle class="font-weight-bold display-1 color-price">{{event.price}} €</v-list-item-subtitle>
+          <v-btn text color="red" class="title font-weight-bold" @click="deleteById(events[idx]._id, events[idx])"><v-icon x-large>mdi-delete-circle</v-icon>Delete</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -66,5 +67,8 @@ export default {
 .card-title{
   background: rgb(21, 91, 100);
   color: white;
+}
+.color-price{
+  color: rgb(105, 167, 13);
 }
 </style>

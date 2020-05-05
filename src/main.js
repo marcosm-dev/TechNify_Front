@@ -23,7 +23,6 @@ const firebaseConfig = {
   measurementId: 'G-TJHLC9YFFH'
 }
 firebase.initializeApp(firebaseConfig)
-firebase.analytics()
 
 new Vue({
   router,
