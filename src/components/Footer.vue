@@ -4,7 +4,6 @@
       <v-btn to="/events" color="white" text rounded class="my-2">Home</v-btn>
       <v-btn to="/" color="white" text rounded class="my-2">About Us</v-btn>
       <v-btn to="/mail" color="white" text rounded class="my-2">Contact Us</v-btn>
-      <v-btn to="/?auth=login" color="white" text rounded class="my-2">Sign in</v-btn>
       <v-col class="mb-1 text-center white--text" cols="12">
         {{ new Date().getFullYear() }} —
         <strong>TechNify</strong>

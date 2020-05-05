@@ -3,7 +3,7 @@
   <v-row>
     <v-col cols="12">
     <v-col cols="6">
-      <h1 class="display-1 mb-10 font-weight-medium">CREATE YOUR EVENT</h1>
+      <h1>CREATE YOUR EVENT</h1>
       <v-form ref="form">
         <v-text-field v-model="name" label="Name"></v-text-field>
         <v-text-field v-model="place" label="Place"></v-text-field>
@@ -187,9 +187,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-*{
-  font-size: 25px;
-}
-</style>

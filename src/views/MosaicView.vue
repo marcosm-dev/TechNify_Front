@@ -4,25 +4,24 @@
     <v-col v-for="(event, i) in events" :key="i" :cols="$vuetify.breakpoint.smAndDown ? '12' : '6'">
       <v-card  class="mt-4"
               :to="{ name: 'BuyTicket', params: { eventId: event._id } }"
-              :height="$vuetify.breakpoint.smAndUp ? '700px' : '200px'" :max-height="$vuetify.breakpoint.mdAndUp ? '700px' : ''" hover >
-        <v-img :class="$vuetify.breakpoint.mdAndUp ? 'cover-img' : ''" :src="event.detail_img"></v-img>
-        <v-card-title :class="$vuetify.breakpoint.mdAndUp ? ' display-2' : 'title'">{{event.name}}</v-card-title>
-        <div :class="$vuetify.breakpoint.mdAndUp ? 'container-card' : '200px'">
-        <v-card-subtitle :class="$vuetify.breakpoint.mdAndUp ? 'mt-2 title' : 'title'">{{event.place}}</v-card-subtitle>
-        <v-card-text :class="$vuetify.breakpoint.mdAndUp ? 'headline textstyles' : ''">{{event.small_description}}</v-card-text>
-        <v-card-text class="hidden-xs-only" :class="$vuetify.breakpoint.mdAndUp ? 'headline' : ''">{{event.large_description}}</v-card-text>
-        </div>
-        <v-card-actions>
+              :height="$vuetify.breakpoint.smAndUp ? '900px' : '650px'" :max-height="$vuetify.breakpoint.mdAndUp ? '1000px' : '900px'" hover
+              >
+        <v-img :width="cover" :max-height="$vuetify.breakpoint.smAndUp ? '450px': '400px'" :class="$vuetify.breakpoint.mdAndUp ? 'cover-img' : ''" :src="event.detail_img" ></v-img>
+        <v-card-title :class="$vuetify.breakpoint.xsOnly ? 'title' : ''">{{event.name}}</v-card-title>
+        <div :class="$vuetify.breakpoint.mdAndUp ? 'container-card' : ''">
+        <v-card-subtitle :class="$vuetify.breakpoint.xsOnly ? 'caption' : 'title'">{{event.place}}</v-card-subtitle>
+        <v-card-text :class="$vuetify.breakpoint.xsOnly ? 'caption' : 'title'">{{event.small_description}}</v-card-text>
+        <v-card-actions >
           <v-icon color="cyan darken-3">mdi-cart</v-icon>
-          <v-btn text>Buy now</v-btn>
+          <v-btn text >Buy now</v-btn>
           <v-spacer></v-spacer>
           <v-btn @click="addWish(events[i]._id)" color="purple" text>Add to wish</v-btn>
-          <v-icon color="cyan darken-3">mdi-star-outline</v-icon>
-        </v-card-actions>
-        <v-divider></v-divider>
+          <v-icon>mdi-star-outline</v-icon>
+        </v-card-actions >
+        </div>
       </v-card>
     </v-col>
-  </v-row>
+  </v-row >
 </v-container>
 </template>
 <script>
@@ -62,13 +61,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.textstyles {
-  text-overflow: ellipsis;
-}
+
 .cover-img{
   max-height: 250px;
+  min-height: 250px;
 }
-.container-card{
-  max-height: 470px;
-}
+
+
+
 </style>

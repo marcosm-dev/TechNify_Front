@@ -1,6 +1,6 @@
 <template>
       <v-row>
-       <v-col v-if="event">
+       <v-col>
         <v-card cols="12">
           <v-card-title v-if="event.name" class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
             <v-img height="326px" width="800px" :src="event.detail_img"></v-img>
@@ -39,11 +39,11 @@ export default {
   name: 'BuyTicket',
   data () {
     return {
-      event: false
+      event: null
     }
   },
-  async created () {
-    await API.getInfo(this.$route.params.eventId)
+  created () {
+    API.getInfo(this.$route.params.eventId)
       .then(response => { return (this.event = response) })
   },
   methods: {

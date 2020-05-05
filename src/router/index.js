@@ -11,6 +11,8 @@ import OrganizerProfile from '../views/OrganizerProfile'
 import Wishes from '../views/Wishes'
 import Mail from '../views/Mail'
 import BuyTicket from '../views/BuyTicket'
+import Calendar from '../views/Calendar'
+
 
 Vue.use(VueRouter)
 
@@ -26,7 +28,7 @@ const routes = [{
   path: '/create',
   name: 'Create',
   component: Create,
-  beforeEnter (to, from, next) {
+  beforeEnter(to, from, next) {
     if (localStorage.role !== 'ORGANIZER') {
       next({
         name: 'Events'
@@ -52,6 +54,15 @@ const routes = [{
   component: Mail
 },
 {
+  path: '/calendar',
+  name: 'Calendar',
+  meta: {
+    appBarVisible: true
+  },
+  component: Calendar
+
+},
+{
   path: '/expanded',
   name: 'Expanded',
   meta: {
@@ -71,7 +82,7 @@ const routes = [{
   path: '/organizer',
   name: 'Organizer',
   component: Organizer,
-  beforeEnter (to, from, next) {
+  beforeEnter(to, from, next) {
     if (localStorage.role !== 'ORGANIZER') {
       next({
         name: 'Events'
@@ -94,7 +105,7 @@ const routes = [{
   path: '/organizerprofile',
   name: 'OrganizerProfile',
   component: OrganizerProfile,
-  beforeEnter (to, from, next) {
+  beforeEnter(to, from, next) {
     if (localStorage.role !== 'ORGANIZER') {
       next({
         name: 'Events'

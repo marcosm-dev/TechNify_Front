@@ -69,9 +69,7 @@ import API from '../services/App'
 
 export default {
   data: () => ({
-    events: [],
-    eventType: '',
-    dates: null
+    events: []
   }),
   methods: {
     addWish (eventId) {
@@ -79,22 +77,11 @@ export default {
         this.$router.push('/?auth=login')
       }
       API.addtoWish(eventId)
-    },
-    filterTypes () {
-      API.getAllEvents(this.eventType, this.dates).then(
-        response => (this.events = response))
     }
   },
   created () {
     API.getAllEvents().then(response => {
       return (this.events = response)
-    })
-  },
-  mounted () {
-    this.$root.$on('searchFunction', (selected, dates) => {
-      this.eventType = selected
-      this.dates = dates
-      this.filterTypes()
     })
   }
 }

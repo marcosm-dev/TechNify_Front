@@ -25,7 +25,6 @@
           </v-row>
         </v-list-item>
         <v-card-actions class="text-center">
-
           <v-btn text color="primary" class="headline font-weight-bold" @click="buyEvent(events[idx]._id, events[idx])"><v-icon x-large color="cyan darken-4">mdi-cart</v-icon>Buy now</v-btn>
             <v-list-item-subtitle class="font-weight-bold display-1 color-price">{{event.price}} €</v-list-item-subtitle>
           <v-btn text color="red" class="title font-weight-bold" @click="deleteById(events[idx]._id, events[idx])"><v-icon x-large>mdi-delete-circle</v-icon>Delete</v-btn>
@@ -35,10 +34,8 @@
   </v-row>
 </v-container>
 </template>
-
 <script>
 import API from '../services/App'
-
 export default {
   data () {
     return {
@@ -62,7 +59,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .card-title{
   background: rgb(21, 91, 100);
