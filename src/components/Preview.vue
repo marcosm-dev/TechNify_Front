@@ -14,7 +14,7 @@
           </v-row>
           <v-row>
             <v-col cols="6">
-            <ul class="title ma-8">
+            <ul class="display-1 ma-8">
               <li class="my-2">Type:<br /><span>{{typeEvent}}</span></li>
               <li class="my-2">Date:<br /><span>{{event.date_start}} / {{event.date_end}}</span></li>
               <li class="my-2">Place:<br /><span>{{event.place}}</span></li>
