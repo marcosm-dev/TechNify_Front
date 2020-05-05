@@ -1,16 +1,33 @@
 <template>
       <v-row>
-       <v-col>
+       <v-col v-if="event">
         <v-card cols="12">
           <v-card-title v-if="event.name" class="head display-3 my-n2" dark>{{event.name}}</v-card-title>
             <v-img height="326px" width="800px" :src="event.detail_img"></v-img>
             <ul class="my-5">
-              <li>Type:<br /><span>{{event.event_type.name}}</span></li>
-              <li>Date:<br /><span>{{event.date_start}} // {{event.date_end}}</span></li>
-              <li>Place:<br /><span>{{event.place}}</span></li>
-              <li>Price:<br /><span>{{event.price}} €</span></li>
+              <li>
+                Type:
+                <br />
+                <span>{{event.event_type.name}}</span>
+              </li>
+              <li>
+                Date:
+                <br />
+                <span>{{event.date_start}} // {{event.date_end}}</span>
+              </li>
+              <li>
+                Place:
+                <br />
+                <span>{{event.place}}</span>
+              </li>
+              <li>
+                Price:
+                <br />
+                <span>{{event.price}} €</span>
+              </li>
             </ul>
             <v-card-text>{{event.large_description}}</v-card-text>
+
             <div class="justify-end mx-auto">
               <v-img
                 height="327px"
@@ -34,16 +51,15 @@
 
 <script>
 import API from '../services/App'
-
 export default {
   name: 'BuyTicket',
   data () {
     return {
-      event: null
+      event: false
     }
   },
-  created () {
-    API.getInfo(this.$route.params.eventId)
+  async created () {
+    await API.getInfo(this.$route.params.eventId)
       .then(response => { return (this.event = response) })
   },
   methods: {
@@ -58,7 +74,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style lang="scss" scoped>

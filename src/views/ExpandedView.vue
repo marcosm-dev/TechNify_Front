@@ -3,10 +3,10 @@
     <v-row>
       <v-col v-for="(event, i) in events" :key="i" cols="12" class="pa-0 mt-2">
         <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="mx-auto">
-          <v-card-title :class="{'justify-center body-2 head-xs pa-1': $vu1ººvuetify.breakpoint.sm}" dark> {{event.name}}</v-card-title>
+          <v-card-title :class="{'justify-center body-2 head-xs pa-1': $vuetify.breakpoint.sm}" dark> {{event.name}}</v-card-title>
            <v-row>
             <v-col cols="12" md="6" sm="7" lg="6" class="pt-0 pb-0">
-              <v-img v-if="event.cover_img[0]" width="cover" :max-height="{'120px': $vuetify.breakpoint.xs, '400px': $vuetify.breakpoint.sm, '400px' : $vuetify.breakpoint.mdAndUp}" :src="event.cover_img[0]"></v-img>
+              <v-img v-if="event.cover_img[0]" width="" :max-height="{'120px': $vuetify.breakpoint.xs, '400px': $vuetify.breakpoint.sm, '400px' : $vuetify.breakpoint.mdAndUp}" :src="event.cover_img[0]"></v-img>
               </v-col>
               <v-col class="hidden-xs-only">
                 <v-card-text :class="{'body-1 text-lg-description': $vuetify.breakpoint.sm, '' : $vuetify.breakpoint.mdAndUp}">{{event.large_description}}</v-card-text>
@@ -33,7 +33,7 @@
             <v-col cols="6" sm="8" lg="6" class="pt-0 pb-0">
               <v-img
                 class="pt-0 hidden-xs-only"
-                :max-height="$vuetify.breakpoint.smAndUp ? '300px' : ''" :width="$vuetify.breakpoint.sm ? 'cover' : ''"
+                :max-height="$vuetify.breakpoint.smAndUp ? '300px' : ''" :width="$vuetify.breakpoint.sm ? '' : ''"
                 :src="event.cover_img[1]"
               ></v-img>
             </v-col>
@@ -66,10 +66,11 @@
 
 <script>
 import API from '../services/App'
-
 export default {
   data: () => ({
-    events: []
+    events: [],
+    eventType: '',
+    dates: null
   }),
   methods: {
     addWish (eventId) {
@@ -77,11 +78,22 @@ export default {
         this.$router.push('/?auth=login')
       }
       API.addtoWish(eventId)
+    },
+    filterTypes () {
+      API.getAllEvents(this.eventType, this.dates).then(
+        response => (this.events = response))
     }
   },
   created () {
     API.getAllEvents().then(response => {
       return (this.events = response)
+    })
+  },
+  mounted () {
+    this.$root.$on('searchFunction', (selected, dates) => {
+      this.eventType = selected
+      this.dates = dates
+      this.filterTypes()
     })
   }
 }

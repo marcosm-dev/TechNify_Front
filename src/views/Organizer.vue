@@ -1,22 +1,28 @@
 <template>
-  <v-row cols="10">
-    <v-col v-for="(event, idx) in events" :key="idx" cols="4">
-      <v-card class="mx-auto" outlined>
-        <v-list-item three-line>
-          <v-list-item-content>
-            <v-list-item-title class="headline mb-1">{{event.name}}</v-list-item-title>
-            <v-divider></v-divider>
+  <v-container>
+  <v-row>
+    <v-col v-for="(event, idx) in events" :key="idx" cols="12" sm="6" md="6" lg="4" >
+      <v-card height="225px">
+        <v-list-item-title class="title card-title">{{event.name}}</v-list-item-title>
+          <v-row>
+          <v-col cols="6">
+          <v-list-item cols="10" three-line>
+            <v-list-item-content>
             <v-list-item-subtitle
               v-if="event.event_type"
-              class="headline mb-1"
-            >Type: {{event.event_type.name}}</v-list-item-subtitle>
-            <v-list-item-subtitle>
-              Date: {{event.date_start}}
-              <span v-if="event.date_end">{{event.date_end}}</span>
-            </v-list-item-subtitle>
-            <v-list-item-subtitle class="headline mb-1">Price: {{event.price}} €</v-list-item-subtitle>
+              class="title"
+            >{{event.event_type.name}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
+        </v-col>
+        <v-col cols="6">
+        <v-img max-height="100px"  max-width="200px" :src="event.cover_img[0]"></v-img>
+              <v-list-item-subtitle class="text-center">
+              {{event.date_start}} /
+              <span v-if="event.date_end">{{event.date_end}}</span>
+            </v-list-item-subtitle>
+        </v-col>
+        </v-row>
         <v-card-actions>
           <v-btn text color="blue" :to="{ name: 'Edit', params: { eventId: events[idx]._id } }">Edit</v-btn>
           <v-spacer></v-spacer>
@@ -24,12 +30,13 @@
         </v-card-actions>
       </v-card>
     </v-col>
-  </v-row>
+    </v-row>
+
+  </v-container>
 </template>
 
 <script>
 import API from '../services/App'
-
 export default {
   data () {
     return {
@@ -56,4 +63,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card-title{
+  background-color: rgb(48, 163, 163);
+  height: 30px;
+  text-align: center;
+  color:white;
+}
 </style>
