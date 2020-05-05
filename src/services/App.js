@@ -22,7 +22,6 @@ export default {
     return response.data
   },
   async getUserInfo () {
-    console.log('dentro')
     const response = await API.get('/me', {
       headers: {
         token: localStorage.token // eslint-disable-line
@@ -66,7 +65,7 @@ export default {
     })
     return response.data
   },
-  async updatesEvent (eventId, event) {
+  async updateEvent (eventId, event) {
     const response = await API.put(`/me/events/${eventId}`, event, {
       headers: {
         token: localStorage.token // eslint-disable-line
@@ -126,7 +125,6 @@ export default {
     return response.data
   },
   async changePassword (newPassword) {
-    console.log(newPassword)
     const response = await API.put('/me/password', newPassword, {
       headers: {
         token: localStorage.token // eslint-disable-line

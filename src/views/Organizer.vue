@@ -1,9 +1,11 @@
 <template>
   <v-container>
+    <h1 class="display-1 mb-5 font-weight-medium">YOUR EVENTS</h1>
+    <v-divider class="mb-5"></v-divider>
   <v-row>
     <v-col v-for="(event, idx) in events" :key="idx" cols="12" sm="6" md="6" lg="4" >
       <v-card height="225px">
-        <v-list-item-title class="title card-title">{{event.name}}</v-list-item-title>
+        <v-list-item-title class="title card-title pa-1">{{event.name}}</v-list-item-title>
           <v-row>
           <v-col cols="6">
           <v-list-item cols="10" three-line>
@@ -24,9 +26,9 @@
         </v-col>
         </v-row>
         <v-card-actions>
-          <v-btn text color="blue" :to="{ name: 'Edit', params: { eventId: events[idx]._id } }">Edit</v-btn>
+          <v-btn text color="blue" :to="{ name: 'Edit', params: { eventId: events[idx]._id } }"><v-icon class="mr-2">mdi-table-edit</v-icon> Edit</v-btn>
           <v-spacer></v-spacer>
-          <v-btn text color="red" @click="deleteById(events[idx]._id, events[idx])">Delete</v-btn>
+          <v-btn text color="red" @click="deleteById(events[idx]._id, events[idx])">Delete<v-icon class="ml-2">mdi-delete-circle</v-icon></v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -66,7 +68,6 @@ export default {
 <style lang="scss" scoped>
 .card-title{
   background-color: rgb(48, 163, 163);
-  height: 30px;
   text-align: center;
   color:white;
 }

@@ -20,11 +20,11 @@
       </v-col>
       <v-row>
       <v-row justify="end">
-      <v-col cols="5">
+      <v-col v-if="appBarVisible" cols="5">
     <v-select
       v-model="selected"
       :items="filterTypes"
-      label="Event's Type"
+      label="Select type"
       required
     ></v-select>
       <div class="hidden-xs-only">
@@ -38,7 +38,7 @@
               min-width="290px"
             >
               <template v-slot:activator="{ on }">
-                <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+                <v-combobox placeholder="Select date" v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
               </template>
               <v-date-picker v-model="dates" multiple no-title scrollable>
                 <v-spacer></v-spacer>
@@ -48,19 +48,14 @@
             </v-menu>
        </div>
       </v-col>
-        <v-icon @click="searchFunction" x-large>
+        <v-icon v-if="appBarVisible" @click="searchFunction">
           mdi-magnify
         </v-icon>
       <v-menu  bottom left>
-        <template  v-if="userMenu" v-slot:activator="{ on }">
+        <template v-if="userMenu" v-slot:activator="{ on }">
             <v-btn :class="$vuetify.breakpoint.lgAndUp ? '' : 'icons'" dark icon v-on="on">
             <v-icon size="50px">mdi-dots-vertical</v-icon>
           </v-btn>
-        </template>
-        <template v-else>
-          <button @click="login">
-          <v-icon x-large >mdi-login</v-icon>
-          </button>
         </template>
            <v-list>
           <v-list-item-group active-class="deep-blue--text text--accent-4">
@@ -149,9 +144,6 @@ export default {
     }
   },
   methods: {
-    login () {
-      this.$router.push('/?auth=login')
-    },
     logout () {
       localStorage.clear()
       this.$router.push('/')
@@ -175,6 +167,8 @@ export default {
     },
     searchFunction () {
       this.$root.$emit('searchFunction', this.selected, this.dates[0])
+      this.dates = []
+      this.selected = ''
     }
   },
   components: {
@@ -211,7 +205,7 @@ export default {
 .views{
   text-align: center;
   margin: 1vh;
-  margin-left: 10%;
+  margin-left: -20%;
 }
 .views-ipad{
   text-align: center;

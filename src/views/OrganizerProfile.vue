@@ -1,9 +1,9 @@
 <template>
 <v-container :class="$vuetify.breakpoint.lgOnly ? 'container-lg fill-height pt-0' : 'fill-height pt-0'" fluid>
   <v-row class="d-flex justify-center mx-auto">
-   <v-col cols="8" sm="8" lg="4" class="mx-auto text-end">
+   <v-col cols="8" sm="10" lg="4" class="mx-auto text-end">
       <v-col align="start">
-      <h2>EDIT YOUR INFORMATION</h2>
+      <h2 class="display-1 mb-10 font-weight-medium">EDIT YOUR INFORMATION</h2>
       </v-col>
       <v-btn text @click="activeEdit">Edit</v-btn>
       <v-form ref="form">
@@ -55,7 +55,7 @@
         </v-row>
  <v-row>
         <v-col class="text-center">
-        <v-btn text color="blue" outlined class="mx-5" @click ='editProfile'>Edit your information</v-btn>
+        <v-btn :disabled="edit" text color="blue" outlined class="mx-5" @click ='editProfile'>Edit your information</v-btn>
         <v-btn :class="$vuetify.breakpoint.xsOnly ? 'mt-10' : ''" text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
           </v-col>
   </v-row>
@@ -81,7 +81,6 @@ export default {
   }),
   created () {
     API.getUserInfo().then(response => {
-      console.log(response)
       return (this.userdb = response)
     })
   },
@@ -90,6 +89,7 @@ export default {
       this.edit = false
     },
     async editProfile () {
+      this.edit = true
       const userUpdate = {
         first_name: this.userdb.first_name,
         last_name: this.userdb.last_name,
@@ -133,6 +133,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+*{
+  font-size: 20px;
+}
 .container-lg {
    height: 100vh;
    margin-bottom: 5vh;

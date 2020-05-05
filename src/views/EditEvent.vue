@@ -1,9 +1,9 @@
 <template>
 <v-container>
-  <v-row class="justify-center mx-auto">
+  <v-row class="justify-center mx-auto ">
     <v-col cols="12">
       <v-col cols="6">
-        <h1>EDIT YOUR EVENT</h1>
+        <h1 class="display-1 mb-10 font-weight-medium">EDIT YOUR EVENT</h1>
         <v-form ref="form">
           <v-text-field v-model="eventdb.name" label="Name"></v-text-field>
           <v-text-field v-model="eventdb.place" label="Place"></v-text-field>
@@ -83,7 +83,7 @@
   </v-col>
 </v-row>
 <div v-show="editedEvent">
-<h1  class="my-10"> EVENT PREVIEW </h1>
+<h1 class="display-3 my-6"> EVENT PREVIEW </h1>
  <Preview v-if="editedEvent" :typeEvent="select" :detailImg="pictureTwo" :event="editedEvent" />
 
 </div>
@@ -216,6 +216,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+*{
+  font-size: 25px;
+}
 .image {
   width: 170px;
 }

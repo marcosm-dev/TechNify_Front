@@ -1,9 +1,11 @@
 <template>
 <v-container>
+  <h1 class="display-1 mb-5 font-weight-medium">YOUR WISHES</h1>
+  <v-divider class="mb-5"></v-divider>
   <v-row>
     <v-col v-for="(event, idx) in events" :key="idx" cols="12">
       <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="mx-auto" outlined>
-       <v-list-item-title class="text-center headline card-title font-weight-regular">{{event.name}}</v-list-item-title>
+       <v-list-item-title class="text-center headline card-title font-weight-regular pa-1">{{event.name}}</v-list-item-title>
         <v-list-item three-line>
           <v-row>
             <v-col cols="6">
