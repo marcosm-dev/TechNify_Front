@@ -2,21 +2,19 @@
   <v-container>
   <v-row>
     <v-col v-for="(event, idx) in events" :key="idx" cols="12" sm="6" md="6" lg="4" >
-      <v-card height="225px">
+      <v-card :to="{ name: 'BuyTicket', params: { eventId: events[idx]._id } }" height="225px">
         <v-list-item-title class="title card-title">{{event.name}}</v-list-item-title>
           <v-row>
           <v-col cols="6">
           <v-list-item cols="10" three-line>
-            <v-list-item-content>
             <v-list-item-subtitle
               v-if="event.event_type"
               class="title"
             >{{event.event_type.name}}</v-list-item-subtitle>
-          </v-list-item-content>
         </v-list-item>
         </v-col>
         <v-col cols="6">
-        <v-img max-height="100px"  max-width="200px" :src="event.cover_img[0]"></v-img>
+        <v-img class="mb-2" max-height="100px"  max-width="200px" :src="event.cover_img[0]"></v-img>
               <v-list-item-subtitle class="text-center">
               {{event.date_start}} /
               <span v-if="event.date_end">{{event.date_end}}</span>
@@ -24,9 +22,9 @@
         </v-col>
         </v-row>
         <v-card-actions>
-          <v-btn text color="blue" :to="{ name: 'Edit', params: { eventId: events[idx]._id } }">Edit</v-btn>
+          <v-btn text color="blue" :to="{ name: 'Edit', params: { eventId: events[idx]._id } }"><v-icon class="mr-2">mdi-table-edit</v-icon>Edit</v-btn>
           <v-spacer></v-spacer>
-          <v-btn text color="red" @click="deleteById(events[idx]._id, events[idx])">Delete</v-btn>
+          <v-btn text color="red" @click="deleteById(events[idx]._id, events[idx])">Delete<v-icon class="ml-2">mdi-delete-circle</v-icon></v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
