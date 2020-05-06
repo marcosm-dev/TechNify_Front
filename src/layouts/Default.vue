@@ -2,9 +2,7 @@
   <v-container>
     <v-app-bar app color="indigo darken-2" dark scroll-target="#scrolling-techniques" :prominent="$vuetify.breakpoint.lgAndUp" :class="$vuetify.breakpoint.smAndDown ? 'navbar-xs' : 'navbar'">
       <v-row>
-      <a app light href="/events" >
-      <v-img class="hidden-md-and-down logo" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
-      </a>
+      <router-link to="/events"><v-img class="hidden-md-and-down logo" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img></router-link>
       <v-toolbar-title @click="home" class="d-lg-none headline ml-2 mr-n5">TechNify</v-toolbar-title>
       <v-toolbar-title class="hidden-md-and-down font display-4 font-weight-regular ml-10">TechNify</v-toolbar-title>
       </v-row>
