@@ -6,7 +6,7 @@
               :to="{ name: 'BuyTicket', params: { eventId: event._id } }"
               :height="$vuetify.breakpoint.smAndUp ? '900px' : '650px'" :max-height="$vuetify.breakpoint.mdAndUp ? '1000px' : '900px'" hover
               >
-        <v-img :max-height="$vuetify.breakpoint.smAndUp ? '450px': '400px'" :class="$vuetify.breakpoint.mdAndUp ? 'cover-img' : ''" :src="event.detail_img" ></v-img>
+        <v-img :width="cover" :max-height="$vuetify.breakpoint.smAndUp ? '450px': '400px'" :class="$vuetify.breakpoint.mdAndUp ? 'cover-img' : ''" :src="event.detail_img" ></v-img>
         <v-card-title :class="$vuetify.breakpoint.xsOnly ? 'title' : ''">{{event.name}}</v-card-title>
         <div :class="$vuetify.breakpoint.mdAndUp ? 'container-card' : ''">
         <v-card-subtitle :class="$vuetify.breakpoint.xsOnly ? 'caption' : 'title'">{{event.place}}</v-card-subtitle>

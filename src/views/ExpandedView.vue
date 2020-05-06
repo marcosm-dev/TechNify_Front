@@ -11,7 +11,7 @@
               :max-height="$vuetify.breakpoint.smAndUp ? '300px' : '120px'"
               :src="event.cover_img[0]"></v-img>
               </v-col>
-              <v-col class="hidden-xs-only pt-0 pb-0 d-flex justify-center" cols="12" sm="7" lg="6">
+              <v-col class="hidden-xs-only pt-0 pb-0justify-center" cols="12" sm="7" lg="6">
                 <v-card-text :class="{'title font-weight-regular description pb-2': $vuetify.breakpoint.sm, 'title font-weight-regular description-md' : $vuetify.breakpoint.mdAndUp}">{{event.large_description}}</v-card-text>
               </v-col>
             </v-row>
@@ -23,7 +23,7 @@
               <li :class="$vuetify.breakpoint.smAndUp ? 'headline' : ''">Place:<br /><span class="headline">{{event.place}}</span></li>
               <br />
             </ul>
-             <ul class="d-flex d-sm-none mb-n6 mt-n5">
+             <ul class="d-flex d-sm-none mb-n6 mt-n3">
               <li  class="caption mr-7 font-weight-black">{{event.event_type.name}}</li>
               <li class="caption mr-7 font-italic text-xs">{{event.place}}</li>
               <li class="caption mr-7 font-weight-bold">{{event.date_start}} {{event.end}}</li>
