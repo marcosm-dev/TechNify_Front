@@ -5,28 +5,29 @@
       <a app light href="/events" >
       <v-img class="hidden-md-and-down logo" src="https://i.ibb.co/XYF2k3M/LOGO.png"></v-img>
       </a>
-      <v-toolbar-title class="d-lg-none headline">TechNify</v-toolbar-title>
+      <v-toolbar-title @click="home" class="d-lg-none headline ml-2 mr-n5">TechNify</v-toolbar-title>
       <v-toolbar-title class="hidden-md-and-down font display-4 font-weight-regular ml-10">TechNify</v-toolbar-title>
       </v-row>
-      <v-col v-if="appBarVisible">
-      <v-col v-show="search" :class="$vuetify.breakpoint.lgAndUp ? 'views' : 'views-ipad'">
+      <v-col class="pa-0 ml-5" v-if="appBarVisible">
+      <v-col v-show="search" :class="$vuetify.breakpoint.smAndUp ? 'views' : 'views-ipad pa-0'">
         <button @click="mosaic" v-bind:class="select">
-          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '30px'">mdi-apps</v-icon>
+          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '25px'">mdi-apps</v-icon>
         </button>
         <button class="ml-2 px-1 py-1" @click="expand" v-bind:class="select2">
-          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '30px'">mdi-format-list-text</v-icon>
+          <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '25px'">mdi-format-list-text</v-icon>
         </button>
       </v-col>
       </v-col>
       <v-row>
       <v-row justify="end">
-      <v-col v-if="appBarVisible" cols="5">
-    <v-select
-      v-model="selected"
-      :items="filterTypes"
-      label="Select type"
-      required
-    ></v-select>
+      <v-col :class="$vuetify.breakpoint.smAndUp ? 'navbar-ipad' : 'navbar-filter'" v-if="appBarVisible" cols="6">
+      <div class="hidden-md hidden-sm">
+      <v-select
+        v-model="selected"
+        :items="filterTypes"
+        required
+      ></v-select>
+      </div>
       <div class="hidden-xs-only">
         <v-menu
               ref="menu"
@@ -48,12 +49,12 @@
             </v-menu>
        </div>
       </v-col>
-        <v-icon v-if="appBarVisible" @click="searchFunction">
+        <v-icon class="mr-n2" v-if="appBarVisible" @click="searchFunction">
           mdi-magnify
         </v-icon>
       <v-menu  bottom left>
         <template v-if="userMenu" v-slot:activator="{ on }">
-            <v-btn :class="$vuetify.breakpoint.lgAndUp ? '' : 'icons'" dark icon v-on="on">
+            <v-btn :class="$vuetify.breakpoint.lgAndUp ? '' : 'mr-n2 mt-7 icons'" dark icon v-on="on">
             <v-icon size="50px">mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
@@ -168,6 +169,9 @@ export default {
       this.$root.$emit('searchFunction', this.selected, this.dates[0])
       this.dates = []
       this.selected = ''
+    },
+    home () {
+      this.$router.push('/events')
     }
   },
   components: {
@@ -194,6 +198,11 @@ export default {
     #000f15 100%
   ) !important;
 }
+.navbar-filter {
+  margin-top:10%;
+}
+.navbar-ipad {
+}
 .logo {
   margin-top: -5px;
   height: 125px;
@@ -208,8 +217,9 @@ export default {
 }
 .views-ipad{
   text-align: center;
-  margin-left: -2vw;
+  margin-left: 8vw;
 }
+
 .title {
   margin-bottom: 20px;
   margin-left: 20px;
