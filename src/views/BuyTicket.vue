@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" class="pa-0 mt-2">
         <v-card v-if="event" class="card">
-          <v-card-title :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'head justify-center display-2 pa-1 mt-10' : $vuetify.breakpoint.lg, 'head justify-center display-1 pa-1': $vuetify.breakpoint.md, 'head justify-center display-2 pa-1' : $vuetify.breakpoint.xl,}" dark> {{event.name}}</v-card-title>
+          <v-card-title :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'head justify-center display-1 pa-0' : $vuetify.breakpoint.lg, 'head justify-center display-1 pa-1': $vuetify.breakpoint.md, 'head justify-center display-1 ma-0' : $vuetify.breakpoint.xl,}" dark> {{event.name}}</v-card-title>
            <v-row>
             <v-col cols="12" sm="5" lg="6" class="pt-0 pb-0">
               <v-img v-if="event.cover_img[0]"
@@ -57,21 +57,44 @@
            <v-spacer></v-spacer>
             <span class="headline price">{{event.price}} €</span>
             <v-spacer></v-spacer>
-            <v-btn max-height="21px" class="caption" @click="addWish(event._id)" color="cyan darken-3" dark><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
+           <v-btn max-height="21px" class="caption" color="cyan darken-3" dark><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
           </v-card-actions>
       </v-col>
-  </v-row>
+     </v-row >
+     <h1 class="display-2 my-10 font-weight-bold head-card pa-2">It may interest you</h1>
+      <v-row class="justify-center">
+        <v-col cols="6">
+          <EventCard v-if="eventTwo" :event="eventTwo" />
+     </v-col>
+        <v-col cols="6">
+      <EventCard v-if="eventTwo" :event="eventOne" />
+  </v-col>
+ </v-row>
 </v-container>
 </template>
 
 <script>
 import API from '../services/App'
+import EventCard from '../components/Event.vue'
+
 export default {
   name: 'BuyTicket',
   data () {
     return {
       event: false,
-      user: false
+      user: false,
+      events: []
+    }
+  },
+  components: {
+    EventCard
+  },
+  computed: {
+    eventOne () {
+      return this.events[Math.floor(Math.random() * this.events.length)]
+    },
+    eventTwo () {
+      return this.events[Math.floor(Math.random() * this.events.length)]
     }
   },
   async created () {
@@ -82,6 +105,11 @@ export default {
         }
         return (this.event = response)
       })
+  },
+  mounted () {
+    API.getAllEvents().then(events => {
+      this.events = events
+    })
   },
   methods: {
     buyEvent () {
@@ -105,6 +133,13 @@ export default {
   border-radius: 20px 20px 0 0 !important;
   background: rgb(21, 91, 100);
   color: white;
+  text-align: center !important;
+}
+.head-card {
+  border-radius: 20px 20px 20px 20px !important;
+  background: rgb(21, 91, 100);
+  color: white;
+  text-align: center !important;
 }
 .head-xs {
   border-radius: 20px 20px 0 0 !important;

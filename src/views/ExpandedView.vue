@@ -2,8 +2,8 @@
 <v-container>
     <v-row>
       <v-col v-for="(event, i) in events" :key="i" cols="12" class="pa-0 mt-2">
-        <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="card">
-          <v-card-title :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'head justify-center display-2 pa-1 mt-10' : $vuetify.breakpoint.lg, 'head justify-center display-1 pa-1': $vuetify.breakpoint.md, 'head justify-center display-2 pa-1' : $vuetify.breakpoint.xl,}" dark> {{event.name}}</v-card-title>
+        <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="card" hover>
+          <v-card-title :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'head justify-center display-2 pa-1 mt-10' : $vuetify.breakpoint.lg, 'head justify-center display-1 pa-01': $vuetify.breakpoint.md, 'head justify-center display-12 pa-0' : $vuetify.breakpoint.xl,}" dark> {{event.name}}</v-card-title>
            <v-row>
             <v-col cols="12" sm="5" lg="6" class="pt-0 pb-0">
               <v-img v-if="event.cover_img[0]"
@@ -53,13 +53,16 @@
             <v-btn class="headline font-weight-medium" @click="addWish(events[i]._id)" color="cyan darken-3" text><v-icon  color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>Add to wish</v-btn>
           </v-card-actions>
            <v-card-actions class="mt-n2 d-sm-none">
-           <v-btn max-height="21px" class="caption"><v-icon size="21px" color="cyan darken-3">mdi-cart</v-icon>Buy now</v-btn>
+           <v-btn max-height="21px" class="caption"><v-icon size="21px" color="cyan darken-3" outlined>mdi-cart</v-icon>Buy now</v-btn>
            <v-spacer></v-spacer>
             <span class="headline price">{{event.price}} €</span>
             <v-spacer></v-spacer>
-            <v-btn max-height="21px" class="caption" @click="addWish(events[i]._id)" color="cyan darken-3" dark><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
+            <v-btn max-height="21px" class="caption" @click="addWish(events[i]._id)" color="cyan darken-3" dark outlined><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
           </v-card-actions>
       </v-col>
+      <v-row justify="center">
+  <v-btn max-height="25px" color="cyan darken-4" class="mt-10 pr-1 pl-1" x-large @click="toTop" dark>Volver al principio <v-icon class="ml-3">mdi-arrow-up-circle</v-icon> </v-btn>
+  </v-row>
   </v-row>
 </v-container>
 </template>
@@ -70,7 +73,8 @@ export default {
   data: () => ({
     events: [],
     eventType: '',
-    dates: null
+    dates: null,
+    fab: false
   }),
   methods: {
     addWish (eventId) {
@@ -82,6 +86,14 @@ export default {
     filterTypes () {
       API.getAllEvents(this.eventType, this.dates).then(
         response => (this.events = response))
+    },
+    onScroll (e) {
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset || e.target.scrollTop || 0
+      this.fab = top > 20
+    },
+    toTop () {
+      this.$vuetify.goTo(0)
     }
   },
   created () {
