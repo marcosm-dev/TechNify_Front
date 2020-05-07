@@ -1,21 +1,26 @@
 <template>
-  <v-row>
-    <v-col class="bgimg" cols="6"></v-col>
-  </v-row>
+  <v-col class="bgimg" :class="reverse ? 'bgReversed' : ''">
+    <img src="@/assets/Publicity2.png" />
+  </v-col>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    reverse: Boolean
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-.img {
-  height: 100vh;
-}
 .bgimg {
-  background-image: url("../assets/Publicity.png");
-  transform: rotate(-90deg);
-  background-size: 100vmax;
-  height: 100vh;
+  // background-image: url("../assets/Publicity2.png");
+  background-size: contain;
+  background-repeat: repeat-y;
+}
+.bgReversed {
+  background-image: url("../assets/Publicity3.png");
+  background-size: contain;
+  // transform: rotate(-180deg);
 }
 </style>

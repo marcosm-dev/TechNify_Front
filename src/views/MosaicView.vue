@@ -1,33 +1,81 @@
 <template>
-<v-container>
-  <v-row>
-    <v-col class="pa-0" v-for="(event, i) in events" :key="i" cols="12" sm="6" md="6" lg="6">
-      <v-card class="mr-1 ml-1 mt-4 card"
-              :height="$vuetify.breakpoint.smAndUp ? '750px' : ''"
-              background="cover"
-              hover
-              :to="{ name: 'BuyTicket', params: { eventId: event._id } }"
+  <v-container fluid>
+    <v-row>
+      <v-col class="reboot-col" >
+        <img src="@/assets/Publicity2.png" class="reboot"/>
+      </v-col>
+      <v-col cols="10">
+        <v-container fluid>
+          <v-row justify>
+            <v-col
+              class="pa-0"
+              v-for="(event, i) in events"
+              :key="i"
+              cols="12"
+              sm="6"
+              md="6"
+              lg="4"
+            >
+              <v-card
+                class="mr-4 ml-4 mt-4 card mb-8"
+                hover
+                :to="{ name: 'BuyTicket', params: { eventId: event._id } }"
               >
-        <v-col>
-        <v-img :max-height="$vuetify.breakpoint.smAndUp ? '300px': ''" :class="$vuetify.breakpoint.mdAndUp ? 'cover-xs' : 'cover-xs'" :src="event.detail_img" ><v-card-title :class="$vuetify.breakpoint.smAndDown ? 'title-head headline font-weight-bold' : 'title-head'">{{event.name}}</v-card-title></v-img>
-        </v-col>
-        <div :class="$vuetify.breakpoint.mdAndUp ? 'container-card' : ''">
-        <v-card-subtitle :class="$vuetify.breakpoint.xsOnly ? 'title mt-n5' : 'title'">{{event.place}}  /  {{event.date_start}}</v-card-subtitle>
-        <v-card-text :class="$vuetify.breakpoint.mdAndDown ? 'headline description-sm' : 'title'">{{event.small_description}}</v-card-text>
-        </div>
-      </v-card>
-        <v-card-actions class="mt-n2 mb-n3">
-          <v-btn text color="cyan darken-4" outlined><v-icon size="30px" color="cyan darken-4" >mdi-cart</v-icon>Buy now</v-btn>
-          <v-spacer></v-spacer>
-          <v-btn @click="addWish(events[i]._id)" color="cyan darken-4" outlined text>Add to wish<v-icon size="30px" color="yellow darken-1">mdi-star-outline</v-icon></v-btn>
-        </v-card-actions >
-    </v-col>
-  </v-row>
-  <v-row justify="center">
-  <v-btn max-height="25px" color="cyan darken-4" class="mt-10 pr-1 pl-1" x-large @click="toTop" dark>Volver al principio <v-icon class="ml-3">mdi-arrow-up-circle</v-icon> </v-btn>
-  </v-row>
-</v-container>
+                <v-img height="300px" :src="event.detail_img">
+                  <v-card-title
+                    :class="$vuetify.breakpoint.smAndDown ? 'title-head headline font-weight-bold' : 'title-head'"
+                  >{{event.name}}</v-card-title>
+                </v-img>
+                <div :class="$vuetify.breakpoint.mdAndUp ? 'container-card' : ''">
+                  <v-card-subtitle
+                    :class="$vuetify.breakpoint.xsOnly ? 'title mt-n5 event-details' : 'title event-details'"
+                  >{{event.place}} / {{event.date_start}}</v-card-subtitle>
+                  <v-card-text
+                    :class="$vuetify.breakpoint.mdAndDown ? 'headline description-sm' : 'event-title'"
+                  >{{event.small_description}}</v-card-text>
+                </div>
+                <v-card-actions class="pa-4">
+                  <v-spacer></v-spacer>
+                  <v-btn text color="cyan darken-4" outlined>
+                    <v-icon size="30px" color="cyan darken-4">mdi-cart</v-icon>Buy now
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    @click.stop.prevent="addWish(events[i]._id)"
+                    color="cyan darken-4"
+                    outlined
+                    text
+                  >
+                    Add to wish
+                    <v-icon size="30px" color="yellow darken-1">mdi-star-outline</v-icon>
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-btn
+              max-height="25px"
+              color="cyan darken-4"
+              class="mt-10 pr-1 pl-1"
+              x-large
+              @click="toTop"
+              dark
+            >
+              Volver al principio
+              <v-icon class="ml-3">mdi-arrow-up-circle</v-icon>
+            </v-btn>
+          </v-row>
+        </v-container>
+      </v-col>
+      <v-col class="reboot-col">
+        <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+
 <script>
 import API from '../services/App'
 export default {
@@ -46,7 +94,8 @@ export default {
     },
     filterTypes () {
       API.getAllEvents(this.eventType, this.dates).then(
-        response => (this.events = response))
+        response => (this.events = response)
+      )
     },
     onScroll (e) {
       if (typeof window === 'undefined') return
@@ -71,24 +120,50 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+  // width: 100px;
+}
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
+}
+
 .card {
-  border: 1px solid  rgb(33, 113, 124);
-  border-radius: 20px 20px 0 0 !important;
+  // border: 1px solid rgb(33, 113, 124);
+  // border-radius: 20px 20px 0 0 !important;
   background: rgb(224, 236, 238);
   text-align: center;
 }
-.cover-xs {
-  border-radius: 20px 20px 0 0 !important;
-  border: 1px solid  rgb(33, 113, 124);
+.event-details {
+  background-color: rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
-.title-head{
+.event-title {
+  height: 190px;
+  font-size: 20px !important;
+  overflow: hidden;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.title-head {
   color: rgb(20, 63, 68);
-  border-radius: 20px 20px 0 0 !important;
+  // border-radius: 20px 20px 0 0 !important;
   background: rgba(255, 255, 255, 0.747);
-  padding: 0px;
+  padding: 10px;
   justify-content: center;
-
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 .description {
   font-size: 16px;
@@ -97,8 +172,10 @@ export default {
   overflow: hidden;
 }
 .description-sm {
-  overflow: hidden;
   text-overflow: ellipsis;
   max-height: 350px;
+}
+.sidebar {
+  margin: 0 !important;
 }
 </style>
