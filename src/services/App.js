@@ -37,7 +37,7 @@ export default {
       url += `date_start=${dates}&date_end=${dateEnd}`
     } else if (dates) {
       url += `date_start=${dates}&`
-    } else if (eventType) {
+    } else if (eventType && eventType !== 'ALL') {
       url += `event_type=${eventType}&`
     }
     const response = await API.get(url)
