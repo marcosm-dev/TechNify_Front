@@ -317,7 +317,7 @@ export default {
       const open = () => {
         this.selectedEvent = event
         this.selectedElement = nativeEvent.target
-        setTimeout(() => this.selectedOpen = true, 10)
+        // setTimeout(() => this.selectedOpen = true, 10)
       }
 
       if (this.selectedOpen) {
