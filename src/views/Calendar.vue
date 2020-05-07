@@ -1,4 +1,11 @@
 <template>
+  <v-container fluid>
+  <v-row>
+    <v-col class="reboot-col" >
+    <img src="@/assets/Publicity2.png" class="reboot"/>
+    </v-col>
+    <v-col cols="10">
+      <v-container fluid>
   <v-row class="fill-height">
     <v-col>
       <v-sheet height="64">
@@ -146,6 +153,13 @@
       </v-sheet>
     </v-col>
   </v-row>
+        </v-container>
+    </v-col>
+  <v-col class="reboot-col">
+    <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+  </v-col>
+</v-row>
+  </v-container>
 </template>
 
 <script>
@@ -328,3 +342,17 @@ export default {
   }
 }
 </script>
+
+<styles lang="scss" scoped>
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+  // width: 100px;
+}
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
+}
+</styles>

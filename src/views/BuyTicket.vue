@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" class="pa-0 mt-2">
         <v-card v-if="event" class="card">
-          <v-card-title :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'head justify-center display-1 pa-0' : $vuetify.breakpoint.lg, 'head justify-center display-1 pa-1': $vuetify.breakpoint.md, 'head justify-center display-1 ma-0' : $vuetify.breakpoint.xl,}" dark> {{event.name}}</v-card-title>
+          <v-card-title :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'title-head justify-center display-1 pa-0' : $vuetify.breakpoint.lg, 'justify-center display-1 pa-1': $vuetify.breakpoint.md, 'title-head justify-center display-1 ma-0' : $vuetify.breakpoint.xl,}" dark> {{event.name}}</v-card-title>
            <v-row>
             <v-col cols="12" sm="5" lg="6" class="pt-0 pb-0">
               <v-img v-if="event.cover_img[0]"
@@ -44,29 +44,29 @@
             </v-col>
             </v-row>
             <v-divider></v-divider>
-        </v-card>
-          <v-card-actions class="hidden-xs-only">
-            <v-btn class="headline font-weight-medium" text><v-icon color="cyan darken-3" size="50px">mdi-cart</v-icon> Buy now</v-btn>
+          <v-card-actions class="hidden-xs-only title-head">
+            <v-btn class="headline font-weight-medium" text><v-icon color="cyan darken-3" size="50px" class="mr-2">mdi-cart</v-icon> Buy now</v-btn>
             <v-spacer></v-spacer>
             <span class="display-2 price">{{event.price}} €</span>
             <v-spacer></v-spacer>
-            <v-btn class="headline font-weight-medium" @click="addWish(event._id)" color="cyan darken-3" text><v-icon  color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>Add to wish</v-btn>
+            <v-btn class="headline font-weight-medium" @click.stop.prevent="addWish(event._id)" color="cyan darken-3" text>Add to wish<v-icon class="ml-2" color="yellow lighten-1" size="50px">mdi-star-outline</v-icon></v-btn>
           </v-card-actions>
            <v-card-actions class="mt-n2 d-sm-none">
-           <v-btn max-height="21px" class="caption" @click="buyEvent"><v-icon size="21px" color="cyan darken-3" >mdi-cart</v-icon>Buy now</v-btn>
+           <v-btn max-height="21px" class="caption" @click.stop.prevent="buyEvent"><v-icon size="21px" color="cyan darken-3" >mdi-cart</v-icon>Buy now</v-btn>
            <v-spacer></v-spacer>
             <span class="headline price">{{event.price}} €</span>
             <v-spacer></v-spacer>
            <v-btn max-height="21px" class="caption" color="cyan darken-3" dark><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
           </v-card-actions>
+        </v-card>
       </v-col>
      </v-row >
-     <h1 class="display-2 my-10 font-weight-bold head-card pa-2">It may interest you</h1>
+     <h1 class="text-center display-3 my-10 font-weight-bold head-card pa-2">It may interest you</h1>
       <v-row class="justify-center">
-        <v-col cols="6">
+        <v-col cols="5">
           <EventCard v-if="eventTwo" :event="eventTwo" />
      </v-col>
-        <v-col cols="6">
+        <v-col cols="5">
       <EventCard v-if="eventOne" :event="eventOne" />
   </v-col>
  </v-row>
@@ -135,26 +135,32 @@ export default {
 .textstyles {
   height: 139px;
 }
-.head {
-  border-radius: 20px 20px 0 0 !important;
-  background: rgb(21, 91, 100);
-  color: white;
-  text-align: center !important;
+.event-details {
+  background-color: rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
-.head-card {
-  border-radius: 20px 20px 20px 20px !important;
-  background: rgb(21, 91, 100);
-  color: white;
-  text-align: center !important;
+
+.title-head {
+  color: rgb(20, 63, 68);
+  background: rgba(255, 255, 255, 0.747);
+  padding: 10px;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.card {
+  background: rgb(224, 236, 238);
+  text-align: center;
 }
 .head-xs {
   border-radius: 20px 20px 0 0 !important;
   background: rgb(21, 91, 100);
   color: white;
-}
-.card {
-  border-radius: 20px 20px 0 0 !important;
-  background: rgb(204, 222, 224);
 }
 .photo {
   max-height: 100px;
@@ -175,9 +181,7 @@ export default {
 .price {
   color: green;
 }
-.card-container{
-  border-radius: 20px 20px 0 0 !important;
-  max-height: 90vh;
-  margin-bottom: 40px;
+.headline {
+  text-align: start;
 }
 </style>

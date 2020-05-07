@@ -1,10 +1,16 @@
 <template>
-<v-container class="bg fill-height pt-0" fluid>
-  <v-row>
-    <v-col cols="12">
-    <v-col cols="6">
-      <h1 class="display-1 mb-10 font-weight-medium">CREATE YOUR EVENT</h1>
-      <v-form ref="form">
+  <v-container fluid>
+    <v-row>
+      <v-col class="reboot-col" >
+      <img src="@/assets/Publicity2.png" class="reboot"/>
+        </v-col>
+        <v-col cols="10">
+        <v-container class="bg fill-height pt-0" fluid>
+        <v-row>
+        <v-col cols="12">
+        <v-col cols="6">
+        <h1 class="display-1 mb-10 font-weight-medium">CREATE YOUR EVENT</h1>
+        <v-form ref="form">
         <v-text-field v-model="name" label="Name"></v-text-field>
         <v-text-field v-model="place" label="Place"></v-text-field>
         <v-text-field v-model="price" label="Price"></v-text-field>
@@ -81,6 +87,12 @@
 </div>
 </v-col>
 </v-row>
+         </v-container>
+       </v-col>
+      <v-col class="reboot-col">
+        <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+      </v-col>
+    </v-row>
 </v-container>
 </template>
 
@@ -191,4 +203,16 @@ export default {
 *{
   font-size: 25px;
 }
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+  // width: 100px;
+}
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
+}
+
 </style>

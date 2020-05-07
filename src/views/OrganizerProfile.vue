@@ -1,7 +1,13 @@
 <template>
-<v-container :class="$vuetify.breakpoint.lgOnly ? 'container-lg fill-height pt-0' : 'fill-height pt-0'" fluid>
+  <v-container fluid>
+    <v-row>
+      <v-col class="reboot-col" >
+      <img src="@/assets/Publicity2.png" class="reboot"/>
+      </v-col>
+       <v-col cols="10">
+    <v-container :class="$vuetify.breakpoint.lgOnly ? 'container-lg fill-height pt-0' : 'fill-height pt-0'" fluid>
   <v-row class="d-flex justify-center mx-auto">
-   <v-col cols="8" sm="10" lg="4" class="mx-auto text-end">
+     <v-col cols="8" sm="10" lg="4" class="mx-auto text-end">
       <v-col align="start">
       <h2 class="display-1 mb-10 font-weight-medium">EDIT YOUR INFORMATION</h2>
       </v-col>
@@ -51,15 +57,21 @@
             @click:append="show1 = !show1"
           ></v-text-field>
         <v-btn :disabled="checkFormPsw" :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="blue" outlined @click='updatePsw'>Update password</v-btn>
-</v-col>
+        </v-col>
         </v-row>
- <v-row>
+        <v-row>
         <v-col class="text-center">
         <v-btn :disabled="edit" text color="blue" outlined class="mx-5" @click ='editProfile'>Edit your information</v-btn>
         <v-btn :class="$vuetify.breakpoint.xsOnly ? 'mt-10' : ''" text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
-          </v-col>
-  </v-row>
-</v-container>
+      </v-col>
+      </v-row>
+      </v-container>
+      </v-col>
+      <v-col class="reboot-col">
+      <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+      </v-col>
+      </v-row>
+      </v-container>
 </template>
 
 <script>
@@ -132,6 +144,17 @@ export default {
 <style lang="scss" scoped>
 *{
   font-size: 20px;
+}
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+  // width: 100px;
+}
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
 }
 .container-lg {
    height: 100vh;

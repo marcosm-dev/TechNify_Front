@@ -1,7 +1,13 @@
 <template>
-<v-container>
-  <v-row class="d-flex justify-center mx-auto">
-    <v-col cols="8" sm="6" md="6" lg="4" class="mx-auto text-end">
+  <v-container fluid>
+    <v-row>
+      <v-col class="reboot-col" >
+      <img src="@/assets/Publicity2.png" class="reboot"/>
+      </v-col>
+       <v-col cols="10">
+    <v-container fluid>
+      <v-row v-row class="d-flex justify-center mx-auto">
+       <v-col cols="8" sm="6" md="6" lg="4" class="mx-auto text-end">
       <v-col align="start">
       <h2 class="display-1 mb-10 font-weight-medium">EDIT YOUR INFORMATION</h2>
       </v-col>
@@ -16,9 +22,9 @@
         <v-text-field :disabled="edit" v-model="userdb.social_lk" label="Linkedin"></v-text-field>
       </v-form>
       </v-col>
-<v-col cols="4">
-  <h2>Change Password</h2>
- <v-text-field
+          <v-col cols="4">
+            <h2>Change Password</h2>
+          <v-text-field
             v-model="password"
             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="[rules.required, rules.min]"
@@ -54,7 +60,13 @@
         <v-btn :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
         </v-col>
         </v-row>
-</v-container>
+         </v-container>
+       </v-col>
+      <v-col class="reboot-col">
+        <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -125,5 +137,16 @@ export default {
 <style lang="scss" scoped>
 *{
   font-size: 20px;
+}
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+  // width: 100px;
+}
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
 }
 </style>

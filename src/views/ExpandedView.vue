@@ -1,9 +1,15 @@
 <template>
-<v-container>
-    <v-row>
-      <v-col v-for="(event, i) in events" :key="i" cols="12" class="pa-0 mt-2">
-        <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="card" hover>
-          <v-card-title :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'head justify-center display-2 pa-1 mt-10' : $vuetify.breakpoint.lg, 'head justify-center display-1 pa-01': $vuetify.breakpoint.md, 'head justify-center display-12 pa-0' : $vuetify.breakpoint.xl,}" dark> {{event.name}}</v-card-title>
+<v-container class="mt-n10" fluid>
+  <v-row>
+    <v-col cols="1" class="reboot-col">
+      <img src="@/assets/Publicity2.png" class="reboot"/>
+      </v-col>
+      <v-col cols="10">
+    <v-container >
+    <v-row justify>
+      <v-col v-for="(event, i) in events" :key="i" cols="12" class="pa-0">
+        <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="mb-10 card" hover>
+          <v-card-title :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center title-head headline pa-1' : $vuetify.breakpoint.sm, 'title-head justify-center display-2 pa-1 mt-10' : $vuetify.breakpoint.lg, 'justify-center display-1 pa-01': $vuetify.breakpoint.md, 'title-head justify-center display-2 pa-0' : $vuetify.breakpoint.xl,}" dark> {{event.name}}</v-card-title>
            <v-row>
             <v-col cols="12" sm="5" lg="6" class="pt-0 pb-0">
               <v-img v-if="event.cover_img[0]"
@@ -44,26 +50,32 @@
             </v-col>
             </v-row>
             <v-divider></v-divider>
-        </v-card>
-          <v-card-actions class="hidden-xs-only">
-            <v-btn class="headline font-weight-medium" text><v-icon color="cyan darken-3" size="50px">mdi-cart</v-icon> Buy now</v-btn>
+          <v-card-actions class="hidden-xs-only" >
+            <v-btn class="mb-4 headline font-weight-medium" @click.stop.prevent="buyNow" text><v-icon color="cyan darken-3" size="50px">mdi-cart</v-icon> Buy now</v-btn>
             <v-spacer></v-spacer>
             <span class="display-2 price">{{event.price}} €</span>
             <v-spacer></v-spacer>
-            <v-btn class="headline font-weight-medium" @click="addWish(events[i]._id)" color="cyan darken-3" text><v-icon  color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>Add to wish</v-btn>
+            <v-btn class="headline font-weight-medium" @click.stop.prevent="addWish(events[i]._id)" color="cyan darken-3" text><v-icon  color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>Add to wish</v-btn>
           </v-card-actions>
            <v-card-actions class="mt-n2 d-sm-none">
            <v-btn max-height="21px" class="caption"><v-icon size="21px" color="cyan darken-3" outlined>mdi-cart</v-icon>Buy now</v-btn>
            <v-spacer></v-spacer>
             <span class="headline price">{{event.price}} €</span>
             <v-spacer></v-spacer>
-            <v-btn max-height="21px" class="caption" @click="addWish(events[i]._id)" color="cyan darken-3" dark outlined><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
+            <v-btn max-height="21px" class="caption" @click.stop.prevent="(events[i]._id)" color="cyan darken-3" dark outlined><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
           </v-card-actions>
+        </v-card>
       </v-col>
       <v-row justify="center">
   <v-btn max-height="25px" color="cyan darken-4" class="mt-10 pr-1 pl-1" x-large @click="toTop" dark>Volver al principio <v-icon class="ml-3">mdi-arrow-up-circle</v-icon> </v-btn>
   </v-row>
-  </v-row>
+     <v-col class="reboot-col">
+      <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+      </v-col>
+    </v-row>
+  </v-container>
+  </v-col>
+</v-row>
 </v-container>
 </template>
 
@@ -94,6 +106,9 @@ export default {
     },
     toTop () {
       this.$vuetify.goTo(0)
+    },
+    buyNow () {
+      console.log('Buy Now')
     }
   },
   created () {
@@ -112,22 +127,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+  // width: 100px;
+}
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
+}
+
+.headline {
+  text-align: start;
+  margin-top: 1vh;
+}
+.card {
+  background: rgb(224, 236, 238);
+  text-align: center;
+}
 .textstyles {
   height: 139px;
 }
-.head {
-  border-radius: 20px 20px 0 0 !important;
-  background: rgb(21, 91, 100);
-  color: white;
+.button{
+  display: flex;
+  align-self: center;
 }
-.head-xs {
-  border-radius: 20px 20px 0 0 !important;
-  background: rgb(21, 91, 100);
-  color: white;
-}
-.card {
-  border-radius: 20px 20px 0 0 !important;
-  background: rgb(204, 222, 224);
+
+.title-head {
+  color: rgb(20, 63, 68);
+  background: rgba(255, 255, 255, 0.747) !important;
+  padding: 10px;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 .photo {
   max-height: 100px;
@@ -149,8 +185,8 @@ export default {
   color: green;
 }
 .card-container{
-  border-radius: 20px 20px 0 0 !important;
   max-height: 90vh;
   margin-bottom: 40px;
 }
+
 </style>
