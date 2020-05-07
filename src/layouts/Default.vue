@@ -17,16 +17,18 @@
           class="hidden-md-and-down font display-3 font-weight-regular ml-10" id="title"
         >TechNify</v-toolbar-title>
       </v-row>
-      <v-col class="pa-0 ml-5" v-if="appBarVisible">
-        <v-col v-show="search" :class="$vuetify.breakpoint.smAndUp ? 'views' : 'views-ipad pa-0'">
-          <button @click="mosaic" v-bind:class="select">
-            <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '25px'">mdi-apps</v-icon>
-          </button>
-          <button class="ml-2 px-1 py-1" @click="expand" v-bind:class="select2">
-            <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '25px'">mdi-format-list-text</v-icon>
-          </button>
+      <v-row>
+        <v-col class="pa-0 ml-5" v-if="appBarVisible">
+          <v-col v-show="search" :class="$vuetify.breakpoint.smAndUp ? 'views' : 'views-ipad pa-0'">
+            <button @click="mosaic" v-bind:class="select">
+              <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '25px'">mdi-apps</v-icon>
+            </button>
+            <button class="ml-2 px-1 py-1" @click="expand" v-bind:class="select2">
+              <v-icon :size="$vuetify.breakpoint.lgAndUp ? '60px' : '25px'">mdi-format-list-text</v-icon>
+            </button>
+          </v-col>
         </v-col>
-      </v-col>
+      </v-row>
       <v-row>
         <v-row justify="end">
           <v-col
