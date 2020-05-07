@@ -47,17 +47,11 @@ const routes = [{
 {
   path: '/mail',
   name: 'Mail',
-  meta: {
-    appBarVisible: true
-  },
   component: Mail
 },
 {
   path: '/calendar',
   name: 'Calendar',
-  meta: {
-    appBarVisible: true
-  },
   component: Calendar
 
 },
@@ -72,9 +66,6 @@ const routes = [{
 {
   path: '/event/:eventId',
   name: 'BuyTicket',
-  meta: {
-    appBarVisible: true
-  },
   component: BuyTicket
 },
 {

@@ -23,7 +23,7 @@ export default {
 .footer {
   background: linear-gradient(
     180deg,
-    rgba(1, 20, 29, 0.88) 9.9%,
+    rgb(1, 20, 29) 9.9%,
     #062e41 39.58%,
     #000f15 100%
   ) !important;
