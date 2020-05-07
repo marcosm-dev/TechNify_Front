@@ -74,6 +74,14 @@
             <v-spacer></v-spacer>
               <v-icon  x-large>mdi-account</v-icon>
             </v-list-item>
+              <v-list-item  to="/calendar">
+              <v-list-item-icon>
+                <v-list-item-title  class="headline">My Calendar
+                </v-list-item-title>
+              </v-list-item-icon>
+            <v-spacer></v-spacer>
+              <v-icon  x-large>mdi-calendar-month</v-icon>
+            </v-list-item>
               <v-list-item v-show="userProfile" to="/create">
               <v-list-item-icon>
                 <v-list-item-title class="headline">Create Event</v-list-item-title>
@@ -164,7 +172,7 @@ export default {
       }
     },
     searchFunction () {
-      this.$root.$emit('searchFunction', this.selected, this.dates[0])
+      this.$root.$emit('searchFunction', this.selected, this.dates[0], this.dates[1])
       this.dates = []
       this.selected = ''
     },

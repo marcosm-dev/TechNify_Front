@@ -2,14 +2,18 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify'
-import firebase from 'firebase'
+
+import VueTextareaAutosize from 'vue-textarea-autosize'
 
 import Default from './layouts/Default.vue'
 import NoNavbar from './layouts/NoNavbar'
 
+import firebase from 'firebase'
+import 'firebase/firebase-firestore'
+
+Vue.use(VueTextareaAutosize)
 Vue.component('default-layout', Default)
 Vue.component('no-navbar-layout', NoNavbar)
-
 Vue.config.productionTip = false
 
 const firebaseConfig = {
@@ -22,7 +26,17 @@ const firebaseConfig = {
   appId: '1:318314243398:web:6afbf0b03502b58c8f3147',
   measurementId: 'G-TJHLC9YFFH'
 }
+const ignoreWarnMessage = 'The .native modifier for v-on is only valid on components but it was used on <div>.'
+Vue.config.warnHandler = function (msg, vm, trace) {
+  // `trace` is the component hierarchy trace
+  if (msg === ignoreWarnMessage) {
+    msg = null
+    vm = null
+    trace = null
+  }
+}
 firebase.initializeApp(firebaseConfig)
+export const db = firebase.firestore()
 
 new Vue({
   router,

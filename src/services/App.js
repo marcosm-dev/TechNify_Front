@@ -29,10 +29,12 @@ export default {
     })
     return response.data
   },
-  async getAllEvents (eventType, dates) {
+  async getAllEvents (eventType, dates, dateEnd) {
     let url = '/events?'
     if (eventType && dates) {
       url += `event_type=${eventType}&date_start=${dates}`
+    } else if (dates && dateEnd) {
+      url += `date_start=${dates}&date_end=${dateEnd}`
     } else if (dates) {
       url += `date_start=${dates}&`
     } else if (eventType) {
