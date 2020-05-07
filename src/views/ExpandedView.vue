@@ -1,5 +1,5 @@
 <template>
-<v-container class="mt-n10" fluid>
+<v-container id="background" class="mt-n10" fluid>
   <v-row>
     <v-col cols="1" class="reboot-col">
       <img src="@/assets/Publicity2.png" class="reboot"/>
@@ -73,10 +73,13 @@
       <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
       </v-col>
     </v-row>
+         </v-container>
+       </v-col>
+      <v-col class="reboot-col">
+        <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+      </v-col>
+    </v-row>
   </v-container>
-  </v-col>
-</v-row>
-</v-container>
 </template>
 
 <script>
@@ -127,10 +130,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#background{
+background-color: rgba(221, 230, 233, 0.657);
+}
 .reboot-col {
   padding: 0px;
   margin-top: -20px;
-  // width: 100px;
 }
 .reboot {
   top: 0px;

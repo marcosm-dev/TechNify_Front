@@ -79,7 +79,6 @@ export default {
 .reboot-col {
   padding: 0px;
   margin-top: -20px;
-  // width: 100px;
 }
 .reboot {
   top: 0px;

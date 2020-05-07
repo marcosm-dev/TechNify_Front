@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppBar />
-    <v-content class="background" app>
+    <v-content id="background-color" class="background" app>
       <router-view></router-view>
     </v-content>
     <Footer class="hidden-xs-only" />
@@ -35,3 +35,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+#background-color{
+background-color: rgba(221, 230, 233, 0.657);
+height: 100vh;
+}
+</style>
