@@ -67,7 +67,7 @@
           <EventCard v-if="eventTwo" :event="eventTwo" />
      </v-col>
         <v-col cols="6">
-      <EventCard v-if="eventTwo" :event="eventOne" />
+      <EventCard v-if="eventOne" :event="eventOne" />
   </v-col>
  </v-row>
 </v-container>
@@ -97,14 +97,16 @@ export default {
       return this.events[Math.floor(Math.random() * this.events.length)]
     }
   },
+  watch: {
+    $route (to, from) {
+      this.getEventData()
+    }
+  },
   async created () {
-    await API.getInfo(this.$route.params.eventId)
-      .then(response => {
-        if (localStorage.role !== 'ORGANIZER') {
-          this.user = true
-        }
-        return (this.event = response)
-      })
+    await this.getEventData()
+    if (localStorage.role !== 'ORGANIZER') {
+      this.user = true
+    }
   },
   mounted () {
     API.getAllEvents().then(events => {
@@ -112,6 +114,10 @@ export default {
     })
   },
   methods: {
+    async getEventData () {
+      this.event = await API.getInfo(this.$route.params.eventId)
+      this.events = API.getAllEvents()
+    },
     buyEvent () {
       alert('vamos a comprar!')
     },
