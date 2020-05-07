@@ -1,5 +1,5 @@
 <template>
-   <v-container>
+   <v-container id="background">
     <v-row>
       <v-col cols="12" class="pa-0 mt-2">
         <v-card v-if="event" class="card">
@@ -132,6 +132,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#background{
+background-color: rgba(221, 230, 233, 0.657);
+}
 .textstyles {
   height: 139px;
 }

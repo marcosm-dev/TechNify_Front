@@ -1,7 +1,13 @@
 <template>
-<v-container>
-  <v-row class="justify-center mx-auto ">
-    <v-col cols="12">
+ <v-container id="background" fluid>
+    <v-row>
+      <v-col class="reboot-col" >
+      <img src="@/assets/Publicity2.png" class="reboot"/>
+      </v-col>
+       <v-col cols="10">
+        <v-container fluid>
+      <v-row class="justify-center mx-auto ">
+      <v-col cols="12">
       <v-col cols="6">
         <h1 class="display-1 mb-10 font-weight-medium">EDIT YOUR EVENT</h1>
         <v-form ref="form">
@@ -89,7 +95,13 @@
 </div>
 </v-col>
 </v-row>
-</v-container>
+         </v-container>
+       </v-col>
+      <v-col class="reboot-col">
+        <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -212,6 +224,19 @@ export default {
 <style lang="scss" scoped>
 *{
   font-size: 25px;
+}
+#background{
+background-color: rgba(221, 230, 233, 0.657);
+}
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+}
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
 }
 .image {
   width: 170px;

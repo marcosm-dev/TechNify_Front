@@ -1,5 +1,5 @@
 <template>
- <v-container fluid>
+ <v-container id="background" fluid>
     <v-row>
       <v-col class="reboot-col" >
       <img src="@/assets/Publicity2.png" class="reboot"/>
@@ -73,10 +73,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#background{
+background-color: rgba(221, 230, 233, 0.657);
+}
 .reboot-col {
   padding: 0px;
   margin-top: -20px;
-  // width: 100px;
 }
 .reboot {
   top: 0px;
