@@ -19,13 +19,16 @@
         <h1 class="pa-2">T3CHNIFY</h1>
         <p class="pa-2"
           :class="{'body-1': $vuetify.breakpoint.xs, 'title': $vuetify.breakpoint.smAndUp, 'mt-4': $vuetify.breakpoint.mdAndUp}">
-          Event Tech is a company builder created by two Canarian entrepreneurs. Its objective is to make available to everyone the possibility of continuing learning and discovering everything that is to come.
+          Technify is a platform that encourages continuing learning and discovering everything that is to come
         </p>
         <p class="pa-2" :class="{'body-1': $vuetify.breakpoint.xs, 'title': $vuetify.breakpoint.smAndUp}">
-          To do this, we try to bring together on the same website all kinds of events related to the technology world and put them at your fingertips.
-          Our hallmark is listening to what you and the company need. Active listening. Event Tech is our creation for you.
+          Technify brings together all kinds of events related to technology and put them at your fingertips.
+          Our hallmark is listening to what you and the company need. Active listening
         </p>
-        <v-btn class="my-6" to="/events" rounded dark color="cyan accent-4" x-large>See more</v-btn>
+        <p class="pa-2" :class="{'body-1': $vuetify.breakpoint.xs, 'title': $vuetify.breakpoint.smAndUp}">
+          Technify is our creation for you
+        </p>
+        <v-btn class="my-6" to="/events" rounded dark color="cyan accent-4" x-large>GET STARTED</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -63,7 +66,7 @@ export default {
 .container--bg-image {
   background-image: url("../assets/tech.png");
   background-size: cover;
-  min-height: calc(100vh - -7px);
+  min-height: calc(100vh - 90px);
   align-items: start;
 }
 
