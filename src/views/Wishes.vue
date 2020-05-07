@@ -1,11 +1,17 @@
-<template>
-<v-container>
-  <h1 class="display-1 mb-5 font-weight-medium">YOUR WISHES</h1>
-  <v-divider class="mb-5"></v-divider>
+<template >
+<v-container fluid>
   <v-row>
-    <v-col v-for="(event, idx) in events" :key="idx" cols="12">
-      <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="mx-auto" outlined>
-       <v-list-item-title class="text-center headline card-title font-weight-regular pa-1">{{event.name}}</v-list-item-title>
+      <v-col class="reboot-col" >
+      <img src="@/assets/Publicity2.png" class="reboot"/>
+      </v-col>
+      <v-col cols="10">
+    <v-container>
+      <h1 class="display-1 mb-5 font-weight-medium">YOUR WISHES</h1>
+      <v-divider class="mb-5"></v-divider>
+      <v-row>
+    <v-col v-for="(event, idx) in events" :key="idx" cols="6">
+      <v-card :to="{ name: 'BuyTicket', params: { eventId: event._id } }" class="mx-auto card" outlined>
+       <v-list-item-title class="text-center headline title-head font-weight-regular pa-1">{{event.name}}</v-list-item-title>
         <v-list-item three-line>
           <v-row>
             <v-col cols="6">
@@ -16,7 +22,7 @@
           </v-list-item-content>
             </v-col>
             <v-col cols="6" class="text-end">
-              <v-img max-height="100px" max-width="560px" :src="event.cover_img[0]"></v-img>
+              <v-img max-height="100px" max-width="500px" :src="event.cover_img[0]"></v-img>
             <v-list-item-subtitle class="title font-weight-bold">
               {{event.date_start}}
               <span v-if="event.date_end">{{event.date_end}}</span>
@@ -30,6 +36,12 @@
           <v-btn text color="red" class="title font-weight-bold" @click="deleteById(events[idx]._id, events[idx])">Delete<v-icon x-large>mdi-delete-circle</v-icon></v-btn>
         </v-card-actions>
       </v-card>
+    </v-col>
+    </v-row>
+     </v-container>
+  </v-col>
+   <v-col class="reboot-col">
+      <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
     </v-col>
   </v-row>
 </v-container>
@@ -62,11 +74,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card-title{
-  background: rgb(21, 91, 100);
-  color: white;
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+  // width: 100px;
 }
-.color-price{
-  color: rgb(105, 167, 13);
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
+}
+.event-details {
+  background-color: rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.title-head {
+  color: rgb(20, 63, 68);
+  background: rgba(255, 255, 255, 0.747);
+  padding: 10px;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.card {
+  background: rgb(224, 236, 238);
+  text-align: center;
 }
 </style>

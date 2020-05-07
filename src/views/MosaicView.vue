@@ -2,9 +2,9 @@
   <v-container fluid>
     <v-row>
       <v-col class="reboot-col" >
-        <img src="@/assets/Publicity2.png" class="reboot"/>
+      <img src="@/assets/Publicity2.png" class="reboot"/>
       </v-col>
-      <v-col cols="10">
+       <v-col cols="10">
         <v-container fluid>
           <v-row justify>
             <v-col
@@ -36,12 +36,14 @@
                 </div>
                 <v-card-actions class="pa-4">
                   <v-spacer></v-spacer>
-                  <v-btn text color="cyan darken-4" outlined>
+                  <v-btn class="button" color="cyan darken-4" rounded text outlined>
                     <v-icon size="30px" color="cyan darken-4">mdi-cart</v-icon>Buy now
                   </v-btn>
                   <v-spacer></v-spacer>
                   <v-btn
                     @click.stop.prevent="addWish(events[i]._id)"
+                    rounded
+                    class="button"
                     color="cyan darken-4"
                     outlined
                     text
@@ -67,8 +69,8 @@
               <v-icon class="ml-3">mdi-arrow-up-circle</v-icon>
             </v-btn>
           </v-row>
-        </v-container>
-      </v-col>
+         </v-container>
+       </v-col>
       <v-col class="reboot-col">
         <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
       </v-col>
@@ -135,13 +137,21 @@ export default {
 }
 
 .card {
-  // border: 1px solid rgb(33, 113, 124);
-  // border-radius: 20px 20px 0 0 !important;
   background: rgb(224, 236, 238);
   text-align: center;
 }
 .event-details {
   background-color: rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.title-head {
+  color: rgb(20, 63, 68);
+  background: rgba(255, 255, 255, 0.747);
+  padding: 10px;
+  justify-content: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -153,17 +163,6 @@ export default {
   overflow: hidden;
   padding: 20px;
   margin-bottom: 20px;
-}
-.title-head {
-  color: rgb(20, 63, 68);
-  // border-radius: 20px 20px 0 0 !important;
-  background: rgba(255, 255, 255, 0.747);
-  padding: 10px;
-  justify-content: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
 }
 .description {
   font-size: 16px;
@@ -177,5 +176,8 @@ export default {
 }
 .sidebar {
   margin: 0 !important;
+}
+.button {
+  background-color: rgb(248, 250, 251);
 }
 </style>

@@ -1,5 +1,12 @@
 <template>
-  <v-form
+ <v-container fluid>
+    <v-row>
+      <v-col class="reboot-col" >
+      <img src="@/assets/Publicity2.png" class="reboot"/>
+      </v-col>
+       <v-col cols="10">
+    <v-container fluid>
+   <v-form
     ref="form"
     v-model="valid"
     lazy-validation
@@ -34,6 +41,13 @@
       Send
     </v-btn>
   </v-form>
+      </v-container>
+  </v-col>
+<v-col class="reboot-col">
+  <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
+</v-col>
+</v-row>
+</v-container>
 </template>
 
 <script>
@@ -60,3 +74,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.reboot-col {
+  padding: 0px;
+  margin-top: -20px;
+  // width: 100px;
+}
+.reboot {
+  top: 0px;
+  position: fixed;
+  height: 100vh;
+  width: 8vw;
+}
+</style>
