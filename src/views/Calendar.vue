@@ -3,10 +3,8 @@
     <v-col>
       <v-sheet height="64">
         <v-toolbar flat color="white">
-        <v-btn color="cyan darken-4" dark class="mr-4" @click="dialog = true">New Event</v-btn>
-          <v-btn outlined class="mr-4" @click="setToday">
-            Today
-          </v-btn>
+          <v-btn color="cyan darken-4" dark class="mr-4" @click="dialog = true">New Event</v-btn>
+          <v-btn outlined class="mr-4" @click="setToday">Today</v-btn>
           <v-btn fab text small @click="prev">
             <v-icon small>mdi-chevron-left</v-icon>
           </v-btn>
@@ -17,11 +15,8 @@
           <v-spacer></v-spacer>
           <v-menu bottom right>
             <template v-slot:activator="{ on }">
-              <v-btn
-                outlined
-                v-on="on"
-              >
-                <span> {{ typeToLabel[type] }}</span>
+              <v-btn outlined v-on="on">
+                <span>{{ typeToLabel[type] }}</span>
                 <v-icon right>mdi-menu-down</v-icon>
               </v-btn>
             </template>
@@ -48,7 +43,6 @@
           v-model="focus"
           color="primary"
           :events="events"
-          :event-color="getEventColor"
           :event-margin-bottom="3"
           :now="today"
           :type="type"
@@ -60,84 +54,75 @@
           :short-weekdays="false"
         ></v-calendar>
 
-      <v-dialog v-model="dialog" max-width="500">
-        <v-card>
-          <v-container>
-            <v-form @submit.prevent="addEvent">
-              <v-text-field v-model="name" type="text" label="Event Name"></v-text-field>
-              <v-text-field v-model="place" type="text" label="Event Place"></v-text-field>
-               <v-select
-                v-model="selectType"
-                :items="eventTypes"
-                label="Event Type"
-                required
-              ></v-select>
-                    <v-menu
-              ref="menu"
-              v-model="menu"
-              :close-on-content-click="false"
-              :return-value.sync="dates"
-              transition="scale-transition"
-              offset-y
-              min-width="290px"
-          >
-              <template v-slot:activator="{ on }">
-                <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
-              </template>
-              <v-date-picker v-model="dates" multiple no-title scrollable>
-                <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
-              </v-date-picker>
-            </v-menu>
-              <v-select
-                v-model="selectColor"
-                :items="colors"
-                label="COLOR"
-                required
-              ></v-select>
-              <v-btn type="submit" color="primay" class="mr-4" @click.stop="dialog = false">Create Event</v-btn>
-            </v-form>
-          </v-container>
-        </v-card>
-      </v-dialog>
+        <v-dialog v-model="dialog" max-width="500">
+          <v-card>
+            <v-container>
+              <v-form @submit.prevent="addEvent">
+                <v-text-field v-model="name" type="text" label="Event Name"></v-text-field>
+                <v-text-field v-model="place" type="text" label="Event Place"></v-text-field>
+                <v-select v-model="selectType" :items="eventTypes" label="Event Type" required></v-select>
+                <v-menu
+                  ref="menu"
+                  v-model="menu"
+                  :close-on-content-click="false"
+                  :return-value.sync="dates"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-combobox v-model="dates" multiple chips small-chips readonly v-on="on"></v-combobox>
+                  </template>
+                  <v-date-picker v-model="dates" multiple no-title scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                    <v-btn text color="primary" @click="$refs.menu.save(dates)">OK</v-btn>
+                  </v-date-picker>
+                </v-menu>
+                <v-btn
+                  type="submit"
+                  color="primay"
+                  class="mr-4"
+                  @click.stop="dialog = false"
+                >Create Event</v-btn>
+              </v-form>
+            </v-container>
+          </v-card>
+        </v-dialog>
         <v-menu
           v-model="selectedOpen"
           :close-on-content-click="false"
           :activator="selectedElement"
           offset-x
         >
-          <v-card
-            color="grey lighten-4"
-            min-width="350px"
-            flat
-          >
+          <v-card color="grey lighten-4" min-width="350px" flat>
             <v-card color="grey lighten-4" min-width="350px" flat>
-  <v-toolbar :color="selectedEvent.color" dark>
-    <v-btn icon @click="deleteEvent(selectedEvent)">
-      <v-icon>mdi-delete</v-icon>
-    </v-btn>
-    <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
-    <v-spacer></v-spacer>
-  </v-toolbar>
-  <v-card-text>
-    <v-form v-if="currentlyEditing !== selectedEvent.id">
-      {{selectedEvent.name}} - {{selectedEvent.place}}
-    </v-form>
-    <v-form v-else>
-      <v-text-field v-model="selectedEvent.name" type="text" label="name"></v-text-field>
-    </v-form>
-  </v-card-text>
-  <v-card-actions>
-    <v-btn text color="secondary" @click="selectedOpen = false">Close</v-btn>
-    <v-btn text v-if="currentlyEditing !== selectedEvent.id" @click.prevent="editEvent(selectedEvent)">Edit</v-btn>
-    <v-btn text v-else @click.prevent="updateEvent(selectedEvent)">Save</v-btn>
-  </v-card-actions>
-</v-card>
-            <v-toolbar
-              :color="selectedEvent.color"
-              dark
-            >
+              <v-toolbar :color="selectedEvent.color" dark>
+                <v-btn icon @click="deleteEvent(selectedEvent)">
+                  <v-icon>mdi-delete</v-icon>
+                </v-btn>
+                <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
+                <v-spacer></v-spacer>
+              </v-toolbar>
+              <v-card-text>
+                <v-form
+                  v-if="currentlyEditing !== selectedEvent.id"
+                >{{selectedEvent.name}} - {{selectedEvent.place}}</v-form>
+                <v-form v-else>
+                  <v-text-field v-model="selectedEvent.name" type="text" label="name"></v-text-field>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-btn text color="secondary" @click="selectedOpen = false">Close</v-btn>
+                <v-btn
+                  text
+                  v-if="currentlyEditing !== selectedEvent.id"
+                  @click.prevent="editEvent(selectedEvent)"
+                >Edit</v-btn>
+                <v-btn text v-else @click.prevent="updateEvent(selectedEvent)">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+            <v-toolbar :color="selectedEvent.color" dark>
               <v-btn icon>
                 <v-icon>mdi-pencil</v-icon>
               </v-btn>
@@ -154,13 +139,7 @@
               <span v-html="selectedEvent.details"></span>
             </v-card-text>
             <v-card-actions>
-              <v-btn
-                text
-                color="secondary"
-                @click="selectedOpen = false"
-              >
-                Cancel
-              </v-btn>
+              <v-btn text color="secondary" @click="selectedOpen = false">Cancel</v-btn>
             </v-card-actions>
           </v-card>
         </v-menu>
@@ -189,7 +168,6 @@ export default {
     selectColor: '',
     dates: [],
     place: '',
-    colors: ['red darken-3', 'purple ', 'cyan darken-4', 'pink accent-3', 'light-green darken-1', 'deep-orange', 'light-green ', 'lime ', 'purple lighten-1'],
     currentlyEditing: null,
     selectedEvent: {},
     selectedElement: null,
@@ -202,7 +180,6 @@ export default {
     const snapshot = await db.collection('events').get()
     const events = []
     snapshot.forEach(doc => {
-      console.log(doc.id)
       const appData = doc.data()
       appData.id = doc.id
       events.push(appData)
@@ -240,8 +217,12 @@ export default {
     },
     monthFormatter () {
       return this.$refs.calendar.getFormatter({
-        timeZone: 'UTC', month: 'long'
+        timeZone: 'UTC',
+        month: 'long'
       })
+    },
+    getItems () {
+      return this.eventTypes.map(e => e.name)
     }
   },
   mounted () {
@@ -256,9 +237,12 @@ export default {
     },
     async updateEvent (ev) {
       try {
-        await db.collection('events').doc(ev.id).update({
-          name: ev.name
-        })
+        await db
+          .collection('events')
+          .doc(ev.id)
+          .update({
+            name: ev.name
+          })
         this.selectedOpen = false
         this.currentlyEditing = null
       } catch (error) {
@@ -267,7 +251,10 @@ export default {
     },
     async deleteEvent (ev) {
       try {
-        await db.collection('events').doc(ev.id).delete()
+        await db
+          .collection('events')
+          .doc(ev.id)
+          .delete()
         this.selectedOpen = false
         this.getEvents()
       } catch (error) {
@@ -279,17 +266,16 @@ export default {
         if (this.name && this.start && this.end) {
           await db.collection('events').add({
             name: this.name,
-            type: this.selectType,
+            type: this.eventTypes.filter(e => e.name === this.selectType)[0]
+              ._id,
             place: this.place,
-            start: this.dates[0],
-            end: this.dates[1],
-            color: this.selectColor
+            date_start: this.dates[0],
+            date_end: this.dates[1]
           })
           this.getEvents()
           this.name = ''
           this.start = ''
           this.end = ''
-          this.selectColor = ''
         } else {
           alert('REQUIRED FIELDS')
         }
@@ -302,7 +288,7 @@ export default {
       this.type = 'day'
     },
     getEventColor (event) {
-      return event.color
+      return event.event_type.color
     },
     setToday () {
       this.focus = this.today
