@@ -84,7 +84,6 @@
 <h1  class="my-10"> EVENT PREVIEW </h1>
  <Preview v-if="newEvent" :typeEvent="select" :event="newEvent" />
 </div>
-<pre> {{newEvent}} </pre>
 </v-col>
 </v-row>
          </v-container>
