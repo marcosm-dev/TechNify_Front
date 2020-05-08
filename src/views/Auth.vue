@@ -66,7 +66,7 @@ export default {
 .container--bg-image {
   background-image: url("../assets/tech.png");
   background-size: cover;
-  min-height: calc(100vh - 90px);
+  min-height: calc(100vh - 6vh);
   align-items: start;
 }
 
@@ -96,7 +96,6 @@ h1 {
 .tabs{
   border-radius: 0 0 20px 20px;
 }
-
 .login-position {
   margin-right: 20vh;
   opacity: 0.95;

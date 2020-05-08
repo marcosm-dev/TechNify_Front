@@ -131,10 +131,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+*{
+  font-family: Alfa Slab One;
+}
 #appbar{
     background: linear-gradient(
     180deg,
-    rgba(1, 20, 29, 0.88) 9.9%,
+    rgba(1, 20, 29, 1) 9.9%,
     #062e41 39.58%,
     #000f15 100%
   ) !important;
@@ -143,7 +146,7 @@ export default {
 
 .toolbar_title, .toolbar_title:active {
   color: white !important;
-  font-size: 30px !important;
+  font-size: 40px !important;
 }
 .logo {
   height: 85px;

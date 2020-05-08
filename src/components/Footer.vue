@@ -21,13 +21,12 @@ export default {
 
 <style lang="scss" scoped>
 .footer {
-  background: linear-gradient(
+    background: linear-gradient(
     180deg,
-    rgb(1, 20, 29) 9.9%,
+    rgba(1, 20, 29, 1) 10.1%,
     #062e41 39.58%,
     #000f15 100%
   ) !important;
-  height: 90px;
 }
 .footer-md{
     background: linear-gradient(

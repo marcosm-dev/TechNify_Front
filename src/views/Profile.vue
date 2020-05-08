@@ -13,6 +13,7 @@
       </v-col>
       <v-btn text @click="activeEdit">Edit</v-btn>
       <v-form ref="form">
+       <span :style="{'color' : 'green'}">{{updated}}</span>
         <v-text-field :disabled="edit" v-model="userdb.first_name" label="Name"></v-text-field>
         <v-text-field :disabled="edit" v-model="userdb.last_name" label="Last Name"></v-text-field>
         <v-text-field :disabled="edit" v-model="userdb.email" label="Email"></v-text-field>
@@ -51,7 +52,9 @@
             hint="At least 8 characters"
             @click:append="show1 = !show1"
           ></v-text-field>
-        <v-btn :disabled="checkFormPsw" :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="blue" outlined @click='updatePsw'>Update password</v-btn>
+        <v-btn :disabled="checkFormPsw" :class="$vuetify.breakpoint.smAndDown ? 'mt-10' : ''" text color="blue" outlined @click='updatePsw'>Update password</v-btn> <br>
+        <br>
+<span :style="colorPassword ? 'color: green' : 'color: red'"> {{msg}} </span>
 </v-col>
   </v-row>
          <v-row>
@@ -74,11 +77,14 @@ import API from '../services/App'
 export default {
   data: () => ({
     userdb: {},
+    colorPassword: false,
     show1: false,
     password: '',
     newPassword: '',
     confirmPassword: '',
     edit: true,
+    msg: '',
+    updated: '',
     rules: {
       required: value => !!value || 'Required.',
       min: v => v.length >= 8 || 'Min 8 characters'
@@ -102,6 +108,7 @@ export default {
         social_lk: this.userdb.social_lk
       }
       await API.updateProfile(userUpdate)
+      this.updated = 'Perfil actualizado con exito'
       if (this.newPassword) {
         this.updatePsw()
       }
@@ -114,7 +121,15 @@ export default {
         actualPassword: this.password,
         newPassword: this.confirmPassword
       }
-      API.changePassword(newPassword)
+      API.changePassword(newPassword).then(response => {
+        if (response.error) {
+          this.msg = 'Password Incorrect'
+          this.colorPassword = false
+        } else {
+          this.msg = 'Password has been updated please log in again'
+          this.colorPassword = true
+        }
+      })
     },
     activeEdit () {
       this.edit = false
@@ -140,6 +155,7 @@ export default {
 }
 #background{
 background-color: rgba(221, 230, 233, 0.657);
+
 }
 .reboot-col {
   padding: 0px;

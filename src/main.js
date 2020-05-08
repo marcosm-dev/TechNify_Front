@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify'
-
 import VueTextareaAutosize from 'vue-textarea-autosize'
 
 import Default from './layouts/Default.vue'
@@ -15,7 +14,6 @@ Vue.use(VueTextareaAutosize)
 Vue.component('default-layout', Default)
 Vue.component('no-navbar-layout', NoNavbar)
 Vue.config.productionTip = false
-
 const firebaseConfig = {
   apiKey: 'AIzaSyBYEP9OYpih7Z-lOQIaGoJpVr9MwLxk50E',
   authDomain: 'technify-dc30d.firebaseapp.com',

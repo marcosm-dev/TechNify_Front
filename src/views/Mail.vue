@@ -6,6 +6,8 @@
       </v-col>
        <v-col cols="10">
     <v-container fluid>
+  <v-row justify="center">
+    <v-col cols="6">
    <v-form
     ref="form"
     v-model="valid"
@@ -33,14 +35,16 @@
     ></v-textarea>
 
     <v-btn
-      :disabled="!valid"
-      color="blue"
+      color="cyan darken-4"
       class="mr-4 text-white"
       @click="validate"
+      dark
     >
       Send
     </v-btn>
   </v-form>
+    </v-col>
+  </v-row>
       </v-container>
   </v-col>
 <v-col class="reboot-col">
@@ -55,23 +59,9 @@ export default {
   data: () => ({
     valid: true,
     name: '',
-    nameRules: [
-      v => !!v || 'Name is required',
-      v => (v && v.length <= 10) || 'Name must be less than 10 characters'
-    ],
     email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-    ],
     message: ''
-  }),
-
-  methods: {
-    validate () {
-      this.$refs.form.validate()
-    }
-  }
+  })
 }
 </script>
 
