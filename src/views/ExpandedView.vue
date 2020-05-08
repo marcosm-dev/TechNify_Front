@@ -51,11 +51,14 @@
             </v-row>
             <v-divider></v-divider>
           <v-card-actions class="hidden-xs-only" >
+            <v-spacer></v-spacer>
+
             <v-btn class="mb-4 headline font-weight-medium pb-12" @click.stop.prevent="buyNow" rounded><v-icon color="cyan darken-3" size="50px">mdi-cart</v-icon> Buy now</v-btn>
             <v-spacer></v-spacer>
             <span class="display-2 price">{{event.price}} €</span>
             <v-spacer></v-spacer>
             <v-btn class="mb-4 headline font-weight-medium pb-12" @click.stop.prevent="addWish(events[i]._id)" rounded><v-icon  color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>Add to wish</v-btn>
+          <v-spacer></v-spacer>
           </v-card-actions>
            <v-card-actions class="mt-n2 d-sm-none">
            <v-btn max-height="21px" class="caption"><v-icon size="21px" color="cyan darken-3" outlined>mdi-cart</v-icon>Buy now</v-btn>

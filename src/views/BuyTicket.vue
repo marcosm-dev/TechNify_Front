@@ -59,6 +59,7 @@
           </v-row>
           <v-divider></v-divider>
           <v-card-actions class="hidden-xs-only title-head">
+            <v-spacer></v-spacer>
             <v-btn
               class="headline font-weight-medium button pb-12"
               @click.stop.prevent="buyEvent(event._id)"
@@ -77,6 +78,7 @@
               Add to wish
               <v-icon class="ml-2" color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>
             </v-btn>
+            <v-spacer></v-spacer>
           </v-card-actions>
           <v-card-actions class="mt-n2 d-sm-none">
             <v-btn max-height="30px" class="caption button" @click.stop.prevent="buyEvent" rounded>
