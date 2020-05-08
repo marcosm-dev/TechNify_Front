@@ -57,7 +57,7 @@
             <v-spacer></v-spacer>
             <span class="display-2 price">{{event.price}} €</span>
             <v-spacer></v-spacer>
-            <v-btn class="mb-4 headline font-weight-medium pb-12" @click.stop.prevent="addWish(events[i]._id)" rounded><v-icon  color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>Add to wish</v-btn>
+            <v-btn class="mb-4 headline font-weight-medium pb-12" @click.stop.prevent="addWish(events[i]._id)" rounded><v-icon  color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>Add wish</v-btn>
           <v-spacer></v-spacer>
           </v-card-actions>
            <v-card-actions class="mt-n2 d-sm-none">
@@ -65,7 +65,7 @@
            <v-spacer></v-spacer>
             <span class="headline price">{{event.price}} €</span>
             <v-spacer></v-spacer>
-            <v-btn max-height="21px" class="caption" @click.stop.prevent="(events[i]._id)" color="cyan darken-3" dark outlined><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
+            <v-btn max-height="21px" class="caption" @click.stop.prevent="(events[i]._id)" color="cyan darken-3" dark outlined><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add wish</v-btn>
           </v-card-actions>
         </v-card>
         </v-col>

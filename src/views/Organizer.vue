@@ -27,9 +27,9 @@
           </div>
           <v-card-actions class="pa-4">
             <v-spacer></v-spacer>
-      <v-btn text color="blue" :to="{ name: 'Edit', params: { eventId: events[idx]._id } }" class=" mr-4 button" ><v-icon class=" mr-4" x-large>mdi-table-edit</v-icon>Edit</v-btn>
+      <v-btn rounded  :to="{ name: 'Edit', params: { eventId: events[idx]._id } }" class=" mr-4 button" ><v-icon size="30px" color="blue" class="mr-4">mdi-table-edit</v-icon>Edit</v-btn>
             <v-spacer></v-spacer>
-      <v-btn text color="red" @click.stop.prevent="deleteById(events[idx]._id, events[idx])" class="ml-4 button" >Delete<v-icon  class="ml-2" x-large>mdi-delete-circle</v-icon></v-btn>
+      <v-btn rounded  @click.stop.prevent="deleteById(events[idx]._id, events[idx])" class="ml-4 button" >Delete<v-icon color="red" size="30px" class="ml-2">mdi-delete-circle</v-icon></v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -104,6 +104,7 @@ height: 100vh;
   width: 100%;
 }
 .button {
-  font-size: 25px;
+  font-size: 15px;
+  color: rgb(86, 147, 165);
 }
 </style>

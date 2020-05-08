@@ -21,6 +21,7 @@
             <v-icon small>mdi-chevron-right</v-icon>
           </v-btn>
           <v-toolbar-title>{{ title }}</v-toolbar-title>
+          <v-toolbar-title> Welcome your Event's Calendar <strong class="user"> {{ user }} !</strong></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-menu bottom right>
             <template v-slot:activator="{ on }">
@@ -209,7 +210,8 @@ export default {
     selectedOpen: false,
     events: [],
     eventTypes: [],
-    dialog: false
+    dialog: false,
+    user: localStorage.first_name
   }),
   async created () {
     await this.getEvents()
@@ -368,5 +370,10 @@ min-height: calc(100vh - 6vh);
   position: fixed;
   height: 100vh;
   width: 8vw;
+}
+.user{
+  color: rgb(252, 149, 32);
+  font-size: 25px;
+  font-weight: 400;
 }
 </style>

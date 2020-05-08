@@ -75,7 +75,7 @@
               @click.stop.prevent="addWish(event._id)"
               rounded
             >
-              Add to wish
+              Add  wish
               <v-icon class="ml-2" color="yellow lighten-1" size="50px">mdi-star-outline</v-icon>
             </v-btn>
             <v-spacer></v-spacer>

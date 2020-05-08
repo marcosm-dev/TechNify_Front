@@ -48,7 +48,7 @@
                     outlined
                     text
                   >
-                    Add to wish
+                    Add wish
                     <v-icon size="30px" color="yellow darken-1">mdi-star-outline</v-icon>
                   </v-btn>
                   <v-spacer></v-spacer>
