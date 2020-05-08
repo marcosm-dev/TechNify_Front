@@ -68,21 +68,18 @@
             <v-btn max-height="21px" class="caption" @click.stop.prevent="(events[i]._id)" color="cyan darken-3" dark outlined><v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish</v-btn>
           </v-card-actions>
         </v-card>
-      </v-col>
-      <v-row justify="center">
-  <v-btn max-height="25px" color="cyan darken-4" class="mt-10 pr-1 pl-1" x-large @click="toTop" dark>Volver al principio <v-icon class="ml-3">mdi-arrow-up-circle</v-icon> </v-btn>
-  </v-row>
-     <v-col class="reboot-col">
-      <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
-      </v-col>
-    </v-row>
-         </v-container>
-       </v-col>
-      <v-col class="reboot-col">
+        </v-col>
+      </v-row>
+        <v-row justify="center">
+        <v-btn max-height="25px" color="cyan darken-4" class="mt-10 pr-1 pl-1" x-large @click="toTop" dark>Volver al principio <v-icon class="ml-3">mdi-arrow-up-circle</v-icon> </v-btn>
+      </v-row>
+      </v-container>
+        </v-col>
+        <v-col class="reboot-col">
         <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
-      </v-col>
-    </v-row>
-  </v-container>
+        </v-col>
+        </v-row>
+      </v-container>
 </template>
 
 <script>
