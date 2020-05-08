@@ -4,7 +4,7 @@
       <v-col cols="12" class="pa-0 mt-2">
         <v-card v-if="event" class="card">
           <v-card-title
-            :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'title-head justify-center display-1 pa-0  font-weight-bold' : $vuetify.breakpoint.lg, 'title-head justify-center display-1 pa-1 font-weight-regular': $vuetify.breakpoint.md, 'title-head justify-center display-1 ma-0' : $vuetify.breakpoint.xl,}"
+            :class="{'justify-center body-2 pa-1 head-xs': $vuetify.breakpoint.xs, 'justify-center head headline pa-1' : $vuetify.breakpoint.sm, 'title-head justify-center display-1 pa-0  font-weight-bold' : $vuetify.breakpoint.lg, 'title-head justify-center display-1 pa-1 font-weight-regular': $vuetify.breakpoint.md, 'title-head justify-center display-2 ma-0' : $vuetify.breakpoint.xl,}"
             dark
           >{{event.name}}</v-card-title>
           <v-row>
@@ -95,19 +95,19 @@
               rounded
               @click.stop.prevent="buy(event._id)"
             >
-              <v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add to wish
+              <v-icon size="21px" color="yellow lighten-1">mdi-star-outline</v-icon>Add wish
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
-    <h1 class="text-center display-3 my-10 font-weight-bold head-card pa-2">It may interest you</h1>
+    <h1 v-if="clicked" class="text-center display-3 my-10 font-weight-bold head-card pa-2">It may interest you</h1>
     <v-row class="justify-center">
       <v-col cols="5">
-        <EventCard v-if="eventTwo" :event="eventTwo" />
+        <EventCard v-on:eventShow="clicked = false" v-if="eventTwo" :event="eventTwo" />
       </v-col>
       <v-col cols="5">
-        <EventCard v-if="eventOne" :event="eventOne" />
+        <EventCard v-on:eventShow="clicked = false" v-if="eventOne" :event="eventOne" />
       </v-col>
     </v-row>
   </v-container>
@@ -123,7 +123,8 @@ export default {
     return {
       event: false,
       user: false,
-      events: []
+      events: [],
+      clicked: true
     }
   },
   components: {

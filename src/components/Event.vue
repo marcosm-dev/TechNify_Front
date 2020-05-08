@@ -13,9 +13,9 @@
     <v-card-text class="pb-0 body-1 description text-card">{{event.small_description}}</v-card-text>
     <v-divider></v-divider>
     <v-card-actions class="title-head">
-     <v-btn class="pl-0" color="cyan darken-4" text outlined rounded :to="{ name: 'BuyTicket', params: { eventId: event._id } }" ><v-icon color="primary" class="mr-1" x-large >mdi-view-compact-outline</v-icon> Show Now</v-btn>
+     <v-btn class="pl-0" color="cyan darken-4" text outlined rounded @click="eventShow" :to="{ name: 'BuyTicket', params: { eventId: event._id } }" ><v-icon color="primary" class="mr-1" x-large >mdi-view-compact-outline</v-icon> Show Now</v-btn>
      <v-spacer></v-spacer>
-      <v-btn color="cyan darken-4" text rounded @click.stop.prevent="addWish(event._id)" outlined> Addd Wishes<v-icon size="21px" color="yellow lighten-1" x-large>mdi-star-outline</v-icon></v-btn>
+      <v-btn color="cyan darken-4" text rounded @click.stop.prevent="addWish(event._id)" outlined> Add Wishes<v-icon size="21px" color="yellow lighten-1" x-large>mdi-star-outline</v-icon></v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -34,6 +34,9 @@ export default {
         this.$router.push('/?auth=login')
       }
       API.addtoWish(eventId)
+    },
+    eventShow () {
+      this.$emit('eventShow')
     }
   }
 }
