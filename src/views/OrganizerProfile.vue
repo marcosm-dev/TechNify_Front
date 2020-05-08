@@ -1,16 +1,15 @@
 <template>
-  <v-container id="background" fluid>
-    <v-row>
+  <v-container fluid fill-height>
+    <v-row id="background">
       <v-col class="reboot-col" >
       <img src="@/assets/Publicity2.png" class="reboot"/>
       </v-col>
-       <v-col cols="10">
-    <v-container :class="$vuetify.breakpoint.lgOnly ? 'container-lg fill-height pt-0' : 'fill-height pt-0'" fluid>
+       <v-col cols="6">
   <v-row class="d-flex justify-center mx-auto">
-     <v-col cols="8" sm="10" lg="4" class="mx-auto text-end">
-      <v-col align="start">
+     <v-col cols="6" sm="10" lg="7" class="mx-auto text-end">
+      <div align="start">
       <h2 class="display-1 mb-10 font-weight-medium">EDIT YOUR INFORMATION</h2>
-      </v-col>
+      </div>
       <v-btn text @click="activeEdit">Edit</v-btn>
       <v-form ref="form">
         <span :style="{'color' : 'green'}">{{updated}}</span>
@@ -28,7 +27,7 @@
         <v-text-field :disabled="edit" v-model="userdb.zip_code" label="zip_code"></v-text-field>
       </v-form>
       </v-col>
-<v-col cols="4">
+<v-col cols="4" justify="start">
   <h2>Change Password</h2>
  <v-text-field
             v-model="password"
@@ -68,7 +67,6 @@
         <v-btn :class="$vuetify.breakpoint.xsOnly ? 'mt-10' : ''" text color="red" outlined @click='deleteProfile'>Delete your account</v-btn>
       </v-col>
       </v-row>
-      </v-container>
       </v-col>
       <v-col class="reboot-col">
       <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
@@ -118,7 +116,7 @@ export default {
         social_lk: this.userdb.social_lk
       }
       await API.updateProfile(userUpdate)
-      this.updated = 'Perfil actualizado con exito'
+      this.updated = 'Profile updated'
       if (this.newPassword) {
         this.updatePsw()
       }
@@ -162,6 +160,9 @@ export default {
 }
 #background{
 background-color: rgba(221, 230, 233, 0.657);
+margin-top: -1%;
+margin-bottom: -1%;
+min-height: calc(100vh - 6vh);
 }
 .reboot-col {
   padding: 0px;

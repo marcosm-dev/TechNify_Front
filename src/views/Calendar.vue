@@ -357,6 +357,7 @@ export default {
 <style lang="scss" scoped>
 #background{
 background-color: rgba(221, 230, 233, 0.657);
+min-height: calc(100vh - 6vh);
 }
 .reboot-col {
   padding: 0px;

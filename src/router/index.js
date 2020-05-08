@@ -52,7 +52,15 @@ const routes = [{
 {
   path: '/calendar',
   name: 'Calendar',
-  component: Calendar
+  component: Calendar,
+  beforeEnter (to, from, next) {
+    if (!localStorage) {
+      next({
+        name: 'Auth'
+      })
+    }
+    next()
+  }
 
 },
 {
@@ -84,7 +92,15 @@ const routes = [{
 {
   path: '/edit',
   name: 'Edit',
-  component: Edit
+  component: Edit,
+  beforeEnter (to, from, next) {
+    if (localStorage.role !== 'ORGANIZER') {
+      next({
+        name: 'Auth'
+      })
+    }
+    next()
+  }
 },
 {
   path: '/profile',
@@ -107,7 +123,15 @@ const routes = [{
 {
   path: '/wishes',
   name: 'Wishes',
-  component: Wishes
+  component: Wishes,
+  beforeEnter (to, from, next) {
+    if (localStorage.role !== 'USER') {
+      next({
+        name: 'Auth'
+      })
+    }
+    next()
+  }
 }
 ]
 

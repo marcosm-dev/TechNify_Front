@@ -6,7 +6,8 @@
           <v-card-title class="justify-center font-weight-medium title-head display-3">{{event.name}}</v-card-title>
           <v-row>
             <v-col cols="6" class="pt-0 pb-0">
-            <v-img v-if="detailImg" height="400px" background="cover" :src="detailImg[1]"></v-img>
+            <v-img v-if="detailImg" height="400px" background="cover" :src="detailImg[0]"></v-img>
+            <v-img v-else height="400px" background="cover" :src="event.detail_img"></v-img>
             </v-col>
             <v-col cols="6">
             <v-card-text class="texto headline">{{event.large_description}}</v-card-text>
@@ -26,7 +27,7 @@
                 v-if="detailImg"
                 height="400px"
                 background="cover"
-                :src="detailImg[0]"
+                :src="detailImg[1]"
               ></v-img>
               <v-img v-else height="400px" background="cover" :src="event.cover_img[1]"></v-img>
             </v-col>

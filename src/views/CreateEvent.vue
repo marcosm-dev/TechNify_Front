@@ -83,8 +83,8 @@
 <div v-show="newEvent">
 <h1  class="my-10"> EVENT PREVIEW </h1>
  <Preview v-if="newEvent" :typeEvent="select" :event="newEvent" />
- <pre> {{newEvent}} </pre>
 </div>
+<pre> {{newEvent}} </pre>
 </v-col>
 </v-row>
          </v-container>
@@ -205,6 +205,7 @@ export default {
 }
 #background{
 background-color: rgba(221, 230, 233, 0.657);
+min-height: calc(100vh - 6vh);
 }
 .reboot-col {
   padding: 0px;

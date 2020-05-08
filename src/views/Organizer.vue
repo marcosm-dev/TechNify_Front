@@ -5,7 +5,6 @@
       <img src="@/assets/Publicity2.png" class="reboot"/>
       </v-col>
        <v-col cols="10">
-        <v-container fluid>
         <v-row>
           <v-col v-for="(event, idx) in events" :key="idx" cols="12" sm="6" md="6" lg="4" >
             <v-card
@@ -30,14 +29,13 @@
             <v-spacer></v-spacer>
       <v-btn text color="blue" :to="{ name: 'Edit', params: { eventId: events[idx]._id } }" class=" mr-4 button" ><v-icon class=" mr-4" x-large>mdi-table-edit</v-icon>Edit</v-btn>
             <v-spacer></v-spacer>
-      <v-btn text color="red" @click="deleteById(events[idx]._id, events[idx])" class="ml-4 button" >Delete<v-icon  class="ml-2" x-large>mdi-delete-circle</v-icon></v-btn>
+      <v-btn text color="red" @click.stop.prevent="deleteById(events[idx]._id, events[idx])" class="ml-4 button" >Delete<v-icon  class="ml-2" x-large>mdi-delete-circle</v-icon></v-btn>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
     </v-col>
     </v-row>
-         </v-container>
-       </v-col>
+      </v-col>
       <v-col class="reboot-col">
         <img src="@/assets/Publicity3.png" class="reboot" style="right: 0px"/>
       </v-col>
@@ -75,6 +73,7 @@ export default {
 <style lang="scss" scoped>
 #background{
 background-color: rgba(221, 230, 233, 0.657);
+height: 100vh;
 }
 .reboot-col {
   padding: 0px;

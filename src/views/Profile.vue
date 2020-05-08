@@ -108,7 +108,7 @@ export default {
         social_lk: this.userdb.social_lk
       }
       await API.updateProfile(userUpdate)
-      this.updated = 'Perfil actualizado con exito'
+      this.updated = 'Perfil updated'
       if (this.newPassword) {
         this.updatePsw()
       }
@@ -155,7 +155,7 @@ export default {
 }
 #background{
 background-color: rgba(221, 230, 233, 0.657);
-
+min-height: calc(100vh - 6vh);
 }
 .reboot-col {
   padding: 0px;

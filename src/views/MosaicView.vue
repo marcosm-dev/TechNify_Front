@@ -24,7 +24,7 @@
                 <v-img height="300px" :src="event.detail_img">
                   <v-card-title
                     :class="$vuetify.breakpoint.smAndDown ? 'title-head headline font-weight-bold' : 'title-head'"
-                  >{{event.name}}</v-card-title>
+                  >{{event.name}} </v-card-title>
                 </v-img>
                 <div :class="$vuetify.breakpoint.mdAndUp ? 'container-card' : ''">
                   <v-card-subtitle
@@ -84,6 +84,7 @@ export default {
   data: () => ({
     events: Array,
     eventType: '',
+    showAdd: true,
     dates: null,
     fab: false
   }),

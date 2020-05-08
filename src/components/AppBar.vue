@@ -8,21 +8,16 @@
         <v-toolbar-title class="toolbar_title">Technify</v-toolbar-title>
       </router-link>
       <v-spacer></v-spacer>
-
       <v-btn v-bind:class="select" to="/events" icon v-if="appBarVisible">
         <v-icon x-large>mdi-apps</v-icon>
       </v-btn>
-
       <v-btn v-bind:class="select2" to="/expanded" icon v-if="appBarVisible">
         <v-icon x-large>mdi-format-list-text</v-icon>
       </v-btn>
-
       <v-spacer></v-spacer>
-
-      <div id="select__filter">
+      <div v-if="appBarVisible" id="select__filter">
         <v-select  v-model="selected" :items="filterTypes" required @change="search" placeholder="Select Event Type" />
       </div>
-
       <v-menu bottom left v-if="loggedUser">
         <template v-if="loggedUser" v-slot:activator="{ on }">
           <v-btn :class="$vuetify.breakpoint.lgAndUp ? '' : 'mr-n2 mt-7 icons'" class="ml-10 mr-4" dark icon v-on="on" >
@@ -31,7 +26,6 @@
         </template>
         <v-list>
           <v-list-item-group active-class="deep-blue--text text--accent-4">
-
             <div v-if="isUserOrganizer">
               <v-list-item v-for="(item, idx) in sideMenuOrganizer" :key="idx" :to="item.to" >
                 <v-list-item-icon> <v-list-item-title class="headline">{{ item.text }}</v-list-item-title> </v-list-item-icon>
@@ -39,7 +33,6 @@
                 <v-icon x-large>{{ item.icon }}</v-icon>
               </v-list-item>
             </div>
-
             <div v-if="isUser">
               <v-list-item v-for="(item, idx) in sideMenuUser" :key="idx" :to="item.to" >
                 <v-list-item-icon> <v-list-item-title class="headline">{{ item.text }}</v-list-item-title> </v-list-item-icon>
@@ -47,13 +40,11 @@
                 <v-icon x-large>{{ item.icon }}</v-icon>
               </v-list-item>
             </div>
-
             <v-list-item @click="logout">
               <v-list-item-icon> <v-list-item-title class="headline">Logout</v-list-item-title> </v-list-item-icon>
               <v-spacer></v-spacer>
               <v-icon x-large>mdi-logout</v-icon>
             </v-list-item>
-
           </v-list-item-group>
         </v-list>
       </v-menu>
