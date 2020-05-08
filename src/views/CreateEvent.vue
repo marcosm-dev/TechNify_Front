@@ -65,6 +65,7 @@
       <v-textarea v-model="large" clear-icon="cancel" placeholder="Large Description."></v-textarea>
     </v-container>
   </v-col>
+   <span :style="{'color': 'green'}" v-if="createOk"> Create event sucessul </span>
   <v-col cols="4">
     <v-btn
       @click="createEvent"
@@ -118,7 +119,8 @@ export default {
     dates: [],
     menu: false,
     eventTypes: [],
-    newEvent: false
+    newEvent: false,
+    createOk: false
   }),
   components: {
     Preview
@@ -184,7 +186,11 @@ export default {
     },
     createEvent () {
       const newEvent = this.newEvent
-      API.createEvent(newEvent)
+      API.createEvent(newEvent).then(response => {
+        if (!response.error) {
+          this.createOk = true
+        }
+      })
     },
     clearDate () {
       this.dates = []

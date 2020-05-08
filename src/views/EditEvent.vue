@@ -73,6 +73,7 @@
             ></v-textarea>
           </v-container>
         </v-col>
+          <span :style="{'color': 'green'}" v-if="updateEvent"> Event updated </span>
         <v-col cols="4">
           <v-btn
             @click="editEvent"
@@ -91,7 +92,6 @@
 <div v-show="editedEvent">
 <h1 class="display-3 my-6"> EVENT PREVIEW </h1>
  <Preview v-if="editedEvent" :typeEvent="select" :detailImg="pictureTwo" :event="editedEvent" />
-
 </div>
 </v-col>
 </v-row>
@@ -123,7 +123,8 @@ export default {
     pictureUpdatedTwo: null,
     UploadValue: 0,
     UploadValue2: 0,
-    editedEvent: false
+    editedEvent: false,
+    updateEvent: false
   }),
   components: {
     Preview
@@ -156,7 +157,11 @@ export default {
       }
     },
     async editEvent () {
-      await API.updateEvent(this.$route.params.eventId, this.editedEvent)
+      await API.updateEvent(this.$route.params.eventId, this.editedEvent).then(response => {
+        if (!response.error) {
+          this.updateEvent = true
+        }
+      })
     },
     onFileSelected (event) {
       this.selectedFile = event.target.files[0]
