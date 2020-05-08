@@ -108,7 +108,7 @@ export default {
         social_lk: this.userdb.social_lk
       }
       await API.updateProfile(userUpdate)
-      this.updated = 'Perfil updated'
+      this.updated = 'Profile updated'
       if (this.newPassword) {
         this.updatePsw()
       }
