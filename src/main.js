@@ -47,7 +47,7 @@ new Vue({
   watch: {
     $route: {
       immediate: true,
-      handler() {
+      handler () {
         document.title = 'Events Tech Website'
       }
     }
