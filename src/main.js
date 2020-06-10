@@ -13,7 +13,9 @@ import 'firebase/firebase-firestore'
 Vue.use(VueTextareaAutosize)
 Vue.component('default-layout', Default)
 Vue.component('no-navbar-layout', NoNavbar)
+
 Vue.config.productionTip = false
+
 const firebaseConfig = {
   apiKey: 'AIzaSyBYEP9OYpih7Z-lOQIaGoJpVr9MwLxk50E',
   authDomain: 'technify-dc30d.firebaseapp.com',
@@ -25,6 +27,7 @@ const firebaseConfig = {
   measurementId: 'G-TJHLC9YFFH'
 }
 const ignoreWarnMessage = 'The .native modifier for v-on is only valid on components but it was used on <div>.'
+
 Vue.config.warnHandler = function (msg, vm, trace) {
   // `trace` is the component hierarchy trace
   if (msg === ignoreWarnMessage) {
@@ -33,7 +36,9 @@ Vue.config.warnHandler = function (msg, vm, trace) {
     trace = null
   }
 }
+
 firebase.initializeApp(firebaseConfig)
+
 export const db = firebase.firestore()
 
 new Vue({
@@ -42,7 +47,7 @@ new Vue({
   watch: {
     $route: {
       immediate: true,
-      handler () {
+      handler() {
         document.title = 'Events Tech Website'
       }
     }

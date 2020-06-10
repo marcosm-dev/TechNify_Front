@@ -81,78 +81,78 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       loggedUser: localStorage.token,
-      isUserOrganizer: localStorage.role === "ORGANIZER",
-      isUser: localStorage.role === "USER",
+      isUserOrganizer: localStorage.role === 'ORGANIZER',
+      isUser: localStorage.role === 'USER',
       filterTypes: [
-        "ALL",
-        "JAVASCRIPT",
-        "UX",
-        "WEB DEVELOPER",
-        "HACKATONS",
-        "OTHERS"
+        'ALL',
+        'JAVASCRIPT',
+        'UX',
+        'WEB DEVELOPER',
+        'HACKATONS',
+        'OTHERS'
       ],
       sideMenuOrganizer: [
-        { text: "Profile", icon: "mdi-account", to: "/organizerprofile" },
-        { text: "My Calendar", icon: "mdi-calendar-month", to: "/calendar" },
-        { text: "Create Event", icon: "mdi-table-edit", to: "/create" },
-        { text: "My Events", icon: "mdi-calendar-outline", to: "/organizer" }
+        { text: 'Profile', icon: 'mdi-account', to: '/organizerprofile' },
+        { text: 'My Calendar', icon: 'mdi-calendar-month', to: '/calendar' },
+        { text: 'Create Event', icon: 'mdi-table-edit', to: '/create' },
+        { text: 'My Events', icon: 'mdi-calendar-outline', to: '/organizer' }
       ],
       sideMenuUser: [
-        { text: "Profile", icon: "mdi-account", to: "/profile" },
-        { text: "My Calendar", icon: "mdi-calendar-month", to: "/calendar" },
-        { text: "My Events", icon: "mdi-calendar-outline", to: "/wishes" }
+        { text: 'Profile', icon: 'mdi-account', to: '/profile' },
+        { text: 'My Calendar', icon: 'mdi-calendar-month', to: '/calendar' },
+        { text: 'My Events', icon: 'mdi-calendar-outline', to: '/wishes' }
       ],
-      selected: ""
-    };
+      selected: ''
+    }
   },
   computed: {
-    appBarVisible() {
-      return this.$route.meta.appBarVisible;
+    appBarVisible () {
+      return this.$route.meta.appBarVisible
     },
-    select() {
-      return this.$route.path === "/events" ? "select" : "";
+    select () {
+      return this.$route.path === '/events' ? 'select' : ''
     },
-    select2() {
-      return this.$route.path === "/expanded" ? "select" : "";
+    select2 () {
+      return this.$route.path === '/expanded' ? 'select' : ''
     },
     // eslint-disable-next-line vue/return-in-computed-property
-    userProfile() {
-      if (localStorage.role === "ORGANIZER") {
-        return true;
+    userProfile () {
+      if (localStorage.role === 'ORGANIZER') {
+        return true
       }
     }
   },
   methods: {
-    search() {
-      this.$root.$emit("searchFunction", this.selected);
-      this.selected = "";
+    search () {
+      this.$root.$emit('searchFunction', this.selected)
+      this.selected = ''
     },
-    logout() {
-      localStorage.clear();
-      this.$router.push("/");
+    logout () {
+      localStorage.clear()
+      this.$router.push('/')
     },
-    mosaic() {
-      this.$router.push("/events");
+    mosaic () {
+      this.$router.push('/events')
     },
-    expand() {
-      this.$router.push("/expanded");
+    expand () {
+      this.$router.push('/expanded')
     },
-    profile() {
-      if (localStorage.role === "ORGANIZER") {
-        this.$router.push("/organizer");
+    profile () {
+      if (localStorage.role === 'ORGANIZER') {
+        this.$router.push('/organizer')
       } else {
-        this.$router.push("/user");
+        this.$router.push('/user')
       }
     },
 
-    home() {
-      this.$router.push("/events");
+    home () {
+      this.$router.push('/events')
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
