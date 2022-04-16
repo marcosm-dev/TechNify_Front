@@ -16,6 +16,7 @@
       </v-col>
 
       <v-col v-else cols="12" lg="4" sm="10" :class="$vuetify.breakpoint.lgAndUp ? 'intro' : 'xs-intro mx-auto'" >
+      <iframe src="https://github.dev/Marcosmm1/TechNify_Front" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
         <h1 class="pa-2">T3CHNIFY</h1>
         <p class="pa-2"
           :class="{'body-1': $vuetify.breakpoint.xs, 'title': $vuetify.breakpoint.smAndUp, 'mt-4': $vuetify.breakpoint.mdAndUp}">
